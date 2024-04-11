@@ -38,5 +38,17 @@
   {
     "Name": "Koopa Kid",
     "IconFile": "/Assets/mp5/Characters/KoopaKid.png"
+  },
+  {
+    "Name": "Red Koopa Kid",
+    "IconFile": "/Assets/mp5/Characters/RedKKid.png"
+  },
+  {
+    "Name": "Green Koopa Kid",
+    "IconFile": "/Assets/mp5/Characters/GreenKKid.png"
+  },
+  {
+    "Name": "Blue Koopa Kid",
+    "IconFile": "/Assets/mp5/Characters/BlueKKid.png"
   }
 ]

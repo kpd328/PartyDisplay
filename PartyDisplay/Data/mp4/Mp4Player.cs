@@ -3,6 +3,6 @@
         public int StarCount { get; set; }
         public int CoinCount { get; set; }
         public Mp4Character Character { get; set; }
-        public Mp4Item[] Items { get; set; }
+        public Mp4Item[] Items { get; set; } = new Mp4Item[3];
     }
 }

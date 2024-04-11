@@ -1,32 +1,90 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
-
-  
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+	<AvaloniaResource Include="Load\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="$(AvaloniaVersion)" />
+    <None Remove="Assets\mp2\Characters\DK.png" />
+    <None Remove="Assets\mp2\Characters\Luigi.png" />
+    <None Remove="Assets\mp2\Characters\Mario.png" />
+    <None Remove="Assets\mp2\Characters\Peach.png" />
+    <None Remove="Assets\mp2\Characters\Wario.png" />
+    <None Remove="Assets\mp2\Characters\Yoshi.png" />
+    <None Remove="Assets\mp4\Characters\Daisy.png" />
+    <None Remove="Assets\mp4\Characters\DK.png" />
+    <None Remove="Assets\mp4\Characters\Luigi.png" />
+    <None Remove="Assets\mp4\Characters\Mario.png" />
+    <None Remove="Assets\mp4\Characters\Peach.png" />
+    <None Remove="Assets\mp4\Characters\Waluigi.png" />
+    <None Remove="Assets\mp4\Characters\Wario.png" />
+    <None Remove="Assets\mp4\Characters\Yoshi.png" />
+    <None Remove="Assets\mp5\Capsules\BlankBlue.png" />
+    <None Remove="Assets\mp5\Capsules\BlankGreen.png" />
+    <None Remove="Assets\mp5\Capsules\BlankRed.png" />
+    <None Remove="Assets\mp5\Capsules\BlankYellow.png" />
+    <None Remove="Assets\mp5\Capsules\Bowser.png" />
+    <None Remove="Assets\mp5\Characters\BlueKKid.png" />
+    <None Remove="Assets\mp5\Characters\Boo.png" />
+    <None Remove="Assets\mp5\Characters\Daisy.png" />
+    <None Remove="Assets\mp5\Characters\GreenKKid.png" />
+    <None Remove="Assets\mp5\Characters\KoopaKid.png" />
+    <None Remove="Assets\mp5\Characters\Luigi.png" />
+    <None Remove="Assets\mp5\Characters\Mario.png" />
+    <None Remove="Assets\mp5\Characters\Peach.png" />
+    <None Remove="Assets\mp5\Characters\RedKKid.png" />
+    <None Remove="Assets\mp5\Characters\Toad.png" />
+    <None Remove="Assets\mp5\Characters\Waluigi.png" />
+    <None Remove="Assets\mp5\Characters\Wario.png" />
+    <None Remove="Assets\mp5\Characters\Yoshi.png" />
+    <None Remove="Assets\mp5\HUD\BlueTeamFirst.png" />
+    <None Remove="Assets\mp5\HUD\BlueTeamSecond.png" />
+    <None Remove="Assets\mp5\HUD\CapsuleBlue.png" />
+    <None Remove="Assets\mp5\HUD\CapsuleGreen.png" />
+    <None Remove="Assets\mp5\HUD\CapsuleRed.png" />
+    <None Remove="Assets\mp5\HUD\CapsuleYellow.png" />
+    <None Remove="Assets\mp5\HUD\Coin.png" />
+    <None Remove="Assets\mp5\HUD\CPU.png" />
+    <None Remove="Assets\mp5\HUD\EffectBulletBill.png" />
+    <None Remove="Assets\mp5\HUD\EffectCursedMushroom.png" />
+    <None Remove="Assets\mp5\HUD\EffectMushroom.png" />
+    <None Remove="Assets\mp5\HUD\EffectSuperMushroom.png" />
+    <None Remove="Assets\mp5\HUD\First.png" />
+    <None Remove="Assets\mp5\HUD\Fourth.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_0.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_1.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_2.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_3.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_4.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_5.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_6.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_7.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_8.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_9.png" />
+    <None Remove="Assets\mp5\HUD\HUDFont_x.png" />
+    <None Remove="Assets\mp5\HUD\RedTeamFirst.png" />
+    <None Remove="Assets\mp5\HUD\RedTeamSecond.png" />
+    <None Remove="Assets\mp5\HUD\Second.png" />
+    <None Remove="Assets\mp5\HUD\Star.png" />
+    <None Remove="Assets\mp5\HUD\Third.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+    <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <Folder Include="Assets\mp2\Characters\" />
     <Folder Include="Assets\mp2\Items\" />
-    <Folder Include="Assets\mp4\Characters\" />
     <Folder Include="Assets\mp4\Items\" />
-    <Folder Include="Assets\mp5\Characters\" />
-    <Folder Include="Assets\mp5\Capsules\" />
     <Folder Include="Assets\mp6\Characters\" />
     <Folder Include="Assets\mp6\Orbs\" />
     <Folder Include="Assets\mp7\Characters\" />

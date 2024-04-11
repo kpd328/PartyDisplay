@@ -12,5 +12,15 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<StackPanel Orientation="Vertical" 
+				HorizontalAlignment="Center" 
+				VerticalAlignment="Center"
+				Spacing="10">
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp2">Mario Party 2</Button>
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp4">Mario Party 4</Button>
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp5">Mario Party 5</Button>
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp6">Mario Party 6</Button>
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp7">Mario Party 7</Button>
+		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp8">Mario Party 8</Button>
+	</StackPanel>
 </UserControl>

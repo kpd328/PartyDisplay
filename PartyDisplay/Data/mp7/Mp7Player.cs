@@ -3,6 +3,6 @@
         public int StarCount { get; set; }
         public int CoinCount { get; set; }
         public Mp7Character Character { get; set; }
-        public Mp7Orb[] Items { get; set; }
+        public Mp7Orb[] Items { get; set; } = new Mp7Orb[3];
     }
 }

@@ -1,0 +1,71 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:PartyDisplay.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="200"
+        x:Class="PartyDisplay.Views.PlayerView"
+        x:CompileBindings="False"
+        Title="Player Card"
+        Background="Transparent"
+        Width="450" Height="200">
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:Mp5PlayerViewModel/>
+    </Design.DataContext>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Row="0" Grid.Column="0"
+               Grid.RowSpan="3"
+               Source="{Binding Player.Character.Icon}"/>
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Player.Character.Name}"
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal"
+					Margin="5">
+            <Image Source="{Binding CoinIcon}"
+                   Height="30"/>
+            <Image Source="{Binding XIcon}"
+                   Height="25"/>
+            <TextBlock Text="{Binding Player.CoinCount}"
+                       FontSize="32"
+					   Margin="5,0,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2"
+                    Orientation="Horizontal"
+					Margin="5">
+            <Image Source="{Binding StarIcon}"
+                   Height="30"/>
+            <Image Source="{Binding XIcon}"
+                   Height="25"/>
+            <TextBlock Text="{Binding Player.StarCount}"
+                       FontSize="32"
+					   Margin="5,0,0,0"/>
+        </StackPanel>
+        <ItemsControl Grid.Row="2" Grid.Column="1"
+                      Grid.ColumnSpan="2"
+					  ItemsSource="{Binding CurrentItems}"
+					  Height="30"
+					  Margin="0,5,0,0">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Image Source="{Binding Icon}"
+						   Height="30"/>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
