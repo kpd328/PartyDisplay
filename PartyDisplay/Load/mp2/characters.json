@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Mario",
+    "IconFile": "/Assets/mp2/Characters/Mario.png"
+  },
+  {
+    "Name": "Luigi",
+    "IconFile": "/Assets/mp2/Characters/Luigi.png"
+  },
+  {
+    "Name": "Peach",
+    "IconFile": "/Assets/mp2/Characters/Peach.png"
+  },
+  {
+    "Name": "Yoshi",
+    "IconFile": "/Assets/mp2/Characters/Yoshi.png"
+  },
+  {
+    "Name": "Wario",
+    "IconFile": "/Assets/mp2/Characters/Wario.png"
+  },
+  {
+    "Name": "Donkey Kong",
+    "IconFile": "/Assets/mp2/Characters/DK.png"
+  }
+]

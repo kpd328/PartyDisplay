@@ -1,0 +1,58 @@
+[
+  {
+    "Name": "Mario",
+    "IconFile": "/Assets/mp8/Characters/Mario.png"
+  },
+  {
+    "Name": "Luigi",
+    "IconFile": "/Assets/mp8/Characters/Luigi.png"
+  },
+  {
+    "Name": "Peach",
+    "IconFile": "/Assets/mp8/Characters/Peach.png"
+  },
+  {
+    "Name": "Yoshi",
+    "IconFile": "/Assets/mp8/Characters/Yoshi.png"
+  },
+  {
+    "Name": "Wario",
+    "IconFile": "/Assets/mp8/Characters/Wario.png"
+  },
+  {
+    "Name": "Daisy",
+    "IconFile": "/Assets/mp8/Characters/Daisy.png"
+  },
+  {
+    "Name": "Waluigi",
+    "IconFile": "/Assets/mp8/Characters/Waluigi.png"
+  },
+  {
+    "Name": "Toad",
+    "IconFile": "/Assets/mp8/Characters/Toad.png"
+  },
+  {
+    "Name": "Boo",
+    "IconFile": "/Assets/mp8/Characters/Boo.png"
+  },
+  {
+    "Name": "Toadette",
+    "IconFile": "/Assets/mp8/Characters/Toadette.png"
+  },
+  {
+    "Name": "Birdo",
+    "IconFile": "/Assets/mp8/Characters/Birdo.png"
+  },
+  {
+    "Name": "Dry Bones",
+    "IconFile": "/Assets/mp8/Characters/DryBones.png"
+  },
+  {
+    "Name": "Blooper",
+    "IconFile": "/Assets/mp8/Characters/Blooper.png"
+  },
+  {
+    "Name": "Hammer Bro",
+    "IconFile": "/Assets/mp8/Characters/HammerBro.png"
+  }
+]

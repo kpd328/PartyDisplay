@@ -1,0 +1,58 @@
+[
+  {
+    "Name": "Mega Mushroom",
+    "IconFile": "/Assets/mp4/Items/MegaMushroom.png"
+  },
+  {
+    "Name": "Mini Mushroom",
+    "IconFile": "/Assets/mp4/Items/MiniMushroom.png"
+  },
+  {
+    "Name": "Super Mega Mushroom",
+    "IconFile": "/Assets/mp4/Items/SuperMegaMushroom.png"
+  },
+  {
+    "Name": "Super Mini Mushroom",
+    "IconFile": "/Assets/mp4/Items/SuperMiniMushroom.png"
+  },
+  {
+    "Name": "Warp Pipe",
+    "IconFile": "/Assets/mp4/Items/WarpPipe.png"
+  },
+  {
+    "Name": "Swap Card",
+    "IconFile": "/Assets/mp4/Items/SwapCard.png"
+  },
+  {
+    "Name": "MiniMega Hammer",
+    "IconFile": "/Assets/mp4/Items/MiniMegaHammer.png"
+  },
+  {
+    "Name": "Chomp Call",
+    "IconFile": "/Assets/mp4/Items/ChompCall.png"
+  },
+  {
+    "Name": "Boo's Crystal Ball",
+    "IconFile": "/Assets/mp4/Items/BoosCrystalBall.png"
+  },
+  {
+    "Name": "Gaddlight",
+    "IconFile": "/Assets/mp4/Items/Gaddlight.png"
+  },
+  {
+    "Name": "Sparky Sticker",
+    "IconFile": "/Assets/mp4/Items/Sparky Sticker.png"
+  },
+  {
+    "Name": "Item Bag",
+    "IconFile": "/Assets/mp4/Items/Item Bag.png"
+  },
+  {
+    "Name": "Magic Lamp",
+    "IconFile": "/Assets/mp4/Items/MagicLamp.png"
+  },
+  {
+    "Name": "Bowser Suit",
+    "IconFile": "/Assets/mp4/Items/BowserSuit.png"
+  }
+]

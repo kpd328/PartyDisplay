@@ -1,0 +1,42 @@
+[
+  {
+    "Name": "Mario",
+    "IconFile": "/Assets/mp5/Characters/Mario.png"
+  },
+  {
+    "Name": "Luigi",
+    "IconFile": "/Assets/mp5/Characters/Luigi.png"
+  },
+  {
+    "Name": "Peach",
+    "IconFile": "/Assets/mp5/Characters/Peach.png"
+  },
+  {
+    "Name": "Yoshi",
+    "IconFile": "/Assets/mp5/Characters/Yoshi.png"
+  },
+  {
+    "Name": "Wario",
+    "IconFile": "/Assets/mp5/Characters/Wario.png"
+  },
+  {
+    "Name": "Daisy",
+    "IconFile": "/Assets/mp5/Characters/Daisy.png"
+  },
+  {
+    "Name": "Waluigi",
+    "IconFile": "/Assets/mp5/Characters/Waluigi.png"
+  },
+  {
+    "Name": "Toad",
+    "IconFile": "/Assets/mp5/Characters/Toad.png"
+  },
+  {
+    "Name": "Boo",
+    "IconFile": "/Assets/mp5/Characters/Boo.png"
+  },
+  {
+    "Name": "Koopa Kid",
+    "IconFile": "/Assets/mp5/Characters/KoopaKid.png"
+  }
+]

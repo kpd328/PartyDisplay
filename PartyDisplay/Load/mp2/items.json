@@ -1,0 +1,42 @@
+[
+  {
+    "Name": "Mushroom",
+    "IconFile": "/Assets/mp2/Items/Mushroom.png"
+  },
+  {
+    "Name": "Skeleton Key",
+    "IconFile": "/Assets/mp2/Items/SkeletonKey.png"
+  },
+  {
+    "Name": "Plunder Chest",
+    "IconFile": "/Assets/mp2/Items/PlunderChest.png"
+  },
+  {
+    "Name": "Dueling Glove",
+    "IconFile": "/Assets/mp2/Items/DuelingGlove.png"
+  },
+  {
+    "Name": "Warp Block",
+    "IconFile": "/Assets/mp2/Items/WarpBlock.png"
+  },
+  {
+    "Name": "Golden Mushroom",
+    "IconFile": "/Assets/mp2/Items/GoldenMushroom.png"
+  },
+  {
+    "Name": "Magic Lamp",
+    "IconFile": "/Assets/mp2/Items/MagicLamp.png"
+  },
+  {
+    "Name": "Boo Bell",
+    "IconFile": "/Assets/mp2/Items/BooBell.png"
+  },
+  {
+    "Name": "Bowser Suit",
+    "IconFile": "/Assets/mp2/Items/BowserSuit.png"
+  },
+  {
+    "Name": "Bowser Bomb",
+    "IconFile": "/Assets/mp2/Items/BowserBomb.png"
+  }
+]
