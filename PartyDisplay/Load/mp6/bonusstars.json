@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Minigame Star",
+    "ProgressTitle": "Minigame Coins",
+    "IconFile": "/Assets/mp6/BonusStars/Minigame.png"
+  },
+  {
+    "Name": "Orb Star",
+    "ProgressTitle": "Orbs Thrown",
+    "IconFile": "/Assets/mp6/BonusStars/Orb.png"
+  },
+  {
+    "Name": "Action Star",
+    "ProgressTitle": "Action Count",
+    "IconFile": "/Assets/mp6/BonusStars/Action.png"
+  }
+]

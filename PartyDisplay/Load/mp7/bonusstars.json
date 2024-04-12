@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "Minigame Star",
+    "ProgressTitle": "Minigame Coins",
+    "IconFile": "/Assets/mp7/BonusStars/Minigame.png"
+  },
+  {
+    "Name": "Orb Star",
+    "ProgressTitle": "Orbs Used",
+    "IconFile": "/Assets/mp7/BonusStars/Orb.png"
+  },
+  {
+    "Name": "Action Star",
+    "ProgressTitle": "Action Count",
+    "IconFile": "/Assets/mp5/BonusStars/Action.png"
+  },
+  {
+    "Name": "Running Star",
+    "ProgressTitle": "Spaces Moved",
+    "IconFile": "/Assets/mp5/BonusStars/Running.png"
+  },
+  {
+    "Name": "Shopping Star",
+    "ProgressTitle": "Coins Spent",
+    "IconFile": "/Assets/mp5/BonusStars/Shopping.png"
+  },
+  {
+    "Name": "Red Star",
+    "ProgressTitle": "Red Count",
+    "IconFile": "/Assets/mp5/BonusStars/Red.png"
+  }
+]

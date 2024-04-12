@@ -2,7 +2,8 @@
     public interface IContentData<TCharacter, TItem>
         where TCharacter : ICharacter
         where TItem : IItem {
-        public static TCharacter[] Characters { get; }
-        public static TItem[] Items { get; }
+        public TCharacter[] Characters { get; }
+        public TItem[] Items { get; }
+        public BonusStar[] BonusStars { get; }
     }
 }

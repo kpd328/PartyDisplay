@@ -20,7 +20,7 @@ namespace PartyDisplay.Data.mp5 {
 
         [JsonConstructor]
         private Mp5Capsule() {
-            _icon = new(() => new(AssetLoader.Open(new Uri($"avaresL//PartyDisplay{IconFile}"))));
+            _icon = new(() => new(AssetLoader.Open(new Uri($"avares://PartyDisplay{IconFile}"))));
         }
     }
 

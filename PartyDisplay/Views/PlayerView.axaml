@@ -14,17 +14,9 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:Mp5PlayerViewModel/>
     </Design.DataContext>
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Margin="10"
+		  RowDefinitions="*,auto,auto,auto"
+		  ColumnDefinitions="auto,*,*">
         <Image Grid.Row="0" Grid.Column="0"
                Grid.RowSpan="3"
                Source="{Binding Player.Character.Icon}"/>
@@ -57,15 +49,50 @@
         </StackPanel>
         <ItemsControl Grid.Row="2" Grid.Column="1"
                       Grid.ColumnSpan="2"
-					  ItemsSource="{Binding CurrentItems}"
+					  ItemsSource="{Binding Player.Items}"
 					  Height="30"
 					  Margin="0,5,0,0">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Center"/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 					<Image Source="{Binding Icon}"
-						   Height="30"/>
+						   Height="30"
+						   Margin="5,0,5,0"/>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
         </ItemsControl>
+		<ItemsControl Grid.Row="3" Grid.Column="0"
+					  Grid.ColumnSpan="3"
+					  ItemsSource="{Binding Player.BonusStars}"
+					  Height="30"
+					  Margin="0,5,0,0">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel Grid.Row="3" Grid.Column="0"
+								Grid.ColumnSpan="3"
+						        Orientation="Horizontal"
+								HorizontalAlignment="Stretch"/>
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Stretch"
+								Margin="15,0,15,0">
+					    <Image Source="{Binding Icon}"
+						       Height="30"
+						       Margin="0,0,5,0"/>
+						<TextBlock Text="{Binding Count}"
+								   FontSize="24"
+								   Width="50"/>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
     </Grid>
 </Window>
