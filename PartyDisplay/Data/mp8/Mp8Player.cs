@@ -6,6 +6,6 @@ namespace PartyDisplay.Data.mp8 {
         public int CoinCount { get; set; }
         public Mp8Character Character { get; set; }
         public ObservableCollection<Mp8Candy> Items { get; set; } = [];
-        public ObservableCollection<BonusStar> BonusStars { get; }
+        public ObservableCollection<BonusStar> BonusStars { get; } = new(Mp8Loader.Data.BonusStars);
     }
 }

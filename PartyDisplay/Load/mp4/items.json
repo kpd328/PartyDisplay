@@ -41,11 +41,11 @@
   },
   {
     "Name": "Sparky Sticker",
-    "IconFile": "/Assets/mp4/Items/Sparky Sticker.png"
+    "IconFile": "/Assets/mp4/Items/SparkySticker.png"
   },
   {
     "Name": "Item Bag",
-    "IconFile": "/Assets/mp4/Items/Item Bag.png"
+    "IconFile": "/Assets/mp4/Items/ItemBag.png"
   },
   {
     "Name": "Magic Lamp",
