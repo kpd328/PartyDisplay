@@ -12,6 +12,7 @@ namespace PartyDisplay.ViewModels {
         public virtual Bitmap CoinIcon { get; }
         public virtual Bitmap StarIcon { get; }
         public virtual Bitmap XIcon { get; }
+        public virtual Bitmap RankIcon { get; set; }
         public virtual ObservableCollection<TItem> CurrentItems { get; }
     }
 }

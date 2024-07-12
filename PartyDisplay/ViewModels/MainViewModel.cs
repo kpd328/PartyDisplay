@@ -31,132 +31,156 @@ public class MainViewModel:ViewModelBase {
         case "mp2":
             player1.DataContext = new Mp2PlayerViewModel() {
                 Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp2PlayerViewModel() {
                 Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp2PlayerViewModel() {
                 Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp2PlayerViewModel() {
                 Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;
         case "mp4":
             player1.DataContext = new Mp4PlayerViewModel() {
                 Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp4PlayerViewModel() {
                 Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp4PlayerViewModel() {
                 Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp4PlayerViewModel() {
                 Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;
         case "mp5":
             player1.DataContext = new Mp5PlayerViewModel() {
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp5PlayerViewModel() { 
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp5PlayerViewModel() { 
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp5PlayerViewModel() { 
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;
         case "mp6":
             player1.DataContext = new Mp6PlayerViewModel() {
                 Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp6PlayerViewModel() {
                 Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp6PlayerViewModel() {
                 Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp6PlayerViewModel() {
                 Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;
         case "mp7":
             player1.DataContext = new Mp7PlayerViewModel() {
                 Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp7PlayerViewModel() {
                 Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp7PlayerViewModel() {
                 Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp7PlayerViewModel() {
                 Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;
         case "mp8":
             player1.DataContext = new Mp8PlayerViewModel() {
                 Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
+                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Ranking = Data.Ranking.First
                 }
             };
             player2.DataContext = new Mp8PlayerViewModel() {
                 Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First()
+                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Ranking = Data.Ranking.Second
                 }
             };
             player3.DataContext = new Mp8PlayerViewModel() {
                 Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First()
+                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Ranking = Data.Ranking.Third
                 }
             };
             player4.DataContext = new Mp8PlayerViewModel() {
                 Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First()
+                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Ranking = Data.Ranking.Fourth
                 }
             };
             break;

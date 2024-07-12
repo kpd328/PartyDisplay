@@ -19,5 +19,7 @@ namespace PartyDisplay.ViewModels {
 
         private Bitmap _xIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp6/HUD/HUDFont_x.png")));
         public new Bitmap XIcon => _xIcon;
+
+        public new Bitmap RankIcon => new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp6/HUD/{Player.Ranking}.png")));
     }
 }

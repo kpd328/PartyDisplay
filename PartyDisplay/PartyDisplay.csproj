@@ -151,8 +151,11 @@
     <None Remove="Load\mp4\bonusstars.json" />
     <None Remove="Load\mp5\bonusstars.json" />
     <None Remove="Load\mp6\bonusstars.json" />
+    <None Remove="Load\mp6\orbs.json" />
     <None Remove="Load\mp7\bonusstars.json" />
+    <None Remove="Load\mp7\orbs.json" />
     <None Remove="Load\mp8\bonusstars.json" />
+    <None Remove="Load\mp8\candies.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.10" />
