@@ -8,6 +8,7 @@ namespace PartyDisplay.ViewModels {
     public class Mp2PlayerViewModel:PlayerViewModelBase<Mp2Player, Mp2Character, Mp2Item> {
         public new Mp2Player Player { get; set; } = new() {
             Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+            Name = "John",
             Items = [Mp2Loader.Data.Items[0]]
         };
 

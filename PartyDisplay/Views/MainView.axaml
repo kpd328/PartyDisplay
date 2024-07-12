@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:PartyDisplay.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
              x:Class="PartyDisplay.Views.MainView"
              x:DataType="vm:MainViewModel">
   <Design.DataContext>
@@ -12,15 +12,43 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-	<StackPanel Orientation="Vertical" 
-				HorizontalAlignment="Center" 
-				VerticalAlignment="Center"
-				Spacing="10">
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp2">Mario Party 2</Button>
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp4">Mario Party 4</Button>
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp5">Mario Party 5</Button>
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp6">Mario Party 6</Button>
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp7">Mario Party 7</Button>
-		<Button Padding="10" Command="{Binding StartGame}" CommandParameter="mp8">Mario Party 8</Button>
-	</StackPanel>
+	<Grid RowDefinitions="auto,auto,auto,auto"
+		  ColumnDefinitions="auto,auto"
+		  HorizontalAlignment="Center"
+		  VerticalAlignment="Center"
+		  Margin="10">
+		<ComboBox Grid.Row="0" Grid.Column="0"
+				  Width="150" Margin="5"
+				  SelectedIndex="{Binding GameSelectorIndex}" 
+				  MaxDropDownHeight="100">
+			<ComboBoxItem Content="Mario Party 2"/>
+			<ComboBoxItem Content="Mario Party 4"/>
+			<ComboBoxItem Content="Mario Party 5"/>
+			<ComboBoxItem Content="Mario Party 6"/>
+			<ComboBoxItem Content="Mario Party 7"/>
+			<ComboBoxItem Content="Mario Party 8"/>
+		</ComboBox>
+		<TextBox Grid.Row="1" Grid.Column="0"
+				 Width="150" Margin="5"
+				 Watermark="Player 1"
+				 Text="{Binding Player1Name}"/>
+		<TextBox Grid.Row="1" Grid.Column="1"
+				 Width="150" Margin="5"
+				 Watermark="Player 2"
+				 Text="{Binding Player2Name}"/>
+		<TextBox Grid.Row="2" Grid.Column="0"
+				 Width="150" Margin="5"
+				 Watermark="Player 3"
+				 Text="{Binding Player3Name}"/>
+		<TextBox Grid.Row="2" Grid.Column="1"
+				 Width="150" Margin="5"
+				 Watermark="Player 4"
+				 Text="{Binding Player4Name}"/>
+		<Button Grid.Row="3" Grid.Column="1"
+				Margin="5"
+				Padding="10"
+				Command="{Binding StartGame}"
+				Content="Launch Game"
+				IsEnabled="{Binding GameSelectorIsEnabled}"/>
+	</Grid>
 </UserControl>

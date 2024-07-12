@@ -4,7 +4,7 @@ namespace PartyDisplay.Data {
     public interface IPlayer<TCharacter, TItem> 
         where TCharacter : ICharacter 
         where TItem : IItem {
-        public string PlayerName { get; set; }
+        public string Name { get; set; }
         public int StarCount { get; set; }
         public int CoinCount { get; set; }
         public Ranking Ranking { get; set; }

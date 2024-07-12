@@ -2,7 +2,7 @@
 
 namespace PartyDisplay.Data.mp7 {
     public class Mp7Player:IPlayer<Mp7Character, Mp7Orb> {
-        public string PlayerName { get; set; }
+        public string Name { get; set; }
         public int StarCount { get; set; }
         public int CoinCount { get; set; }
         public Ranking Ranking { get; set; }

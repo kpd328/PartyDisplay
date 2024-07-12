@@ -1,7 +1,117 @@
 [
   {
-    "Name": "",
-    "IconFile": "/Assets/mp6/Orbs/",
+    "Name": "Mushroom",
+    "IconFile": "/Assets/mp6/Orbs/Mushroom.png",
     "Type": 1
+  },
+  {
+    "Name": "Super 'Shroom",
+    "IconFile": "/Assets/mp6/Orbs/SuperShroom.png",
+    "Type": 1
+  },
+  {
+    "Name": "Cursed Mushroom",
+    "IconFile": "/Assets/mp6/Orbs/CursedMushroom.png",
+    "Type": 1
+  },
+  {
+    "Name": "Sluggish 'Shroom",
+    "IconFile": "/Assets/mp6/Orbs/SluggishShroom.png",
+    "Type": 1
+  },
+  {
+    "Name": "Metal Mushroom",
+    "IconFile": "/Assets/mp6/Orbs/MetalMushroom.png",
+    "Type": 1
+  },
+  {
+    "Name": "Bullet Bill",
+    "IconFile": "/Assets/mp6/Orbs/BulletBill.png",
+    "Type": 1
+  },
+  {
+    "Name": "Warp Pipe",
+    "IconFile": "/Assets/mp6/Orbs/WarpPipe.png",
+    "Type": 1
+  },
+  {
+    "Name": "Flutter",
+    "IconFile": "/Assets/mp6/Orbs/Flutter.png",
+    "Type": 1
+  },
+  {
+    "Name": "Podoboo",
+    "IconFile": "/Assets/mp6/Orbs/Podoboo.png",
+    "Type": 2
+  },
+  {
+    "Name": "Zap",
+    "IconFile": "/Assets/mp6/Orbs/Zap.png",
+    "Type": 2
+  },
+  {
+    "Name": "Tweester",
+    "IconFile": "/Assets/mp6/Orbs/Tweester.png",
+    "Type": 2
+  },
+  {
+    "Name": "Thwomp",
+    "IconFile": "/Assets/mp6/Orbs/Thwomp.png",
+    "Type": 2
+  },
+  {
+    "Name": "Bob-omb",
+    "IconFile": "/Assets/mp6/Orbs/Bob-omb.png",
+    "Type": 2
+  },
+  {
+    "Name": "Koopa Troopa",
+    "IconFile": "/Assets/mp6/Orbs/KoopaTroopa.png",
+    "Type": 2
+  },
+  {
+    "Name": "Spiny",
+    "IconFile": "/Assets/mp6/Orbs/Spiny.png",
+    "Type": 3
+  },
+  {
+    "Name": "Goomba",
+    "IconFile": "/Assets/mp6/Orbs/Goomba.png",
+    "Type": 3
+  },
+  {
+    "Name": "Piranha Plant",
+    "IconFile": "/Assets/mp6/Orbs/PiranhaPlant.png",
+    "Type": 3
+  },
+  {
+    "Name": "Klepto",
+    "IconFile": "/Assets/mp6/Orbs/Klepto.png",
+    "Type": 3
+  },
+  {
+    "Name": "Toady",
+    "IconFile": "/Assets/mp6/Orbs/Toady.png",
+    "Type": 3
+  },
+  {
+    "Name": "Kamek",
+    "IconFile": "/Assets/mp6/Orbs/Kamek.png",
+    "Type": 3
+  },
+  {
+    "Name": "Mr. Blizzard",
+    "IconFile": "/Assets/mp6/Orbs/MrBlizzard.png",
+    "Type": 3
+  },
+  {
+    "Name": "Snack",
+    "IconFile": "/Assets/mp6/Orbs/Snack.png",
+    "Type": 4
+  },
+  {
+    "Name": "Boo-Away",
+    "IconFile": "/Assets/mp6/Orbs/Boo-Away.png",
+    "Type": 4
   }
 ]

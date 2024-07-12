@@ -2,7 +2,7 @@
 
 namespace PartyDisplay.Data.mp6 {
     public class Mp6Player:IPlayer<Mp6Character, Mp6Orb> {
-        public string PlayerName { get; set; }
+        public string Name { get; set; }
         public int StarCount { get; set; }
         public int CoinCount { get; set; }
         public Ranking Ranking { get; set; }

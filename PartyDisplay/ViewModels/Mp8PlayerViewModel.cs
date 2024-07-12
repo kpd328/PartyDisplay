@@ -8,6 +8,7 @@ namespace PartyDisplay.ViewModels {
     public class Mp8PlayerViewModel:PlayerViewModelBase<Mp8Player, Mp8Character, Mp8Candy> {
         public new Mp8Player Player { get; set; } = new() {
             Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+            Name = "John",
             Items = [Mp8Loader.Data.Items[0], Mp8Loader.Data.Items[1], Mp8Loader.Data.Items[2]]
         };
 

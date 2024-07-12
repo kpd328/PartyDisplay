@@ -8,6 +8,7 @@ namespace PartyDisplay.ViewModels {
     public class Mp4PlayerViewModel:PlayerViewModelBase<Mp4Player, Mp4Character, Mp4Item> {
         public new Mp4Player Player { get; set; } = new() {
             Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+            Name = "John",
             Items = [Mp4Loader.Data.Items[0], Mp4Loader.Data.Items[1], Mp4Loader.Data.Items[2]]
         };
 

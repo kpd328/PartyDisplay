@@ -8,6 +8,7 @@ namespace PartyDisplay.ViewModels {
     public class Mp5PlayerViewModel:PlayerViewModelBase<Mp5Player, Mp5Character, Mp5Capsule> {
         public new Mp5Player Player { get; set; } = new() {
             Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+            Name = "John",
             Items = [Mp5Loader.Data.Items[0], Mp5Loader.Data.Items[1], Mp5Loader.Data.Items[2]]
         };
 

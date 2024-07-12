@@ -8,6 +8,7 @@ namespace PartyDisplay.ViewModels {
     public class Mp6PlayerViewModel:PlayerViewModelBase<Mp6Player, Mp6Character, Mp6Orb> {
         public new Mp6Player Player { get; set; } = new() {
             Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+            Name = "John",
             Items = [Mp6Loader.Data.Items[0], Mp6Loader.Data.Items[1], Mp6Loader.Data.Items[2]]
         };
 
