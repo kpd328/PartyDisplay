@@ -12,12 +12,16 @@
     <vm:MainViewModel />
   </Design.DataContext>
 
-	<Grid RowDefinitions="auto,auto,auto,auto"
+	<Grid RowDefinitions="auto,auto,auto,auto,auto"
 		  ColumnDefinitions="auto,auto"
 		  HorizontalAlignment="Center"
 		  VerticalAlignment="Center"
 		  Margin="10">
-		<ComboBox Grid.Row="0" Grid.Column="0"
+		<TextBlock Grid.Row="0" Grid.Column="0" 
+				   Text="{Binding DolphinStatus}"/>
+		<TextBlock Grid.Row="0" Grid.Column="1"
+				   Text="{Binding CurrentGame}"/>
+		<ComboBox Grid.Row="1" Grid.Column="0"
 				  Width="150" Margin="5"
 				  SelectedIndex="{Binding GameSelectorIndex}" 
 				  MaxDropDownHeight="100">
@@ -28,23 +32,23 @@
 			<ComboBoxItem Content="Mario Party 7"/>
 			<ComboBoxItem Content="Mario Party 8"/>
 		</ComboBox>
-		<TextBox Grid.Row="1" Grid.Column="0"
+		<TextBox Grid.Row="2" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 1"
 				 Text="{Binding Player1Name}"/>
-		<TextBox Grid.Row="1" Grid.Column="1"
+		<TextBox Grid.Row="2" Grid.Column="1"
 				 Width="150" Margin="5"
 				 Watermark="Player 2"
 				 Text="{Binding Player2Name}"/>
-		<TextBox Grid.Row="2" Grid.Column="0"
+		<TextBox Grid.Row="3" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 3"
 				 Text="{Binding Player3Name}"/>
-		<TextBox Grid.Row="2" Grid.Column="1"
+		<TextBox Grid.Row="3" Grid.Column="1"
 				 Width="150" Margin="5"
 				 Watermark="Player 4"
 				 Text="{Binding Player4Name}"/>
-		<Button Grid.Row="3" Grid.Column="1"
+		<Button Grid.Row="4" Grid.Column="1"
 				Margin="5"
 				Padding="10"
 				Command="{Binding StartGame}"

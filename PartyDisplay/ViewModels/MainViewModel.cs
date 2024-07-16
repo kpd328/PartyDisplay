@@ -1,5 +1,4 @@
-﻿using MsBox.Avalonia;
-using PartyDisplay.Data.mp2;
+﻿using PartyDisplay.Data.mp2;
 using PartyDisplay.Data.mp4;
 using PartyDisplay.Data.mp5;
 using PartyDisplay.Data.mp6;
@@ -10,6 +9,10 @@ using ReactiveUI;
 using System;
 using System.Linq;
 using System.Reactive;
+using PartyDisplayProcess;
+using System.Threading.Tasks;
+using PartyDisplay.Hook;
+using PartyDisplay.Utils;
 
 namespace PartyDisplay.ViewModels;
 
@@ -22,16 +25,33 @@ public class MainViewModel:ViewModelBase {
             this.RaisePropertyChanged(nameof(GameSelectorIsEnabled));
         }
     }
-    public bool GameSelectorIsEnabled => GameSelectorIndex > -1;
-    public string Player1Name { get; set; }
-    public string Player2Name { get; set; }
-    public string Player3Name { get; set; }
-    public string Player4Name { get; set; }
+    public bool GameSelectorIsEnabled => Games.CheckGame(CurrentGame) != null;
+    public string Player1Name { get; set; } = string.Empty;
+    public string Player2Name { get; set; } = string.Empty;
+    public string Player3Name { get; set; } = string.Empty;
+    public string Player4Name { get; set; } = string.Empty;
+
+    public string DolphinStatus => DolphinAccessor.getStatus() switch {
+        DolphinAccessor.DolphinStatus.hooked => "Hooked",
+        DolphinAccessor.DolphinStatus.notRunning => "Not Running",
+        DolphinAccessor.DolphinStatus.noEmu => "Not Emulating Game",
+        DolphinAccessor.DolphinStatus.unHooked => "Unhooked",
+        _ => "ERROR: Invalid State",
+    };
+
+    private string _currentGame = string.Empty;
+    public string CurrentGame {
+        get {
+            this.RaiseAndSetIfChanged(ref _currentGame, DolphinHook.LoadedGame());
+            return _currentGame;
+        }
+    }
 
     public ReactiveCommand<Unit, Unit> StartGame { get; }
 
     public MainViewModel() {
         StartGame = ReactiveCommand.Create(CommandStartGame);
+        UpdateHook();
     }
 
     void CommandStartGame() {
@@ -41,8 +61,8 @@ public class MainViewModel:ViewModelBase {
         PlayerView player3 = new() { Title = "P3 Player Card" };
         PlayerView player4 = new() { Title = "P4 Player Card" };
 
-        switch(GameSelectorIndex) {
-        case 0:
+        switch(Games.CheckGame(CurrentGame)) {
+        case Game.MP2:
             player1.DataContext = new Mp2PlayerViewModel() {
                 Player = new() {
                     Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
@@ -72,7 +92,7 @@ public class MainViewModel:ViewModelBase {
                 }
             };
             break;
-        case 1:
+        case Game.MP4:
             player1.DataContext = new Mp4PlayerViewModel() {
                 Player = new() {
                     Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
@@ -102,37 +122,41 @@ public class MainViewModel:ViewModelBase {
                 }
             };
             break;
-        case 2:
+        case Game.MP5:
             player1.DataContext = new Mp5PlayerViewModel() {
+                GamePlayer = 0,
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
+                    Character = Mp5Harness.Connection.GetCharacterForPort(0),
                     Name = Player1Name ?? "Mario",
                     Ranking = Data.Ranking.First
                 }
             };
-            player2.DataContext = new Mp5PlayerViewModel() { 
+            player2.DataContext = new Mp5PlayerViewModel() {
+                GamePlayer = 1,
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
+                    Character = Mp5Harness.Connection.GetCharacterForPort(1),
                     Name = Player2Name ?? "Luigi",
                     Ranking = Data.Ranking.Second
                 }
             };
-            player3.DataContext = new Mp5PlayerViewModel() { 
+            player3.DataContext = new Mp5PlayerViewModel() {
+                GamePlayer = 2,
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
+                    Character = Mp5Harness.Connection.GetCharacterForPort(2),
                     Name = Player3Name ?? "Peach",
                     Ranking = Data.Ranking.Third
                 }
             };
-            player4.DataContext = new Mp5PlayerViewModel() { 
+            player4.DataContext = new Mp5PlayerViewModel() {
+                GamePlayer = 3,
                 Player = new() {
-                    Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
+                    Character = Mp5Harness.Connection.GetCharacterForPort(3),
                     Name = Player4Name ?? "Yoshi",
                     Ranking = Data.Ranking.Fourth
                 }
             };
             break;
-        case 3:
+        case Game.MP6:
             player1.DataContext = new Mp6PlayerViewModel() {
                 Player = new() {
                     Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
@@ -162,7 +186,7 @@ public class MainViewModel:ViewModelBase {
                 }
             };
             break;
-        case 4:
+        case Game.MP7:
             player1.DataContext = new Mp7PlayerViewModel() {
                 Player = new() {
                     Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
@@ -192,7 +216,7 @@ public class MainViewModel:ViewModelBase {
                 }
             };
             break;
-        case 5:
+        case Game.MP8:
             player1.DataContext = new Mp8PlayerViewModel() {
                 Player = new() {
                     Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
@@ -238,5 +262,33 @@ public class MainViewModel:ViewModelBase {
         if(player4.DataContext != null) {
             player4.Show();
         }
+    }
+
+    async void UpdateHook() {
+        await Task.Run(() => {
+            while(true) {
+                DolphinAccessor.hook();
+                this.RaisePropertyChanged(nameof(DolphinStatus));
+                this.RaisePropertyChanged(nameof(CurrentGame));
+                this.RaisePropertyChanged(nameof(GameSelectorIsEnabled));
+                switch(DolphinAccessor.getStatus()) {
+                case DolphinAccessor.DolphinStatus.hooked:
+                    Task.Delay(60000);
+                    break;
+                case DolphinAccessor.DolphinStatus.notRunning:
+                    Task.Delay(1000);
+                    break;
+                case DolphinAccessor.DolphinStatus.noEmu:
+                    Task.Delay(1000);
+                    break;
+                case DolphinAccessor.DolphinStatus.unHooked:
+                    Task.Delay(1000);
+                    break;
+                default:
+                    Task.Delay(1000);
+                    break;
+                }
+            }
+        });
     }
 }

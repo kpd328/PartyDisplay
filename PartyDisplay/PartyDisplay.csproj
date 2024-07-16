@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
@@ -149,6 +150,7 @@
     <None Remove="Assets\mp7\BonusStars\Shopping.png" />
     <None Remove="Load\mp2\bonusstars.json" />
     <None Remove="Load\mp4\bonusstars.json" />
+    <None Remove="Load\mp5\addresses.json" />
     <None Remove="Load\mp5\bonusstars.json" />
     <None Remove="Load\mp6\bonusstars.json" />
     <None Remove="Load\mp6\orbs.json" />
@@ -176,5 +178,8 @@
     <Folder Include="Assets\mp8\Characters\" />
     <Folder Include="Assets\mp8\Candies\" />
     <Folder Include="Assets\mp8\BonusStars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PartyDisplay.Process\PartyDisplay.Process.vcxproj" />
   </ItemGroup>
 </Project>

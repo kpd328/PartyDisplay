@@ -1,11 +1,16 @@
 ﻿using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using PartyDisplay.Data.mp5;
+using PartyDisplay.Hook;
+using ReactiveUI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels {
     public class Mp5PlayerViewModel:PlayerViewModelBase<Mp5Player, Mp5Character, Mp5Capsule> {
+        public byte GamePlayer { get; set; }
+
         public new Mp5Player Player { get; set; } = new() {
             Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
             Name = "John",
@@ -22,5 +27,20 @@ namespace PartyDisplay.ViewModels {
         public new Bitmap XIcon => _xIcon;
 
         public new Bitmap RankIcon => new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp5/HUD/{Player.Ranking}.png")));
+
+        public Mp5PlayerViewModel() {
+            Update();
+        }
+
+        async void Update() {
+            await Task.Run(() => {
+                while(true) {
+                    try {
+                        Player.Character = Mp5Harness.Connection.GetCharacterForPort(GamePlayer);
+                    } catch(Exception) {}
+                    Task.Delay(1000);
+                }
+            });
+        }
     }
 }
