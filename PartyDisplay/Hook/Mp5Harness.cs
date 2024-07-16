@@ -1,6 +1,9 @@
 ﻿using Avalonia.Platform;
+using PartyDisplay.Data;
 using PartyDisplay.Data.mp5;
 using System;
+using System.Globalization;
+using System.Linq;
 using System.Text.Json;
 
 namespace PartyDisplay.Hook {
@@ -14,9 +17,94 @@ namespace PartyDisplay.Hook {
             if(port > 3) {
                 throw new ArgumentOutOfRangeException(nameof(port), "Bad Port Value. Range [0-3].");
             }
-            uint i = uint.Parse(Addresses.PortPlayers.Characters[port].Index, System.Globalization.NumberStyles.HexNumber);
-            var index = DolphinHook.ByteLookup(i) - 23;
+            uint region = uint.Parse(Addresses.PortPlayers.Characters[port].Index, NumberStyles.HexNumber);
+            var index = DolphinHook.ByteLookup(region) - 23;
             return Mp5Loader.Data.Characters[index];
+        }
+
+        public Mp5Character GetCharacterForBoard(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            byte index = (byte)DolphinHook.ByteLookup(region);
+            int i = (index & 0x1F) >> 1;
+            return Mp5Loader.Data.Characters[i];
+        }
+
+        public Ranking GetRanking(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Ranking.Offset.Value;
+            byte rank = (byte)DolphinHook.ByteLookup(region + offset);
+            return rank switch {
+                0x97 => Ranking.First,
+                0xB7 => Ranking.Second,
+                0xD7 => Ranking.Third,
+                0xF7 => Ranking.Fourth,
+                _ => throw new IndexOutOfRangeException("Bad Memory")
+            };
+        }
+
+        public short GetCoins(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Coins.Current.Offset.Value;
+            return DolphinHook.HwordLookup(region + offset);
+        }
+
+        public short GetMinigameCoins(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Coins.Minigame.Offset.Value;
+            return DolphinHook.HwordLookup(region + offset);
+        }
+
+        public short GetMaxCoins(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Coins.Max.Offset.Value;
+            return DolphinHook.HwordLookup(region + offset);
+        }
+
+        public short GetStars(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Stars.Current.Offset.Value;
+            return DolphinHook.HwordLookup(region + offset);
+        }
+
+        public byte GetHappening(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Spaces.Happening.Offset.Value;
+            return (byte)DolphinHook.ByteLookup(region + offset);
+        }
+
+        public Mp5Capsule? GetCapsule(byte player, byte slot) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.Capsules[slot].Offset.Value;
+            sbyte capsule = DolphinHook.ByteLookup(region + offset);
+            if(capsule == -1) {
+                return null;
+            } else {
+                return Mp5Loader.Data.Items.Where(a => a.Index == capsule).First();
+            }
         }
 
         private Mp5Harness() {

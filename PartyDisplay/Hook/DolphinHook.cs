@@ -2,13 +2,17 @@
 using PartyDisplayProcess;
 using System;
 using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace PartyDisplay.Hook {
     public class DolphinHook {
+        
 
         public static string LoadedGame() {
             if(DolphinAccessor.getStatus() == DolphinAccessor.DolphinStatus.hooked) {
-                return DolphinAccessor.getFormattedValueFromMemory(0, MemType.type_string, 6*sizeof(byte), MemBase.base_none, false);
+                
+                string _r = DolphinAccessor.getFormattedValueFromMemory(0, MemType.type_string, 6, MemBase.base_none, false);
+                return _r;
             } else {
                 return "No Game Loaded";
             }
@@ -25,6 +29,21 @@ namespace PartyDisplay.Hook {
                     }
                 }
                 
+            } else {
+                throw new DataException("Dolphin not found.");
+            }
+        }
+
+        public static short HwordLookup(uint index) {
+            if(DolphinAccessor.getStatus() == DolphinAccessor.DolphinStatus.hooked) {
+                unsafe {
+                    short _out;
+                    if(DolphinAccessor.readFromRAM(index, (sbyte*)&_out, sizeof(short), true)) {
+                        return _out;
+                    } else {
+                        throw new Exception("Memory not found.");
+                    }
+                }
             } else {
                 throw new DataException("Dolphin not found.");
             }

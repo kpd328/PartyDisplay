@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PartyDisplay": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

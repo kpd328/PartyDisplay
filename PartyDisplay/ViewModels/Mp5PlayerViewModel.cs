@@ -12,9 +12,7 @@ namespace PartyDisplay.ViewModels {
         public byte GamePlayer { get; set; }
 
         public new Mp5Player Player { get; set; } = new() {
-            Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-            Name = "John",
-            Items = [Mp5Loader.Data.Items[0], Mp5Loader.Data.Items[1], Mp5Loader.Data.Items[2]]
+            Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
         };
 
         private Bitmap _coinIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp5/HUD/Coin.png")));
@@ -35,10 +33,61 @@ namespace PartyDisplay.ViewModels {
         async void Update() {
             await Task.Run(() => {
                 while(true) {
+                    var delay = 10000;
                     try {
-                        Player.Character = Mp5Harness.Connection.GetCharacterForPort(GamePlayer);
+                        Player.Character = Mp5Harness.Connection.GetCharacterForBoard(GamePlayer);
+                        this.RaisePropertyChanged(nameof(RankIcon));
+                    } catch(Exception) {
+                        delay += 5000;
+                    }
+                    try {
+                        Player.Ranking = Mp5Harness.Connection.GetRanking(GamePlayer);
                     } catch(Exception) {}
-                    Task.Delay(1000);
+                    try {
+                        Player.CoinCount = Mp5Harness.Connection.GetCoins(GamePlayer);
+                    } catch(Exception) {}
+                    try {
+                        Player.StarCount = Mp5Harness.Connection.GetStars(GamePlayer);
+                    } catch(Exception) {}
+                    try {
+                        var s0 = Mp5Harness.Connection.GetCapsule(GamePlayer, 0);
+                        var s1 = Mp5Harness.Connection.GetCapsule(GamePlayer, 1);
+                        var s2 = Mp5Harness.Connection.GetCapsule(GamePlayer, 2);
+                        if(s2 == null) {
+                            Player.Items.RemoveAt(2);
+                        }
+                        if(s1 == null) {
+                            Player.Items.RemoveAt(1);
+                        }
+                        if(s0 == null) {
+                            Player.Items.RemoveAt(0);
+                        }
+                        if(s0 != null) {
+                            Player.Items[0] = s0;
+                        }
+                        if(s1 != null) {
+                            Player.Items[1] = s1;
+                        }
+                        if(s2 != null) {
+                            Player.Items[2] = s2;
+                        }
+                    } catch(Exception) {}
+                    try {
+                        foreach(var bs in Player.BonusStars) {
+                            switch(bs.Name) {
+                            case "Minigame Star":
+                                bs.Count = Mp5Harness.Connection.GetMinigameCoins(GamePlayer);
+                                break;
+                            case "Coin Star":
+                                bs.Count = Mp5Harness.Connection.GetMaxCoins(GamePlayer);
+                                break;
+                            case "Happening Star":
+                                bs.Count = Mp5Harness.Connection.GetHappening(GamePlayer);
+                                break;
+                            }
+                        }
+                    } catch(Exception) {}
+                    Task.Delay(delay);
                 }
             });
         }

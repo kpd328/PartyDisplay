@@ -6,6 +6,8 @@ using System.Text.Json.Serialization;
 namespace PartyDisplay.Data.mp5 {
     public class Mp5Capsule:IItem {
         [JsonInclude]
+        public int Index { get; init; }
+        [JsonInclude]
         public string Name { get; init; }
         [JsonIgnore]
         private Lazy<Bitmap> _icon;

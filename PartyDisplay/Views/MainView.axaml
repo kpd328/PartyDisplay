@@ -21,17 +21,8 @@
 				   Text="{Binding DolphinStatus}"/>
 		<TextBlock Grid.Row="0" Grid.Column="1"
 				   Text="{Binding CurrentGame}"/>
-		<ComboBox Grid.Row="1" Grid.Column="0"
-				  Width="150" Margin="5"
-				  SelectedIndex="{Binding GameSelectorIndex}" 
-				  MaxDropDownHeight="100">
-			<ComboBoxItem Content="Mario Party 2"/>
-			<ComboBoxItem Content="Mario Party 4"/>
-			<ComboBoxItem Content="Mario Party 5"/>
-			<ComboBoxItem Content="Mario Party 6"/>
-			<ComboBoxItem Content="Mario Party 7"/>
-			<ComboBoxItem Content="Mario Party 8"/>
-		</ComboBox>
+		<TextBlock Grid.Row="1" Grid.Column="0"
+				   Text="{Binding PID}"/>
 		<TextBox Grid.Row="2" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 1"
@@ -53,6 +44,6 @@
 				Padding="10"
 				Command="{Binding StartGame}"
 				Content="Launch Game"
-				IsEnabled="{Binding GameSelectorIsEnabled}"/>
+				IsEnabled="{Binding LaunchIsEnabled}"/>
 	</Grid>
 </UserControl>

@@ -17,19 +17,16 @@ using PartyDisplay.Utils;
 namespace PartyDisplay.ViewModels;
 
 public class MainViewModel:ViewModelBase {
-    private int _gameSelectorIndex = -1;
-    public int GameSelectorIndex {
-        get => _gameSelectorIndex;
-        set {
-            _gameSelectorIndex = value;
-            this.RaisePropertyChanged(nameof(GameSelectorIsEnabled));
-        }
-    }
-    public bool GameSelectorIsEnabled => Games.CheckGame(CurrentGame) != null;
+    public bool LaunchIsEnabled => Games.CheckGame(CurrentGame) != null;
     public string Player1Name { get; set; } = string.Empty;
     public string Player2Name { get; set; } = string.Empty;
     public string Player3Name { get; set; } = string.Empty;
     public string Player4Name { get; set; } = string.Empty;
+
+    private string _pid = string.Empty;
+    public string PID {
+        get => _pid;
+    }
 
     public string DolphinStatus => DolphinAccessor.getStatus() switch {
         DolphinAccessor.DolphinStatus.hooked => "Hooked",
@@ -126,33 +123,29 @@ public class MainViewModel:ViewModelBase {
             player1.DataContext = new Mp5PlayerViewModel() {
                 GamePlayer = 0,
                 Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForPort(0),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
+                    Character = Mp5Harness.Connection.GetCharacterForBoard(0),
+                    Name = Player1Name ?? "Mario"
                 }
             };
             player2.DataContext = new Mp5PlayerViewModel() {
                 GamePlayer = 1,
                 Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForPort(1),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
+                    Character = Mp5Harness.Connection.GetCharacterForBoard(1),
+                    Name = Player2Name ?? "Luigi"
                 }
             };
             player3.DataContext = new Mp5PlayerViewModel() {
                 GamePlayer = 2,
                 Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForPort(2),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
+                    Character = Mp5Harness.Connection.GetCharacterForBoard(2),
+                    Name = Player3Name ?? "Peach"
                 }
             };
             player4.DataContext = new Mp5PlayerViewModel() {
                 GamePlayer = 3,
                 Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForPort(3),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
+                    Character = Mp5Harness.Connection.GetCharacterForBoard(3),
+                    Name = Player4Name ?? "Yoshi"
                 }
             };
             break;
@@ -270,7 +263,8 @@ public class MainViewModel:ViewModelBase {
                 DolphinAccessor.hook();
                 this.RaisePropertyChanged(nameof(DolphinStatus));
                 this.RaisePropertyChanged(nameof(CurrentGame));
-                this.RaisePropertyChanged(nameof(GameSelectorIsEnabled));
+                this.RaisePropertyChanged(nameof(LaunchIsEnabled));
+                this.RaiseAndSetIfChanged(ref _pid, DolphinAccessor.getPID().ToString(), nameof(PID));
                 switch(DolphinAccessor.getStatus()) {
                 case DolphinAccessor.DolphinStatus.hooked:
                     Task.Delay(60000);

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PartyDisplay.Desktop": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
