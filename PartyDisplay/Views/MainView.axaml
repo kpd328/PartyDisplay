@@ -44,6 +44,6 @@
 				Padding="10"
 				Command="{Binding StartGame}"
 				Content="Launch Game"
-				IsEnabled="{Binding LaunchIsEnabled}"/>
+				IsEnabled="{Binding IsLaunchEnabled}"/>
 	</Grid>
 </UserControl>

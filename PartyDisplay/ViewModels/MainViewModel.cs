@@ -1,6 +1,5 @@
 ﻿using PartyDisplay.Data.mp2;
 using PartyDisplay.Data.mp4;
-using PartyDisplay.Data.mp5;
 using PartyDisplay.Data.mp6;
 using PartyDisplay.Data.mp7;
 using PartyDisplay.Data.mp8;
@@ -10,14 +9,13 @@ using System;
 using System.Linq;
 using System.Reactive;
 using PartyDisplayProcess;
-using System.Threading.Tasks;
 using PartyDisplay.Hook;
 using PartyDisplay.Utils;
+using System.Reactive.Linq;
 
 namespace PartyDisplay.ViewModels;
 
 public class MainViewModel:ViewModelBase {
-    public bool LaunchIsEnabled => Games.CheckGame(CurrentGame) != null;
     public string Player1Name { get; set; } = string.Empty;
     public string Player2Name { get; set; } = string.Empty;
     public string Player3Name { get; set; } = string.Empty;
@@ -26,29 +24,36 @@ public class MainViewModel:ViewModelBase {
     private string _pid = string.Empty;
     public string PID {
         get => _pid;
+        set => this.RaiseAndSetIfChanged(ref _pid, value);
     }
 
-    public string DolphinStatus => DolphinAccessor.getStatus() switch {
-        DolphinAccessor.DolphinStatus.hooked => "Hooked",
-        DolphinAccessor.DolphinStatus.notRunning => "Not Running",
-        DolphinAccessor.DolphinStatus.noEmu => "Not Emulating Game",
-        DolphinAccessor.DolphinStatus.unHooked => "Unhooked",
-        _ => "ERROR: Invalid State",
-    };
+    private string _dolphinStatus = string.Empty;
+    public string DolphinStatus {
+        get => _dolphinStatus;
+        set => this.RaiseAndSetIfChanged(ref _dolphinStatus, value);
+    }
 
     private string _currentGame = string.Empty;
     public string CurrentGame {
-        get {
-            this.RaiseAndSetIfChanged(ref _currentGame, DolphinHook.LoadedGame());
-            return _currentGame;
-        }
+        get => _currentGame;
+        set => this.RaiseAndSetIfChanged(ref _currentGame, value);
     }
+
+    private ObservableAsPropertyHelper<bool> _isLaunchEnabled;
+    public bool IsLaunchEnabled => _isLaunchEnabled.Value;
 
     public ReactiveCommand<Unit, Unit> StartGame { get; }
 
     public MainViewModel() {
         StartGame = ReactiveCommand.Create(CommandStartGame);
-        UpdateHook();
+        _isLaunchEnabled = this
+            .WhenAnyValue(x => x.CurrentGame)
+            .Select(game => Games.CheckGame(game) != null)
+            .DistinctUntilChanged()
+            .ObserveOn(RxApp.TaskpoolScheduler)
+            .ToProperty(this, x => x.IsLaunchEnabled);
+
+        Updater();
     }
 
     void CommandStartGame() {
@@ -121,28 +126,28 @@ public class MainViewModel:ViewModelBase {
             break;
         case Game.MP5:
             player1.DataContext = new Mp5PlayerViewModel() {
-                GamePlayer = 0,
+                PlayerOrder = 0,
                 Player = new() {
                     Character = Mp5Harness.Connection.GetCharacterForBoard(0),
                     Name = Player1Name ?? "Mario"
                 }
             };
             player2.DataContext = new Mp5PlayerViewModel() {
-                GamePlayer = 1,
+                PlayerOrder = 1,
                 Player = new() {
                     Character = Mp5Harness.Connection.GetCharacterForBoard(1),
                     Name = Player2Name ?? "Luigi"
                 }
             };
             player3.DataContext = new Mp5PlayerViewModel() {
-                GamePlayer = 2,
+                PlayerOrder = 2,
                 Player = new() {
                     Character = Mp5Harness.Connection.GetCharacterForBoard(2),
                     Name = Player3Name ?? "Peach"
                 }
             };
             player4.DataContext = new Mp5PlayerViewModel() {
-                GamePlayer = 3,
+                PlayerOrder = 3,
                 Player = new() {
                     Character = Mp5Harness.Connection.GetCharacterForBoard(3),
                     Name = Player4Name ?? "Yoshi"
@@ -257,32 +262,24 @@ public class MainViewModel:ViewModelBase {
         }
     }
 
-    async void UpdateHook() {
-        await Task.Run(() => {
+    private void UpdateHook() {
+        DolphinAccessor.hook();
+        DolphinStatus = DolphinAccessor.getStatus() switch {
+            DolphinAccessor.DolphinStatus.hooked => "Hooked",
+            DolphinAccessor.DolphinStatus.notRunning => "Not Running",
+            DolphinAccessor.DolphinStatus.noEmu => "Not Emulating Game",
+            DolphinAccessor.DolphinStatus.unHooked => "Unhooked",
+            _ => "ERROR: Invalid State",
+        };
+    }
+
+    private async void Updater() {
+        await Observable.Start(() => {
             while(true) {
-                DolphinAccessor.hook();
-                this.RaisePropertyChanged(nameof(DolphinStatus));
-                this.RaisePropertyChanged(nameof(CurrentGame));
-                this.RaisePropertyChanged(nameof(LaunchIsEnabled));
-                this.RaiseAndSetIfChanged(ref _pid, DolphinAccessor.getPID().ToString(), nameof(PID));
-                switch(DolphinAccessor.getStatus()) {
-                case DolphinAccessor.DolphinStatus.hooked:
-                    Task.Delay(60000);
-                    break;
-                case DolphinAccessor.DolphinStatus.notRunning:
-                    Task.Delay(1000);
-                    break;
-                case DolphinAccessor.DolphinStatus.noEmu:
-                    Task.Delay(1000);
-                    break;
-                case DolphinAccessor.DolphinStatus.unHooked:
-                    Task.Delay(1000);
-                    break;
-                default:
-                    Task.Delay(1000);
-                    break;
-                }
+                UpdateHook();
+                CurrentGame = DolphinHook.LoadedGame();
+                PID = DolphinAccessor.getPID().ToString();
             }
-        });
+        }, RxApp.TaskpoolScheduler);
     }
 }

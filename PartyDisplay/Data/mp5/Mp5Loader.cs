@@ -1,5 +1,6 @@
 ﻿using Avalonia.Platform;
 using System;
+using System.Linq;
 using System.Text.Json;
 
 namespace PartyDisplay.Data.mp5 {
@@ -10,6 +11,10 @@ namespace PartyDisplay.Data.mp5 {
         public Mp5Character[] Characters { get; private set; }
         public Mp5Capsule[] Items { get; private set; }
         public BonusStar[] BonusStars { get; private set; }
+
+        public BonusStar[] GetCopyOfBonusStars() {
+            return BonusStars.Select(a => a.Clone()).ToArray();
+        }
 
         private Mp5Loader() {
             Characters = JsonSerializer.Deserialize<Mp5Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp5/characters.json"))) ?? [];

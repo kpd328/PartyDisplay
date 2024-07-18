@@ -5,11 +5,12 @@ using PartyDisplay.Hook;
 using ReactiveUI;
 using System;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels {
     public class Mp5PlayerViewModel:PlayerViewModelBase<Mp5Player, Mp5Character, Mp5Capsule> {
-        public byte GamePlayer { get; set; }
+        public byte PlayerOrder { get; init; }
 
         public new Mp5Player Player { get; set; } = new() {
             Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
@@ -31,65 +32,36 @@ namespace PartyDisplay.ViewModels {
         }
 
         async void Update() {
-            await Task.Run(() => {
+            await Observable.Start(() => {
                 while(true) {
-                    var delay = 10000;
-                    try {
-                        Player.Character = Mp5Harness.Connection.GetCharacterForBoard(GamePlayer);
-                        this.RaisePropertyChanged(nameof(RankIcon));
-                    } catch(Exception) {
-                        delay += 5000;
+                    Player.Character = Mp5Harness.Connection.GetCharacterForBoard(PlayerOrder);
+                     this.RaisePropertyChanged(nameof(RankIcon));
+                    Player.Ranking = Mp5Harness.Connection.GetRanking(PlayerOrder);
+                    Player.CoinCount = Mp5Harness.Connection.GetCoins(PlayerOrder);
+                    Player.StarCount = Mp5Harness.Connection.GetStars(PlayerOrder);
+
+                    Player.Items = [
+                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 0),
+                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 1),
+                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 2)
+                    ];
+
+                    foreach(var bs in Player.BonusStars) {
+                        switch(bs.Name) {
+                        case "Minigame Star":
+                            bs.Count = Mp5Harness.Connection.GetMinigameCoins(PlayerOrder);
+                            break;
+                        case "Coin Star":
+                            bs.Count = Mp5Harness.Connection.GetMaxCoins(PlayerOrder);
+                            break;
+                        case "Happening Star":
+                            bs.Count = Mp5Harness.Connection.GetHappening(PlayerOrder);
+                            break;
+                        }
                     }
-                    try {
-                        Player.Ranking = Mp5Harness.Connection.GetRanking(GamePlayer);
-                    } catch(Exception) {}
-                    try {
-                        Player.CoinCount = Mp5Harness.Connection.GetCoins(GamePlayer);
-                    } catch(Exception) {}
-                    try {
-                        Player.StarCount = Mp5Harness.Connection.GetStars(GamePlayer);
-                    } catch(Exception) {}
-                    try {
-                        var s0 = Mp5Harness.Connection.GetCapsule(GamePlayer, 0);
-                        var s1 = Mp5Harness.Connection.GetCapsule(GamePlayer, 1);
-                        var s2 = Mp5Harness.Connection.GetCapsule(GamePlayer, 2);
-                        if(s2 == null) {
-                            Player.Items.RemoveAt(2);
-                        }
-                        if(s1 == null) {
-                            Player.Items.RemoveAt(1);
-                        }
-                        if(s0 == null) {
-                            Player.Items.RemoveAt(0);
-                        }
-                        if(s0 != null) {
-                            Player.Items[0] = s0;
-                        }
-                        if(s1 != null) {
-                            Player.Items[1] = s1;
-                        }
-                        if(s2 != null) {
-                            Player.Items[2] = s2;
-                        }
-                    } catch(Exception) {}
-                    try {
-                        foreach(var bs in Player.BonusStars) {
-                            switch(bs.Name) {
-                            case "Minigame Star":
-                                bs.Count = Mp5Harness.Connection.GetMinigameCoins(GamePlayer);
-                                break;
-                            case "Coin Star":
-                                bs.Count = Mp5Harness.Connection.GetMaxCoins(GamePlayer);
-                                break;
-                            case "Happening Star":
-                                bs.Count = Mp5Harness.Connection.GetHappening(GamePlayer);
-                                break;
-                            }
-                        }
-                    } catch(Exception) {}
-                    Task.Delay(delay);
+                    Task.Delay(100).Wait();
                 }
-            });
+            }, RxApp.TaskpoolScheduler);
         }
     }
 }
