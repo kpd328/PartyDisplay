@@ -26,19 +26,19 @@
 		<TextBox Grid.Row="2" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 1"
-				 Text="{Binding Player1Name}"/>
+				 Text="{Binding Meta.Port1Name}"/>
 		<TextBox Grid.Row="2" Grid.Column="1"
 				 Width="150" Margin="5"
 				 Watermark="Player 2"
-				 Text="{Binding Player2Name}"/>
+				 Text="{Binding Meta.Port2Name}"/>
 		<TextBox Grid.Row="3" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 3"
-				 Text="{Binding Player3Name}"/>
+				 Text="{Binding Meta.Port3Name}"/>
 		<TextBox Grid.Row="3" Grid.Column="1"
 				 Width="150" Margin="5"
 				 Watermark="Player 4"
-				 Text="{Binding Player4Name}"/>
+				 Text="{Binding Meta.Port4Name}"/>
 		<Button Grid.Row="4" Grid.Column="1"
 				Margin="5"
 				Padding="10"

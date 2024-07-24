@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.Json;
 
 namespace PartyDisplay.Hook {
-    public sealed class Mp5Harness : IGameHarness {
+    public sealed class Mp5Harness : IGameHarness<Mp5Character, Mp5Capsule> {
         private static readonly Lazy<Mp5Harness> _instance = new(() => new());
         public static Mp5Harness Connection => _instance.Value;
 
@@ -39,11 +39,12 @@ namespace PartyDisplay.Hook {
             uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
             uint offset = Addresses.BoardPlayers.Template.Ranking.Offset.Value;
             byte rank = (byte)DolphinHook.ByteLookup(region + offset);
-            return rank switch {
-                0x97 => Ranking.First,
-                0xB7 => Ranking.Second,
-                0xD7 => Ranking.Third,
-                0xF7 => Ranking.Fourth,
+            return ((rank & 0x60) >> 5) switch { 
+                //This isolates and bit shifts the relevant bits (6 and 7) at the address
+                0 => Ranking.First,
+                1 => Ranking.Second,
+                2 => Ranking.Third,
+                3 => Ranking.Fourth,
                 _ => throw new IndexOutOfRangeException("Bad Memory")
             };
         }
@@ -93,7 +94,7 @@ namespace PartyDisplay.Hook {
             return (byte)DolphinHook.ByteLookup(region + offset);
         }
 
-        public Mp5Capsule? GetCapsule(byte player, byte slot) {
+        public Mp5Capsule? GetItem(byte player, byte slot) {
             if(player > 3) {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
             }
@@ -105,6 +106,15 @@ namespace PartyDisplay.Hook {
             } else {
                 return Mp5Loader.Data.Items.Where(a => a.Index == capsule).First();
             }
+        }
+
+        public byte GetPortForPlayer(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3]");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.PortPlayer.Offset.Value;
+            return (byte)DolphinHook.ByteLookup(region + offset);
         }
 
         private Mp5Harness() {

@@ -2,7 +2,6 @@
 using PartyDisplayProcess;
 using System;
 using System.Data;
-using System.Runtime.CompilerServices;
 
 namespace PartyDisplay.Hook {
     public class DolphinHook {

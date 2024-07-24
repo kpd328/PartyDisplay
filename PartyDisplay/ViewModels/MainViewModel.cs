@@ -16,10 +16,7 @@ using System.Reactive.Linq;
 namespace PartyDisplay.ViewModels;
 
 public class MainViewModel:ViewModelBase {
-    public string Player1Name { get; set; } = string.Empty;
-    public string Player2Name { get; set; } = string.Empty;
-    public string Player3Name { get; set; } = string.Empty;
-    public string Player4Name { get; set; } = string.Empty;
+    public MetaViewmodel Meta => MetaViewmodel.Instance;
 
     private string _pid = string.Empty;
     public string PID {
@@ -65,184 +62,41 @@ public class MainViewModel:ViewModelBase {
 
         switch(Games.CheckGame(CurrentGame)) {
         case Game.MP2:
-            player1.DataContext = new Mp2PlayerViewModel() {
-                Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
-                }
-            };
-            player2.DataContext = new Mp2PlayerViewModel() {
-                Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
-                }
-            };
-            player3.DataContext = new Mp2PlayerViewModel() {
-                Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
-                }
-            };
-            player4.DataContext = new Mp2PlayerViewModel() {
-                Player = new() {
-                    Character = Mp2Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
-                }
-            };
+            player1.DataContext = new Mp2PlayerViewModel();
+            player2.DataContext = new Mp2PlayerViewModel();
+            player3.DataContext = new Mp2PlayerViewModel();
+            player4.DataContext = new Mp2PlayerViewModel();
             break;
         case Game.MP4:
-            player1.DataContext = new Mp4PlayerViewModel() {
-                Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
-                }
-            };
-            player2.DataContext = new Mp4PlayerViewModel() {
-                Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
-                }
-            };
-            player3.DataContext = new Mp4PlayerViewModel() {
-                Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
-                }
-            };
-            player4.DataContext = new Mp4PlayerViewModel() {
-                Player = new() {
-                    Character = Mp4Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
-                }
-            };
+            player1.DataContext = new Mp4PlayerViewModel();
+            player2.DataContext = new Mp4PlayerViewModel();
+            player3.DataContext = new Mp4PlayerViewModel();
+            player4.DataContext = new Mp4PlayerViewModel();
             break;
         case Game.MP5:
-            player1.DataContext = new Mp5PlayerViewModel() {
-                PlayerOrder = 0,
-                Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForBoard(0),
-                    Name = Player1Name ?? "Mario"
-                }
-            };
-            player2.DataContext = new Mp5PlayerViewModel() {
-                PlayerOrder = 1,
-                Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForBoard(1),
-                    Name = Player2Name ?? "Luigi"
-                }
-            };
-            player3.DataContext = new Mp5PlayerViewModel() {
-                PlayerOrder = 2,
-                Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForBoard(2),
-                    Name = Player3Name ?? "Peach"
-                }
-            };
-            player4.DataContext = new Mp5PlayerViewModel() {
-                PlayerOrder = 3,
-                Player = new() {
-                    Character = Mp5Harness.Connection.GetCharacterForBoard(3),
-                    Name = Player4Name ?? "Yoshi"
-                }
-            };
+            MetaViewmodel.Instance.GameHarness = Mp5Harness.Connection;
+            player1.DataContext = new Mp5PlayerViewModel(0);
+            player2.DataContext = new Mp5PlayerViewModel(1);
+            player3.DataContext = new Mp5PlayerViewModel(2);
+            player4.DataContext = new Mp5PlayerViewModel(3);
             break;
         case Game.MP6:
-            player1.DataContext = new Mp6PlayerViewModel() {
-                Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
-                }
-            };
-            player2.DataContext = new Mp6PlayerViewModel() {
-                Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
-                }
-            };
-            player3.DataContext = new Mp6PlayerViewModel() {
-                Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
-                }
-            };
-            player4.DataContext = new Mp6PlayerViewModel() {
-                Player = new() {
-                    Character = Mp6Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
-                }
-            };
+            player1.DataContext = new Mp6PlayerViewModel();
+            player2.DataContext = new Mp6PlayerViewModel();
+            player3.DataContext = new Mp6PlayerViewModel();
+            player4.DataContext = new Mp6PlayerViewModel();
             break;
         case Game.MP7:
-            player1.DataContext = new Mp7PlayerViewModel() {
-                Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
-                }
-            };
-            player2.DataContext = new Mp7PlayerViewModel() {
-                Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
-                }
-            };
-            player3.DataContext = new Mp7PlayerViewModel() {
-                Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
-                }
-            };
-            player4.DataContext = new Mp7PlayerViewModel() {
-                Player = new() {
-                    Character = Mp7Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
-                }
-            };
+            player1.DataContext = new Mp7PlayerViewModel();
+            player2.DataContext = new Mp7PlayerViewModel();
+            player3.DataContext = new Mp7PlayerViewModel();
+            player4.DataContext = new Mp7PlayerViewModel();
             break;
         case Game.MP8:
-            player1.DataContext = new Mp8PlayerViewModel() {
-                Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First(),
-                    Name = Player1Name ?? "Mario",
-                    Ranking = Data.Ranking.First
-                }
-            };
-            player2.DataContext = new Mp8PlayerViewModel() {
-                Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Luigi")).First(),
-                    Name = Player2Name ?? "Luigi",
-                    Ranking = Data.Ranking.Second
-                }
-            };
-            player3.DataContext = new Mp8PlayerViewModel() {
-                Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Peach")).First(),
-                    Name = Player3Name ?? "Peach",
-                    Ranking = Data.Ranking.Third
-                }
-            };
-            player4.DataContext = new Mp8PlayerViewModel() {
-                Player = new() {
-                    Character = Mp8Loader.Data.Characters.Where(c => c.Name.Equals("Yoshi")).First(),
-                    Name = Player4Name ?? "Yoshi",
-                    Ranking = Data.Ranking.Fourth
-                }
-            };
+            player1.DataContext = new Mp8PlayerViewModel();
+            player2.DataContext = new Mp8PlayerViewModel();
+            player3.DataContext = new Mp8PlayerViewModel();
+            player4.DataContext = new Mp8PlayerViewModel();
             break;
         default:
             throw new NotImplementedException();

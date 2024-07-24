@@ -7,36 +7,41 @@ using System.Runtime.CompilerServices;
 namespace PartyDisplay.Data.mp5 {
     public class Mp5Player:IPlayer<Mp5Character, Mp5Capsule>, INotifyPropertyChanged {
         private string _name = string.Empty;
-        private short _starCount;
-        private short _coinCoint;
-        private Ranking _ranking;
-        private Mp5Character _character;
-        private ObservableCollection<Mp5Capsule> _items = [];
-
         public string Name {
             get => _name;
             set => SetField(ref _name, value);
         }
+
+        private short _starCount;
         public short StarCount {
             get => _starCount;
             set => SetField(ref _starCount, value);
         }
+
+        private short _coinCoint;
         public short CoinCount {
             get => _coinCoint;
             set => SetField(ref _coinCoint, value);
         }
+
+        private Ranking _ranking;
         public Ranking Ranking {
             get => _ranking;
             set => SetField(ref _ranking, value);
         }
+
+        private Mp5Character _character;
         public Mp5Character Character {
             get => _character;
             set => SetField(ref _character, value);
         }
+
+        private ObservableCollection<Mp5Capsule> _items = [];
         public ObservableCollection<Mp5Capsule> Items {
             get => _items;
             set => SetField(ref _items, value);
         }
+
         public ObservableCollection<BonusStar> BonusStars { get; } = new(Mp5Loader.Data.GetCopyOfBonusStars());
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -49,6 +54,5 @@ namespace PartyDisplay.Data.mp5 {
             OnPropertyChanged(propertyName);
             return true;
         }
-
     }
 }

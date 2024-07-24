@@ -10,11 +10,7 @@ using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels {
     public class Mp5PlayerViewModel:PlayerViewModelBase<Mp5Player, Mp5Character, Mp5Capsule> {
-        public byte PlayerOrder { get; init; }
-
-        public new Mp5Player Player { get; set; } = new() {
-            Character = Mp5Loader.Data.Characters.Where(c => c.Name.Equals("Mario")).First()
-        };
+        public new Mp5Player Player { get; set; }
 
         private Bitmap _coinIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp5/HUD/Coin.png")));
         public new Bitmap CoinIcon => _coinIcon;
@@ -27,35 +23,37 @@ namespace PartyDisplay.ViewModels {
 
         public new Bitmap RankIcon => new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp5/HUD/{Player.Ranking}.png")));
 
-        public Mp5PlayerViewModel() {
+        public Mp5PlayerViewModel(byte port) {
+            Port = port;
+            Player = new();
             Update();
         }
 
         async void Update() {
             await Observable.Start(() => {
                 while(true) {
-                    Player.Character = Mp5Harness.Connection.GetCharacterForBoard(PlayerOrder);
+                    Player.Character = Mp5Harness.Connection.GetCharacterForBoard(Port);
                      this.RaisePropertyChanged(nameof(RankIcon));
-                    Player.Ranking = Mp5Harness.Connection.GetRanking(PlayerOrder);
-                    Player.CoinCount = Mp5Harness.Connection.GetCoins(PlayerOrder);
-                    Player.StarCount = Mp5Harness.Connection.GetStars(PlayerOrder);
+                    Player.Ranking = Mp5Harness.Connection.GetRanking(Port);
+                    Player.CoinCount = Mp5Harness.Connection.GetCoins(Port);
+                    Player.StarCount = Mp5Harness.Connection.GetStars(Port);
 
                     Player.Items = [
-                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 0),
-                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 1),
-                        Mp5Harness.Connection.GetCapsule(PlayerOrder, 2)
+                        Mp5Harness.Connection.GetItem(Port, 0),
+                        Mp5Harness.Connection.GetItem(Port, 1),
+                        Mp5Harness.Connection.GetItem(Port, 2)
                     ];
 
                     foreach(var bs in Player.BonusStars) {
                         switch(bs.Name) {
                         case "Minigame Star":
-                            bs.Count = Mp5Harness.Connection.GetMinigameCoins(PlayerOrder);
+                            bs.Count = Mp5Harness.Connection.GetMinigameCoins(Port);
                             break;
                         case "Coin Star":
-                            bs.Count = Mp5Harness.Connection.GetMaxCoins(PlayerOrder);
+                            bs.Count = Mp5Harness.Connection.GetMaxCoins(Port);
                             break;
                         case "Happening Star":
-                            bs.Count = Mp5Harness.Connection.GetHappening(PlayerOrder);
+                            bs.Count = Mp5Harness.Connection.GetHappening(Port);
                             break;
                         }
                     }
