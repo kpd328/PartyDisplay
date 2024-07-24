@@ -149,6 +149,7 @@
     <None Remove="Assets\mp7\BonusStars\Running.png" />
     <None Remove="Assets\mp7\BonusStars\Shopping.png" />
     <None Remove="Load\mp2\bonusstars.json" />
+    <None Remove="Load\mp4\addresses.json" />
     <None Remove="Load\mp4\bonusstars.json" />
     <None Remove="Load\mp5\addresses.json" />
     <None Remove="Load\mp5\bonusstars.json" />

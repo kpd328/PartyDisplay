@@ -1,58 +1,72 @@
 [
   {
-    "Name": "Mega Mushroom",
-    "IconFile": "/Assets/mp4/Items/MegaMushroom.png"
-  },
-  {
+    "Index": 0,
     "Name": "Mini Mushroom",
     "IconFile": "/Assets/mp4/Items/MiniMushroom.png"
   },
   {
-    "Name": "Super Mega Mushroom",
-    "IconFile": "/Assets/mp4/Items/SuperMegaMushroom.png"
+    "Index": 1,
+    "Name": "Mega Mushroom",
+    "IconFile": "/Assets/mp4/Items/MegaMushroom.png"
   },
   {
+    "Index": 2,
     "Name": "Super Mini Mushroom",
     "IconFile": "/Assets/mp4/Items/SuperMiniMushroom.png"
   },
   {
-    "Name": "Warp Pipe",
-    "IconFile": "/Assets/mp4/Items/WarpPipe.png"
+    "Index": 3,
+    "Name": "Super Mega Mushroom",
+    "IconFile": "/Assets/mp4/Items/SuperMegaMushroom.png"
   },
   {
-    "Name": "Swap Card",
-    "IconFile": "/Assets/mp4/Items/SwapCard.png"
-  },
-  {
+    "Index": 4,
     "Name": "MiniMega Hammer",
     "IconFile": "/Assets/mp4/Items/MiniMegaHammer.png"
   },
   {
-    "Name": "Chomp Call",
-    "IconFile": "/Assets/mp4/Items/ChompCall.png"
+    "Index": 5,
+    "Name": "Warp Pipe",
+    "IconFile": "/Assets/mp4/Items/WarpPipe.png"
   },
   {
-    "Name": "Boo's Crystal Ball",
-    "IconFile": "/Assets/mp4/Items/BoosCrystalBall.png"
+    "Index": 6,
+    "Name": "Swap Card",
+    "IconFile": "/Assets/mp4/Items/SwapCard.png"
   },
   {
-    "Name": "Gaddlight",
-    "IconFile": "/Assets/mp4/Items/Gaddlight.png"
-  },
-  {
+    "Index": 7,
     "Name": "Sparky Sticker",
     "IconFile": "/Assets/mp4/Items/SparkySticker.png"
   },
   {
-    "Name": "Item Bag",
-    "IconFile": "/Assets/mp4/Items/ItemBag.png"
+    "Index": 8,
+    "Name": "Gaddlight",
+    "IconFile": "/Assets/mp4/Items/Gaddlight.png"
   },
   {
+    "Index": 9,
+    "Name": "Chomp Call",
+    "IconFile": "/Assets/mp4/Items/ChompCall.png"
+  },
+  {
+    "Index": 10,
+    "Name": "Bowser Suit",
+    "IconFile": "/Assets/mp4/Items/BowserSuit.png"
+  },
+  {
+    "Index": 11,
+    "Name": "Boo's Crystal Ball",
+    "IconFile": "/Assets/mp4/Items/BoosCrystalBall.png"
+  },
+  {
+    "Index": 12,
     "Name": "Magic Lamp",
     "IconFile": "/Assets/mp4/Items/MagicLamp.png"
   },
   {
-    "Name": "Bowser Suit",
-    "IconFile": "/Assets/mp4/Items/BowserSuit.png"
+    "Index": 13,
+    "Name": "Item Bag",
+    "IconFile": "/Assets/mp4/Items/ItemBag.png"
   }
 ]

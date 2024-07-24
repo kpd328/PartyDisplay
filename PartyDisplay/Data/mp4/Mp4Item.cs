@@ -6,6 +6,8 @@ using Avalonia.Platform;
 namespace PartyDisplay.Data.mp4 {
     public class Mp4Item:IItem {
         [JsonInclude]
+        public int Index { get; init; }
+        [JsonInclude]
         public string Name { get; init; }
         [JsonIgnore]
         private Lazy<Bitmap> _icon;

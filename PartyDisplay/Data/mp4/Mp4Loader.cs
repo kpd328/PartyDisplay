@@ -1,6 +1,6 @@
 ﻿using Avalonia.Platform;
-using PartyDisplay.Data.mp5;
 using System;
+using System.Linq;
 using System.Text.Json;
 
 namespace PartyDisplay.Data.mp4 {
@@ -11,6 +11,10 @@ namespace PartyDisplay.Data.mp4 {
         public Mp4Character[] Characters { get; }
         public Mp4Item[] Items { get; }
         public BonusStar[] BonusStars { get; }
+
+        public BonusStar[] GetCopyOfBonusStars() {
+            return BonusStars.Select(a => a.Clone()).ToArray();
+        }
 
         private Mp4Loader() {
             Characters = JsonSerializer.Deserialize<Mp4Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp4/characters.json"))) ?? [];

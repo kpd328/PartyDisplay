@@ -1,9 +1,4 @@
-﻿using PartyDisplay.Data.mp2;
-using PartyDisplay.Data.mp4;
-using PartyDisplay.Data.mp6;
-using PartyDisplay.Data.mp7;
-using PartyDisplay.Data.mp8;
-using PartyDisplay.Views;
+﻿using PartyDisplay.Views;
 using ReactiveUI;
 using System;
 using System.Linq;
@@ -68,10 +63,11 @@ public class MainViewModel:ViewModelBase {
             player4.DataContext = new Mp2PlayerViewModel();
             break;
         case Game.MP4:
-            player1.DataContext = new Mp4PlayerViewModel();
-            player2.DataContext = new Mp4PlayerViewModel();
-            player3.DataContext = new Mp4PlayerViewModel();
-            player4.DataContext = new Mp4PlayerViewModel();
+            MetaViewmodel.Instance.GameHarness = Mp4Harness.Connection;
+            player1.DataContext = new Mp4PlayerViewModel(0);
+            player2.DataContext = new Mp4PlayerViewModel(1);
+            player3.DataContext = new Mp4PlayerViewModel(2);
+            player4.DataContext = new Mp4PlayerViewModel(3);
             break;
         case Game.MP5:
             MetaViewmodel.Instance.GameHarness = Mp5Harness.Connection;

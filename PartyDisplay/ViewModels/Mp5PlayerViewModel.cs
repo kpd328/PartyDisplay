@@ -4,13 +4,12 @@ using PartyDisplay.Data.mp5;
 using PartyDisplay.Hook;
 using ReactiveUI;
 using System;
-using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels {
     public class Mp5PlayerViewModel:PlayerViewModelBase<Mp5Player, Mp5Character, Mp5Capsule> {
-        public new Mp5Player Player { get; set; }
+        public new Mp5Player Player { get; set; } = new();
 
         private Bitmap _coinIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp5/HUD/Coin.png")));
         public new Bitmap CoinIcon => _coinIcon;
@@ -25,7 +24,6 @@ namespace PartyDisplay.ViewModels {
 
         public Mp5PlayerViewModel(byte port) {
             Port = port;
-            Player = new();
             Update();
         }
 
@@ -33,8 +31,8 @@ namespace PartyDisplay.ViewModels {
             await Observable.Start(() => {
                 while(true) {
                     Player.Character = Mp5Harness.Connection.GetCharacterForBoard(Port);
-                     this.RaisePropertyChanged(nameof(RankIcon));
                     Player.Ranking = Mp5Harness.Connection.GetRanking(Port);
+                    this.RaisePropertyChanged(nameof(RankIcon));
                     Player.CoinCount = Mp5Harness.Connection.GetCoins(Port);
                     Player.StarCount = Mp5Harness.Connection.GetStars(Port);
 
