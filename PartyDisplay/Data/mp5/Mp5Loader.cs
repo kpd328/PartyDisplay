@@ -12,9 +12,7 @@ namespace PartyDisplay.Data.mp5 {
         public Mp5Capsule[] Items { get; private set; }
         public BonusStar[] BonusStars { get; private set; }
 
-        public BonusStar[] GetCopyOfBonusStars() {
-            return BonusStars.Select(a => a.Clone()).ToArray();
-        }
+        public BonusStar[] GetCopyOfBonusStars() => BonusStars.Select(a => a.Clone()).ToArray();
 
         private Mp5Loader() {
             Characters = JsonSerializer.Deserialize<Mp5Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp5/characters.json"))) ?? [];

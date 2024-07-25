@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels {
     public class Mp4PlayerViewModel:PlayerViewModelBase<Mp4Player, Mp4Character, Mp4Item> {
+        public new byte Port { get; init; }
         public new Mp4Player Player { get; set; } = new();
 
         private Bitmap _coinIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp4/HUD/Coin.png")));

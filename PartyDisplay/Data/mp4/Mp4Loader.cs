@@ -12,9 +12,7 @@ namespace PartyDisplay.Data.mp4 {
         public Mp4Item[] Items { get; }
         public BonusStar[] BonusStars { get; }
 
-        public BonusStar[] GetCopyOfBonusStars() {
-            return BonusStars.Select(a => a.Clone()).ToArray();
-        }
+        public BonusStar[] GetCopyOfBonusStars() => BonusStars.Select(a => a.Clone()).ToArray();
 
         private Mp4Loader() {
             Characters = JsonSerializer.Deserialize<Mp4Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp4/characters.json"))) ?? [];

@@ -21,8 +21,8 @@
 				   Text="{Binding DolphinStatus}"/>
 		<TextBlock Grid.Row="0" Grid.Column="1"
 				   Text="{Binding CurrentGame}"/>
-		<TextBlock Grid.Row="1" Grid.Column="0"
-				   Text="{Binding PID}"/>
+		<TextBlock Grid.Row="1" Grid.Column="1"
+				   Text="{Binding Region}"/>
 		<TextBox Grid.Row="2" Grid.Column="0"
 				 Width="150" Margin="5"
 				 Watermark="Player 1"

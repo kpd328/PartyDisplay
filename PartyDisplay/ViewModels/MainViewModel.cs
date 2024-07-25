@@ -25,11 +25,17 @@ public class MainViewModel:ViewModelBase {
         set => this.RaiseAndSetIfChanged(ref _dolphinStatus, value);
     }
 
-    private string _currentGame = string.Empty;
-    public string CurrentGame {
-        get => _currentGame;
-        set => this.RaiseAndSetIfChanged(ref _currentGame, value);
+    private string _gameId = string.Empty;
+    public string GameId {
+        get => _gameId;
+        set => this.RaiseAndSetIfChanged(ref _gameId, value);
     }
+
+    private ObservableAsPropertyHelper<string> _currentGame;
+    public string CurrentGame => _currentGame.Value;
+
+    private ObservableAsPropertyHelper<string> _region;
+    public string Region => _region.Value;
 
     private ObservableAsPropertyHelper<bool> _isLaunchEnabled;
     public bool IsLaunchEnabled => _isLaunchEnabled.Value;
@@ -38,9 +44,21 @@ public class MainViewModel:ViewModelBase {
 
     public MainViewModel() {
         StartGame = ReactiveCommand.Create(CommandStartGame);
+        _currentGame = this
+            .WhenAnyValue(x => x.GameId)
+            .Select(id => Games.CheckGame(id).ToDisplayString())
+            .DistinctUntilChanged()
+            .ObserveOn(RxApp.TaskpoolScheduler)
+            .ToProperty(this, x => x.CurrentGame);
+        _region = this
+            .WhenAnyValue(x => x.GameId)
+            .Select(id => Games.CheckRegion(id))
+            .DistinctUntilChanged()
+            .ObserveOn(RxApp.TaskpoolScheduler)
+            .ToProperty(this, x => x.Region);
         _isLaunchEnabled = this
-            .WhenAnyValue(x => x.CurrentGame)
-            .Select(game => Games.CheckGame(game) != null)
+            .WhenAnyValue(x => x.GameId)
+            .Select(id => Games.CheckGame(id) != null)
             .DistinctUntilChanged()
             .ObserveOn(RxApp.TaskpoolScheduler)
             .ToProperty(this, x => x.IsLaunchEnabled);
@@ -55,7 +73,7 @@ public class MainViewModel:ViewModelBase {
         PlayerView player3 = new() { Title = "P3 Player Card" };
         PlayerView player4 = new() { Title = "P4 Player Card" };
 
-        switch(Games.CheckGame(CurrentGame)) {
+        switch(Games.CheckGame(GameId)) {
         case Game.MP2:
             player1.DataContext = new Mp2PlayerViewModel();
             player2.DataContext = new Mp2PlayerViewModel();
@@ -127,7 +145,7 @@ public class MainViewModel:ViewModelBase {
         await Observable.Start(() => {
             while(true) {
                 UpdateHook();
-                CurrentGame = DolphinHook.LoadedGame();
+                GameId = DolphinHook.LoadedGame();
                 PID = DolphinAccessor.getPID().ToString();
             }
         }, RxApp.TaskpoolScheduler);
