@@ -5,11 +5,8 @@ using System.Data;
 
 namespace PartyDisplay.Hook {
     public class DolphinHook {
-        
-
         public static string LoadedGame() {
             if(DolphinAccessor.getStatus() == DolphinAccessor.DolphinStatus.hooked) {
-                
                 string _r = DolphinAccessor.getFormattedValueFromMemory(0, MemType.type_string, 6, MemBase.base_none, false);
                 return _r;
             } else {

@@ -1,4 +1,5 @@
-﻿using Avalonia.Media.Imaging;
+﻿using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using PartyDisplay.Data;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace PartyDisplay.ViewModels {
         public virtual Bitmap StarIcon { get; }
         public virtual Bitmap XIcon { get; }
         public virtual Bitmap RankIcon { get; set; }
+        public virtual IBrush Background { get; set; }
         public virtual ObservableCollection<TItem> CurrentItems { get; }
         public MetaViewmodel Meta => MetaViewmodel.Instance;
         public Task<string> Name => Task.Run(() => Meta.NameForPort(Port));

@@ -108,6 +108,10 @@ namespace PartyDisplay.Hook {
             }
         }
 
+        public SpaceColor? GetLandedColor(byte player) {
+            throw new NotImplementedException();
+        }
+
         public byte GetPortForPlayer(byte player) {
             if(player > 3) {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3]");

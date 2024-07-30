@@ -39,6 +39,10 @@ namespace PartyDisplay.Hook {
             throw new NotImplementedException();
         }
 
+        public SpaceColor? GetLandedColor(byte player) {
+            throw new NotImplementedException();
+        }
+
         public byte GetPortForPlayer(byte player) {
             throw new NotImplementedException();
         }

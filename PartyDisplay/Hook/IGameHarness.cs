@@ -17,5 +17,6 @@ namespace PartyDisplay.Hook {
         TItem? GetItem(byte player, byte slot);
         Ranking GetRanking(byte player);
         short GetStars(byte player);
+        SpaceColor? GetLandedColor(byte player);
     }
 }

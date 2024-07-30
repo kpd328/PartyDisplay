@@ -38,6 +38,11 @@ namespace PartyDisplay.Hook {
         public short GetStars(byte player) {
             throw new NotImplementedException();
         }
+
+        public SpaceColor? GetLandedColor(byte player) {
+            throw new NotImplementedException();
+        }
+
         public byte GetPortForPlayer(byte player) {
             throw new NotImplementedException();
         }

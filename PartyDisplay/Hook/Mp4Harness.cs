@@ -103,11 +103,25 @@ namespace PartyDisplay.Hook {
 
         public byte GetPortForPlayer(byte player) {
             if(player > 3) {
-                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3]");
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
             uint offset = Addresses.Template.Port.Offset;
             return (byte)DolphinHook.ByteLookup(region + offset);
+        }
+
+        public SpaceColor? GetLandedColor(byte player) {
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
+            uint offset = Addresses.Template.LandedSpace.Offset;
+            return ((DolphinHook.ByteLookup(region + offset) & 0xC0) >> 6) switch {
+                1 => SpaceColor.Blue,
+                2 => SpaceColor.Red,
+                3 => SpaceColor.Green,
+                _ => null
+            };
         }
 
         private Mp4Harness() {

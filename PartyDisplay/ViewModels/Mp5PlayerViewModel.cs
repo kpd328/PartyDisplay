@@ -1,7 +1,9 @@
-﻿using Avalonia.Media.Imaging;
+﻿using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using PartyDisplay.Data.mp5;
 using PartyDisplay.Hook;
+using PartyDisplay.Utils;
 using ReactiveUI;
 using System;
 using System.Reactive.Linq;
@@ -23,8 +25,17 @@ namespace PartyDisplay.ViewModels {
 
         public new Bitmap RankIcon => new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp5/HUD/{Player.Ranking}.png")));
 
+        private ObservableAsPropertyHelper<IBrush> _background;
+        public new IBrush Background => _background.Value;
+
         public Mp5PlayerViewModel(byte port) {
             Port = port;
+            _background = this
+                .WhenAnyValue(x => x.Player.LandingColor)
+                .Select(space => space.ToBrush())
+                .DistinctUntilChanged()
+                .ObserveOn(RxApp.TaskpoolScheduler)
+                .ToProperty(this, x => x.Background);
             Update();
         }
 
@@ -36,6 +47,7 @@ namespace PartyDisplay.ViewModels {
                     this.RaisePropertyChanged(nameof(RankIcon));
                     Player.CoinCount = Mp5Harness.Connection.GetCoins(Port);
                     Player.StarCount = Mp5Harness.Connection.GetStars(Port);
+                    Player.LandingColor = Mp5Harness.Connection.GetLandedColor(Port);
 
                     Player.Items = [
                         Mp5Harness.Connection.GetItem(Port, 0),

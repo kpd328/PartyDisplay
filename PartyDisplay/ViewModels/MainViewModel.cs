@@ -7,6 +7,7 @@ using PartyDisplayProcess;
 using PartyDisplay.Hook;
 using PartyDisplay.Utils;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace PartyDisplay.ViewModels;
 
@@ -147,6 +148,7 @@ public class MainViewModel:ViewModelBase {
                 UpdateHook();
                 GameId = DolphinHook.LoadedGame();
                 PID = DolphinAccessor.getPID().ToString();
+                Task.Delay(100).Wait();
             }
         }, RxApp.TaskpoolScheduler);
     }

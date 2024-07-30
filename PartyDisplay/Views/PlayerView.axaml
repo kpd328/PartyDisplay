@@ -7,7 +7,7 @@
         x:Class="PartyDisplay.Views.PlayerView"
         x:CompileBindings="False"
         Title="Player Card"
-        Background="Transparent"
+        Background="{Binding Background}"
         Width="600" Height="200"
 		CanResize="False">
     <Design.DataContext>
