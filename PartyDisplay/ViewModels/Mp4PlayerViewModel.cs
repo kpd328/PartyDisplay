@@ -34,7 +34,7 @@ namespace PartyDisplay.ViewModels {
                 .WhenAnyValue(x => x.Player.LandingColor)
                 .Select(space => space.ToBrush())
                 .DistinctUntilChanged()
-                .ObserveOn(RxApp.TaskpoolScheduler)
+                .ObserveOn(RxApp.MainThreadScheduler)
                 .ToProperty(this, x => x.Background);
             Update();
         }
