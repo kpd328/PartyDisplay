@@ -29,6 +29,12 @@ namespace PartyDisplay.Data.mp5 {
             set => SetField(ref _ranking, value);
         }
 
+        private SpaceColor? _landingColor;
+        public SpaceColor? LandingColor {
+            get => _landingColor;
+            set => SetField(ref _landingColor, value);
+        }
+
         private Mp5Character _character;
         public Mp5Character Character {
             get => _character;

@@ -8,6 +8,7 @@ namespace PartyDisplay.Data {
         public short StarCount { get; set; }
         public short CoinCount { get; set; }
         public Ranking Ranking { get; set; }
+        public SpaceColor? LandingColor { get; set; }
         public TCharacter Character { get; set; }
         public ObservableCollection<TItem> Items { get; set; }
         public ObservableCollection<BonusStar> BonusStars { get; }
@@ -18,5 +19,11 @@ namespace PartyDisplay.Data {
         Second,
         Third,
         Fourth
+    }
+
+    public enum SpaceColor {
+        Blue,
+        Red,
+        Green
     }
 }

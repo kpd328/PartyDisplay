@@ -29,6 +29,12 @@ namespace PartyDisplay.Data.mp4 {
             set => SetField(ref _ranking, value);
         }
 
+        private SpaceColor? _landingColor;
+        public SpaceColor? LandingColor {
+            get => _landingColor;
+            set => SetField(ref _landingColor, value);
+        }
+
         private Mp4Character _character;
         public Mp4Character Character {
             get => _character;

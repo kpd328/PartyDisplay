@@ -2,6 +2,7 @@
 using PartyDisplay.Data.mp5;
 using System.Text.Json;
 using System;
+using System.Linq;
 
 namespace PartyDisplay.Data.mp2 {
     public sealed class Mp2Loader:IContentData<Mp2Character, Mp2Item> {
@@ -11,6 +12,8 @@ namespace PartyDisplay.Data.mp2 {
         public Mp2Character[] Characters { get; private set; }
         public Mp2Item[] Items { get; private set; }
         public BonusStar[] BonusStars { get; private set; }
+
+        public BonusStar[] GetCopyOfBonusStars() => BonusStars.Select(a => a.Clone()).ToArray();
 
         private Mp2Loader() {
             Characters = JsonSerializer.Deserialize<Mp2Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp2/characters.json"))) ?? [];

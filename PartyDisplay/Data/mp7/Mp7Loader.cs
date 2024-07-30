@@ -1,5 +1,6 @@
 ﻿using Avalonia.Platform;
 using System;
+using System.Linq;
 using System.Text.Json;
 
 namespace PartyDisplay.Data.mp7 {
@@ -10,6 +11,8 @@ namespace PartyDisplay.Data.mp7 {
         public Mp7Character[] Characters { get; private set; }
         public Mp7Orb[] Items { get; private set; }
         public BonusStar[] BonusStars { get; private set; }
+
+        public BonusStar[] GetCopyOfBonusStars() => BonusStars.Select(a => a.Clone()).ToArray();
 
         private Mp7Loader() {
             Characters = JsonSerializer.Deserialize<Mp7Character[]>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp7/characters.json"))) ?? [];
