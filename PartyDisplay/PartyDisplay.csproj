@@ -153,6 +153,7 @@
     <None Remove="Load\mp4\bonusstars.json" />
     <None Remove="Load\mp5\addresses.json" />
     <None Remove="Load\mp5\bonusstars.json" />
+    <None Remove="Load\mp6\addresses.json" />
     <None Remove="Load\mp6\bonusstars.json" />
     <None Remove="Load\mp6\orbs.json" />
     <None Remove="Load\mp7\bonusstars.json" />

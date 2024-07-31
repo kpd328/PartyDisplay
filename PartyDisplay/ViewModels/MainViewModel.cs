@@ -96,10 +96,11 @@ public class MainViewModel:ViewModelBase {
             player4.DataContext = new Mp5PlayerViewModel(3);
             break;
         case Game.MP6:
-            player1.DataContext = new Mp6PlayerViewModel();
-            player2.DataContext = new Mp6PlayerViewModel();
-            player3.DataContext = new Mp6PlayerViewModel();
-            player4.DataContext = new Mp6PlayerViewModel();
+            MetaViewmodel.Instance.GameHarness = Mp6Harness.Connection;
+            player1.DataContext = new Mp6PlayerViewModel(0);
+            player2.DataContext = new Mp6PlayerViewModel(1);
+            player3.DataContext = new Mp6PlayerViewModel(2);
+            player4.DataContext = new Mp6PlayerViewModel(3);
             break;
         case Game.MP7:
             player1.DataContext = new Mp7PlayerViewModel();

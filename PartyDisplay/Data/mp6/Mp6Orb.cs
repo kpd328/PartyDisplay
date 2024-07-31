@@ -6,6 +6,8 @@ using Avalonia.Platform;
 namespace PartyDisplay.Data.mp6 {
     public class Mp6Orb:IItem {
         [JsonInclude]
+        public int Index { get; init; }
+        [JsonInclude]
         public string Name { get; init; }
         [JsonIgnore]
         private Lazy<Bitmap> _icon;
@@ -24,8 +26,8 @@ namespace PartyDisplay.Data.mp6 {
 
     public enum Mp6OrbType {
         GREEN,
+        YELLOW, 
         RED,
-        YELLOW,
         BLUE
     }
 }

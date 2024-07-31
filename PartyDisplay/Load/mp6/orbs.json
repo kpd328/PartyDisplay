@@ -1,115 +1,138 @@
 [
   {
+    "Index": 0,
     "Name": "Mushroom",
     "IconFile": "/Assets/mp6/Orbs/Mushroom.png",
     "Type": 1
   },
   {
+    "Index": 1,
     "Name": "Super 'Shroom",
     "IconFile": "/Assets/mp6/Orbs/SuperShroom.png",
     "Type": 1
   },
   {
-    "Name": "Cursed Mushroom",
-    "IconFile": "/Assets/mp6/Orbs/CursedMushroom.png",
-    "Type": 1
-  },
-  {
+    "Index": 2,
     "Name": "Sluggish 'Shroom",
     "IconFile": "/Assets/mp6/Orbs/SluggishShroom.png",
     "Type": 1
   },
   {
+    "Index": 3,
     "Name": "Metal Mushroom",
     "IconFile": "/Assets/mp6/Orbs/MetalMushroom.png",
     "Type": 1
   },
   {
+    "Index": 4,
     "Name": "Bullet Bill",
     "IconFile": "/Assets/mp6/Orbs/BulletBill.png",
     "Type": 1
   },
   {
+    "Index": 5,
     "Name": "Warp Pipe",
     "IconFile": "/Assets/mp6/Orbs/WarpPipe.png",
     "Type": 1
   },
   {
+    "Index": 6,
     "Name": "Flutter",
     "IconFile": "/Assets/mp6/Orbs/Flutter.png",
     "Type": 1
   },
   {
-    "Name": "Podoboo",
-    "IconFile": "/Assets/mp6/Orbs/Podoboo.png",
-    "Type": 2
+    "Index": 7,
+    "Name": "Cursed Mushroom",
+    "IconFile": "/Assets/mp6/Orbs/CursedMushroom.png",
+    "Type": 1
   },
   {
-    "Name": "Zap",
-    "IconFile": "/Assets/mp6/Orbs/Zap.png",
-    "Type": 2
-  },
-  {
-    "Name": "Tweester",
-    "IconFile": "/Assets/mp6/Orbs/Tweester.png",
-    "Type": 2
-  },
-  {
-    "Name": "Thwomp",
-    "IconFile": "/Assets/mp6/Orbs/Thwomp.png",
-    "Type": 2
-  },
-  {
-    "Name": "Bob-omb",
-    "IconFile": "/Assets/mp6/Orbs/Bob-omb.png",
-    "Type": 2
-  },
-  {
-    "Name": "Koopa Troopa",
-    "IconFile": "/Assets/mp6/Orbs/KoopaTroopa.png",
-    "Type": 2
-  },
-  {
+    "Index": 10,
     "Name": "Spiny",
     "IconFile": "/Assets/mp6/Orbs/Spiny.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 11,
     "Name": "Goomba",
     "IconFile": "/Assets/mp6/Orbs/Goomba.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 12,
     "Name": "Piranha Plant",
     "IconFile": "/Assets/mp6/Orbs/PiranhaPlant.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 13,
     "Name": "Klepto",
     "IconFile": "/Assets/mp6/Orbs/Klepto.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 15,
     "Name": "Toady",
     "IconFile": "/Assets/mp6/Orbs/Toady.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 16,
     "Name": "Kamek",
     "IconFile": "/Assets/mp6/Orbs/Kamek.png",
-    "Type": 3
+    "Type": 2
   },
   {
+    "Index": 17,
     "Name": "Mr. Blizzard",
     "IconFile": "/Assets/mp6/Orbs/MrBlizzard.png",
+    "Type": 2
+  },
+  {
+    "Index": 20,
+    "Name": "Podoboo",
+    "IconFile": "/Assets/mp6/Orbs/Podoboo.png",
     "Type": 3
   },
   {
+    "Index": 21,
+    "Name": "Zap",
+    "IconFile": "/Assets/mp6/Orbs/Zap.png",
+    "Type": 3
+  },
+  {
+    "Index": 22,
+    "Name": "Tweester",
+    "IconFile": "/Assets/mp6/Orbs/Tweester.png",
+    "Type": 3
+  },
+  {
+    "Index": 23,
+    "Name": "Thwomp",
+    "IconFile": "/Assets/mp6/Orbs/Thwomp.png",
+    "Type": 3
+  },
+  {
+    "Index": 24,
+    "Name": "Bob-omb",
+    "IconFile": "/Assets/mp6/Orbs/Bob-omb.png",
+    "Type": 3
+  },
+  {
+    "Index": 25,
+    "Name": "Koopa Troopa",
+    "IconFile": "/Assets/mp6/Orbs/KoopaTroopa.png",
+    "Type": 3
+  },
+  {
+    "Index": 30,
     "Name": "Snack",
     "IconFile": "/Assets/mp6/Orbs/Snack.png",
     "Type": 4
   },
   {
+    "Index": 31,
     "Name": "Boo-Away",
     "IconFile": "/Assets/mp6/Orbs/Boo-Away.png",
     "Type": 4
