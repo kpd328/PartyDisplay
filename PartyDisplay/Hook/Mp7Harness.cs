@@ -46,5 +46,29 @@ namespace PartyDisplay.Hook {
         public byte GetPortForPlayer(byte player) {
             throw new NotImplementedException();
         }
+
+        public short GetMinigameCoins(byte player) {
+            throw new NotImplementedException();
+        }
+
+        public short GetOrbsUsed(byte player) {
+            throw new NotImplementedException();
+        }
+
+        public byte GetHappening(byte player) {
+            throw new NotImplementedException();
+        }
+
+        public byte GetSpacesMoved(byte player) {
+            throw new NotImplementedException();
+        }
+
+        public byte GetOrbsBought(byte player) {
+            throw new NotImplementedException();
+        }
+
+        public byte GetRed(byte player) {
+            throw new NotImplementedException();
+        }
     }
 }

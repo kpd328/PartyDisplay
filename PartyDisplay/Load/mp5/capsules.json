@@ -3,196 +3,196 @@
     "Index": 0,
     "Name": "Mushroom",
     "IconFile": "/Assets/mp5/Capsules/Mushroom.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 5
   },
   {
     "Index": 1,
     "Name": "Super Mushroom",
     "IconFile": "/Assets/mp5/Capsules/SuperMushroom.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 10
   },
   {
     "Index": 2,
     "Name": "Cursed Mushroom",
     "IconFile": "/Assets/mp5/Capsules/CursedMushroom.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 5
   },
   {
     "Index": 3,
     "Name": "Warp Pipe",
     "IconFile": "/Assets/mp5/Capsules/WarpPipe.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 10
   },
   {
     "Index": 4,
     "Name": "Klepto",
     "IconFile": "/Assets/mp5/Capsules/Klepto.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 10
   },
   {
     "Index": 5,
     "Name": "Bubble",
     "IconFile": "/Assets/mp5/Capsules/Bubble.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 10
   },
   {
     "Index": 6,
     "Name": "Wiggler",
     "IconFile": "/Assets/mp5/Capsules/Wiggler.png",
-    "Type": 1,
+    "Type": 0,
     "Cost": 20
   },
   {
     "Index": 10,
     "Name": "Hammer Bro",
     "IconFile": "/Assets/mp5/Capsules/HammerBro.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 5
   },
   {
     "Index": 11,
     "Name": "Coin Block",
     "IconFile": "/Assets/mp5/Capsules/CoinBlock.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 5
   },
   {
     "Index": 12,
     "Name": "Spiny",
     "IconFile": "/Assets/mp5/Capsules/Spiny.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 5
   },
   {
     "Index": 13,
     "Name": "Paratroopa",
     "IconFile": "/Assets/mp5/Capsules/Paratroopa.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 10
   },
   {
     "Index": 14,
     "Name": "Bullet Bill",
     "IconFile": "/Assets/mp5/Capsules/BulletBill.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 10
   },
   {
     "Index": 15,
     "Name": "Goomba",
     "IconFile": "/Assets/mp5/Capsules/Goomba.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 5
   },
   {
     "Index": 22,
     "Name": "Piranha Plant",
     "IconFile": "/Assets/mp5/Capsules/PiranhaPlant.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 5
   },
   {
     "Index": 16,
     "Name": "Bob-omb",
     "IconFile": "/Assets/mp5/Capsules/Bob-omb.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 0
   },
   {
     "Index": 17,
     "Name": "Koopa Bank",
     "IconFile": "/Assets/mp5/Capsules/KoopaBank.png",
-    "Type": 2,
+    "Type": 1,
     "Cost": 10
   },
   {
     "Index": 20,
     "Name": "Kamek",
     "IconFile": "/Assets/mp5/Capsules/Kamek.png",
-    "Type": 3,
+    "Type": 2,
     "Cost": 10
   },
   {
     "Index": 21,
     "Name": "Mr. Blizzard",
     "IconFile": "/Assets/mp5/Capsules/MrBlizzard.png",
-    "Type": 3,
+    "Type": 2,
     "Cost": 5
   },
   {
     "Index": 23,
     "Name": "Magikoopa",
     "IconFile": "/Assets/mp5/Capsules/Magikoopa.png",
-    "Type": 3,
+    "Type": 2,
     "Cost": 10
   },
   {
     "Index": 24,
     "Name": "Ukiki",
     "IconFile": "/Assets/mp5/Capsules/Ukiki.png",
-    "Type": 3,
+    "Type": 2,
     "Cost": 10
   },
   {
     "Index": 25,
     "Name": "Lakitu",
     "IconFile": "/Assets/mp5/Capsules/Lakitu.png",
-    "Type": 3,
+    "Type": 2,
     "Cost": 10
   },
   {
     "Index": 30,
     "Name": "Tweester",
     "IconFile": "/Assets/mp5/Capsules/Tweester.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 15
   },
   {
     "Index": 31,
     "Name": "Duel",
     "IconFile": "/Assets/mp5/Capsules/Duel.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 10
   },
   {
     "Index": 32,
     "Name": "Chain Chomp",
     "IconFile": "/Assets/mp5/Capsules/ChainChomp.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 15
   },
   {
     "Index": 33,
     "Name": "Bone",
     "IconFile": "/Assets/mp5/Capsules/Bone.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 0
   },
   {
     "Index": 34,
     "Name": "Bowser",
     "IconFile": "/Assets/mp5/Capsules/Bowser.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 0
   },
   {
     "Index": 35,
     "Name": "Chance",
     "IconFile": "/Assets/mp5/Capsules/Chance.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 20
   },
   {
     "Index": 36,
     "Name": "Miracle",
     "IconFile": "/Assets/mp5/Capsules/Miracle.png",
-    "Type": 4,
+    "Type": 3,
     "Cost": 0
   }
 ]

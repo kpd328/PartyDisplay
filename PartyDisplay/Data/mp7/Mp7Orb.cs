@@ -6,6 +6,8 @@ using Avalonia.Platform;
 namespace PartyDisplay.Data.mp7 {
     public class Mp7Orb:IItem {
         [JsonInclude]
+        public int Index { get; init; }
+        [JsonInclude]
         public string Name { get; init; }
         [JsonIgnore]
         private Lazy<Bitmap> _icon;
@@ -15,6 +17,8 @@ namespace PartyDisplay.Data.mp7 {
         private string IconFile { get; init; }
         [JsonInclude]
         public Mp7OrbType Type { get; init; }
+        [JsonInclude]
+        public string[]? Characters { get; init; }
 
         [JsonConstructor]
         private Mp7Orb() {

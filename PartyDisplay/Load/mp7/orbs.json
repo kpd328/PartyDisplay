@@ -1,7 +1,200 @@
 [
   {
-    "Name": "",
-    "IconFile": "/Assets/mp7/Orbs/",
+    "Index": 0,
+    "Name": "Mushroom",
+    "IconFile": "/Assets/mp7/Orbs/Mushroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Super 'Shroom",
+    "IconFile": "/Assets/mp7/Orbs/SuperShroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Slow 'Shroom",
+    "IconFile": "/Assets/mp7/Orbs/SlowShroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Metal Mushroom",
+    "IconFile": "/Assets/mp7/Orbs/MetalMushroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Flutter",
+    "IconFile": "/Assets/mp7/Orbs/Flutter.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Cannon",
+    "IconFile": "/Assets/mp7/Orbs/Cannon.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Lakitu",
+    "IconFile": "/Assets/mp7/Orbs/Lakitu.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Snack",
+    "IconFile": "/Assets/mp7/Orbs/Snack.png",
+    "Type": 0
+  },
+  {
+    "Index": 0,
+    "Name": "Hammer Bro",
+    "IconFile": "/Assets/mp7/Orbs/HammerBro.png",
     "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Piranha Plant",
+    "IconFile": "/Assets/mp7/Orbs/PiranhaPlant.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Spear Guy",
+    "IconFile": "/Assets/mp7/Orbs/SpearGuy.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Kamek",
+    "IconFile": "/Assets/mp7/Orbs/Kamek.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Toady",
+    "IconFile": "/Assets/mp7/Orbs/Toady.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Mr. Blizzard",
+    "IconFile": "/Assets/mp7/Orbs/MrBlizzard.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Bandit",
+    "IconFile": "/Assets/mp7/Orbs/Bandit.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Pink Boo",
+    "IconFile": "/Assets/mp7/Orbs/PinkBoo.png",
+    "Type": 1
+  },
+  {
+    "Index": 0,
+    "Name": "Spiny",
+    "IconFile": "/Assets/mp7/Orbs/Spiny.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Zap",
+    "IconFile": "/Assets/mp7/Orbs/Zap.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Tweester",
+    "IconFile": "/Assets/mp7/Orbs/Tweester.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Thwomp",
+    "IconFile": "/Assets/mp7/Orbs/Thwomp.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Warp Pipe",
+    "IconFile": "/Assets/mp7/Orbs/WarpPipe.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Bob-omb",
+    "IconFile": "/Assets/mp7/Orbs/Bob-omb.png",
+    "Type": 2
+  },
+  {
+    "Index": 0,
+    "Name": "Fireball",
+    "IconFile": "/Assets/mp7/Orbs/Fireball.png",
+    "Type": 3,
+    "Characters": [
+      "Mario",
+      "Luigi"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Flower",
+    "IconFile": "/Assets/mp7/Orbs/Flower.png",
+    "Type": 3,
+    "Characters": [
+      "Peach",
+      "Daisy"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Egg",
+    "IconFile": "/Assets/mp7/Orbs/Egg.png",
+    "Type": 3,
+    "Characters": [
+      "Yoshi",
+      "Birdo"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Vacuum",
+    "IconFile": "/Assets/mp7/Orbs/Vacuum.png",
+    "Type": 3,
+    "Characters": [
+      "Wario",
+      "Waluigi"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Magic",
+    "IconFile": "/Assets/mp7/Orbs/Magic.png",
+    "Type": 3,
+    "Characters": [
+      "Boo",
+      "Dry Bones"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Triple 'Shroom",
+    "IconFile": "/Assets/mp7/Orbs/TripleShroom.png",
+    "Type": 3,
+    "Characters": [
+      "Toad",
+      "Toadette"
+    ]
+  },
+  {
+    "Index": 0,
+    "Name": "Koopa Kid",
+    "IconFile": "/Assets/mp7/Orbs/KoopaKid.png",
+    "Type": 4
   }
 ]
