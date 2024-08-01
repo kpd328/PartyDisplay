@@ -2,7 +2,7 @@
   "Offsets": [
     "265750",
     "265858",
-    "265858",
+    "265960",
     "265A68"
   ],
   "Template": {
@@ -45,35 +45,35 @@
     "Spaces": {
       "Blue": {
         "Type": "Byte",
-        "Offset": 16
+        "Offset": 20
       },
       "Red": {
         "Type": "Byte",
-        "Offset": 17
+        "Offset": 21
       },
       "Character": {
         "Type": "Byte",
-        "Offset": 18
+        "Offset": 22
       },
       "Happening": {
         "Type": "Byte",
-        "Offset": 19
+        "Offset": 23
       },
       "Bowser": {
         "Type": "Byte",
-        "Offset": 20
+        "Offset": 24
       },
       "Miracle": {
         "Type": "Byte",
-        "Offset": 21
+        "Offset": 25
       },
       "Duel": {
         "Type": "Byte",
-        "Offset": 22
+        "Offset": 26
       },
       "DK": {
         "Type": "Byte",
-        "Offset": 23
+        "Offset": 27
       }
     },
     "OrbsUsed": {
