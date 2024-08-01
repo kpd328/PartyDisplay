@@ -32,6 +32,8 @@ namespace PartyDisplay.Data.mp5 {
                 [JsonInclude]
                 public Address DiceRoll;
                 [JsonInclude]
+                public Address LandedSpace;
+                [JsonInclude]
                 public Address[] Capsules;
 
                 public sealed record Mp5Coins {

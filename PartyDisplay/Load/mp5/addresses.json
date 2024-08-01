@@ -101,6 +101,10 @@
         "Type": "Byte",
         "Offset": 10
       },
+      "LandedSpace": {
+        "Type": "Byte",
+        "Offset": 8
+      },
       "Capsules": [
         {
           "Type": "Byte",

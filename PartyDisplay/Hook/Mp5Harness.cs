@@ -109,7 +109,17 @@ namespace PartyDisplay.Hook {
         }
 
         public SpaceColor? GetLandedColor(byte player) {
-            throw new NotImplementedException();
+            if(player > 3) {
+                throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
+            }
+            uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
+            uint offset = Addresses.BoardPlayers.Template.LandedSpace.Offset.Value;
+            return ((DolphinHook.ByteLookup(region + offset) & 0xC0) >> 6) switch {
+                1 => SpaceColor.Blue,
+                2 => SpaceColor.Red,
+                3 => SpaceColor.Green,
+                _ => null
+            };
         }
 
         public byte GetPortForPlayer(byte player) {
