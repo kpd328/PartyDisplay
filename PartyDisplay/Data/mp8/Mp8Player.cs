@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace PartyDisplay.Data.mp8 {
-    public class Mp8Player:IPlayer<Mp8Character, Mp8Candy> {
+    public class Mp8Player:IPlayer<Mp8Character, Mp8Candy>, INotifyPropertyChanged {
         private string _name = string.Empty;
         public string Name {
             get => _name;

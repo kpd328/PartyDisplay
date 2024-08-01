@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace PartyDisplay.Data.mp2 {
-    public class Mp2Player:IPlayer<Mp2Character, Mp2Item> {
+    public class Mp2Player:IPlayer<Mp2Character, Mp2Item>, INotifyPropertyChanged {
         private string _name = string.Empty;
         public string Name {
             get => _name;

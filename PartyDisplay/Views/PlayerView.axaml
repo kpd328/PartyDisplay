@@ -13,20 +13,22 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-		<vm:Mp5PlayerViewModel>
+		<vm:Mp7PlayerViewModel>
 			<x:Arguments>
 				<x:Byte>0</x:Byte>
 			</x:Arguments>
-		</vm:Mp5PlayerViewModel>
+		</vm:Mp7PlayerViewModel>
     </Design.DataContext>
     <Grid Margin="10"
 		  RowDefinitions="*,auto,auto,auto"
 		  ColumnDefinitions="auto,auto,*,*">
 		<Image Grid.Row="0" Grid.Column="0"
 			   Grid.RowSpan="4"
-			   Source="{Binding RankIcon}"/>
+			   Source="{Binding RankIcon}"
+			   MaxHeight="200" MaxWidth="200"/>
         <Image Grid.Row="0" Grid.Column="1"
                Grid.RowSpan="3"
+			   MaxWidth="150"
                Source="{Binding Player.Character.Icon}"/>
         <TextBlock Grid.Row="0" Grid.Column="2"
                    Text="{Binding Name^}"
@@ -91,13 +93,13 @@
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Stretch"
-								Margin="15,0,15,0">
+								Margin="5,0,0,0">
 					    <Image Source="{Binding Icon}"
 						       Height="30"
 						       Margin="0,0,5,0"/>
 						<TextBlock Text="{Binding Count}"
 								   FontSize="24"
-								   Width="50"/>
+								   Width="25"/>
 					</StackPanel>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>

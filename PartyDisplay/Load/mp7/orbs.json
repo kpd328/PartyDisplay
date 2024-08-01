@@ -6,195 +6,165 @@
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 1,
     "Name": "Super 'Shroom",
     "IconFile": "/Assets/mp7/Orbs/SuperShroom.png",
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 2,
     "Name": "Slow 'Shroom",
     "IconFile": "/Assets/mp7/Orbs/SlowShroom.png",
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 3,
     "Name": "Metal Mushroom",
     "IconFile": "/Assets/mp7/Orbs/MetalMushroom.png",
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 4,
     "Name": "Flutter",
     "IconFile": "/Assets/mp7/Orbs/Flutter.png",
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 5,
     "Name": "Cannon",
     "IconFile": "/Assets/mp7/Orbs/Cannon.png",
     "Type": 0
   },
   {
-    "Index": 0,
-    "Name": "Lakitu",
-    "IconFile": "/Assets/mp7/Orbs/Lakitu.png",
-    "Type": 0
-  },
-  {
-    "Index": 0,
+    "Index": 6,
     "Name": "Snack",
     "IconFile": "/Assets/mp7/Orbs/Snack.png",
     "Type": 0
   },
   {
-    "Index": 0,
+    "Index": 7,
+    "Name": "Lakitu",
+    "IconFile": "/Assets/mp7/Orbs/Lakitu.png",
+    "Type": 0
+  },
+  {
+    "Index": 10,
     "Name": "Hammer Bro",
     "IconFile": "/Assets/mp7/Orbs/HammerBro.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 11,
     "Name": "Piranha Plant",
     "IconFile": "/Assets/mp7/Orbs/PiranhaPlant.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 12,
     "Name": "Spear Guy",
     "IconFile": "/Assets/mp7/Orbs/SpearGuy.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 13,
     "Name": "Kamek",
     "IconFile": "/Assets/mp7/Orbs/Kamek.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 14,
     "Name": "Toady",
     "IconFile": "/Assets/mp7/Orbs/Toady.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 15,
     "Name": "Mr. Blizzard",
     "IconFile": "/Assets/mp7/Orbs/MrBlizzard.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 16,
     "Name": "Bandit",
     "IconFile": "/Assets/mp7/Orbs/Bandit.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 17,
     "Name": "Pink Boo",
     "IconFile": "/Assets/mp7/Orbs/PinkBoo.png",
     "Type": 1
   },
   {
-    "Index": 0,
+    "Index": 20,
     "Name": "Spiny",
     "IconFile": "/Assets/mp7/Orbs/Spiny.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 21,
     "Name": "Zap",
     "IconFile": "/Assets/mp7/Orbs/Zap.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 22,
     "Name": "Tweester",
     "IconFile": "/Assets/mp7/Orbs/Tweester.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 23,
     "Name": "Thwomp",
     "IconFile": "/Assets/mp7/Orbs/Thwomp.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 24,
     "Name": "Warp Pipe",
     "IconFile": "/Assets/mp7/Orbs/WarpPipe.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 25,
     "Name": "Bob-omb",
     "IconFile": "/Assets/mp7/Orbs/Bob-omb.png",
     "Type": 2
   },
   {
-    "Index": 0,
+    "Index": 30,
     "Name": "Fireball",
     "IconFile": "/Assets/mp7/Orbs/Fireball.png",
-    "Type": 3,
-    "Characters": [
-      "Mario",
-      "Luigi"
-    ]
+    "Type": 3
   },
   {
-    "Index": 0,
+    "Index": 31,
     "Name": "Flower",
     "IconFile": "/Assets/mp7/Orbs/Flower.png",
-    "Type": 3,
-    "Characters": [
-      "Peach",
-      "Daisy"
-    ]
+    "Type": 3
   },
   {
-    "Index": 0,
+    "Index": 32,
     "Name": "Egg",
     "IconFile": "/Assets/mp7/Orbs/Egg.png",
-    "Type": 3,
-    "Characters": [
-      "Yoshi",
-      "Birdo"
-    ]
+    "Type": 3
   },
   {
-    "Index": 0,
+    "Index": 33,
     "Name": "Vacuum",
     "IconFile": "/Assets/mp7/Orbs/Vacuum.png",
-    "Type": 3,
-    "Characters": [
-      "Wario",
-      "Waluigi"
-    ]
+    "Type": 3
   },
   {
-    "Index": 0,
+    "Index": 34,
     "Name": "Magic",
     "IconFile": "/Assets/mp7/Orbs/Magic.png",
-    "Type": 3,
-    "Characters": [
-      "Boo",
-      "Dry Bones"
-    ]
+    "Type": 3
   },
   {
-    "Index": 0,
+    "Index": 35,
     "Name": "Triple 'Shroom",
     "IconFile": "/Assets/mp7/Orbs/TripleShroom.png",
-    "Type": 3,
-    "Characters": [
-      "Toad",
-      "Toadette"
-    ]
-  },
-  {
-    "Index": 0,
-    "Name": "Koopa Kid",
-    "IconFile": "/Assets/mp7/Orbs/KoopaKid.png",
-    "Type": 4
+    "Type": 3
   }
 ]

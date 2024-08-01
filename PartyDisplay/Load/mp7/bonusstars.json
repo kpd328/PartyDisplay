@@ -12,21 +12,21 @@
   {
     "Name": "Action Star",
     "ProgressTitle": "Action Count",
-    "IconFile": "/Assets/mp5/BonusStars/Action.png"
+    "IconFile": "/Assets/mp7/BonusStars/Action.png"
   },
   {
     "Name": "Running Star",
     "ProgressTitle": "Spaces Moved",
-    "IconFile": "/Assets/mp5/BonusStars/Running.png"
+    "IconFile": "/Assets/mp7/BonusStars/Running.png"
   },
   {
     "Name": "Shopping Star",
     "ProgressTitle": "Coins Spent",
-    "IconFile": "/Assets/mp5/BonusStars/Shopping.png"
+    "IconFile": "/Assets/mp7/BonusStars/Shopping.png"
   },
   {
     "Name": "Red Star",
     "ProgressTitle": "Red Count",
-    "IconFile": "/Assets/mp5/BonusStars/Red.png"
+    "IconFile": "/Assets/mp7/BonusStars/Red.png"
   }
 ]

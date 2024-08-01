@@ -17,8 +17,6 @@ namespace PartyDisplay.Data.mp7 {
         private string IconFile { get; init; }
         [JsonInclude]
         public Mp7OrbType Type { get; init; }
-        [JsonInclude]
-        public string[]? Characters { get; init; }
 
         [JsonConstructor]
         private Mp7Orb() {

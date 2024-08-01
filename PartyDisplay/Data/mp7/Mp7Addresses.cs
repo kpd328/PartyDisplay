@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PartyDisplay.Data.mp6 {
-    public sealed record Mp6Addresses {
+namespace PartyDisplay.Data.mp7 {
+    internal class Mp7Addresses {
         [JsonInclude]
         public string[] Offsets;
         [JsonInclude]
@@ -27,6 +27,8 @@ namespace PartyDisplay.Data.mp6 {
             [JsonInclude]
             public Address LandedSpace;
             [JsonInclude]
+            public Address SpacesMoved;
+            [JsonInclude]
             public Address[] Items;
 
             public sealed record Mp6Coins {
@@ -36,6 +38,8 @@ namespace PartyDisplay.Data.mp6 {
                 public Address Minigame;
                 [JsonInclude]
                 public Address Max;
+                [JsonInclude]
+                public Address Spent;
             }
 
             public sealed record Mp6Stars {
@@ -57,19 +61,18 @@ namespace PartyDisplay.Data.mp6 {
                 [JsonInclude]
                 public Address Bowser;
                 [JsonInclude]
-                public Address Miracle;
+                public Address Mic;
                 [JsonInclude]
                 public Address Duel;
                 [JsonInclude]
                 public Address DK;
             }
         }
-    }
-
-    public sealed record Address {
-        [JsonInclude]
-        public string Type;
-        [JsonInclude]
-        public uint Offset;
+        public sealed record Address {
+            [JsonInclude]
+            public string Type;
+            [JsonInclude]
+            public uint Offset;
+        }
     }
 }

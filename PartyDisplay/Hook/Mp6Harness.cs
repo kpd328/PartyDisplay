@@ -84,10 +84,11 @@ namespace PartyDisplay.Hook {
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
             uint offset = Addresses.Template.LandedSpace.Offset;
-            return ((DolphinHook.ByteLookup(region + offset) & 0x60) >> 5) switch {
+            return ((DolphinHook.ByteLookup(region + offset) & 0xE0) >> 5) switch {
                 1 => SpaceColor.Blue,
                 2 => SpaceColor.Red,
                 3 => SpaceColor.Green,
+                4 => SpaceColor.Pink,
                 _ => null
             };
         }

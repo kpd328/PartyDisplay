@@ -24,6 +24,7 @@ namespace PartyDisplay.Data {
     public enum SpaceColor {
         Blue,
         Red,
-        Green
+        Green,
+        Pink
     }
 }

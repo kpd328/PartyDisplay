@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace PartyDisplay.Data.mp7 {
-    public class Mp7Player:IPlayer<Mp7Character, Mp7Orb> {
+    public class Mp7Player:IPlayer<Mp7Character, Mp7Orb>, INotifyPropertyChanged {
         private string _name = string.Empty;
         public string Name {
             get => _name;
