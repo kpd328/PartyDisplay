@@ -21,6 +21,16 @@ namespace PartyDisplay.ViewModels {
         private Bitmap _xIcon = new(AssetLoader.Open(new Uri("avares://PartyDisplay/Assets/mp8/HUD/HUDFont_x.png")));
         public new Bitmap XIcon => _xIcon;
 
-        public new Bitmap RankIcon => new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp8/HUD/{Player.Ranking}.png")));
+        private static Bitmap RankFirst = new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp8/HUD/First.png")));
+        private static Bitmap RankSecond = new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp8/HUD/Second.png")));
+        private static Bitmap RankThird = new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp8/HUD/Third.png")));
+        private static Bitmap RankFourth = new(AssetLoader.Open(new Uri($"avares://PartyDisplay/Assets/mp8/HUD/Fourth.png")));
+        public new Bitmap RankIcon => Player.Ranking switch {
+            Data.Ranking.First => RankFirst,
+            Data.Ranking.Second => RankSecond,
+            Data.Ranking.Third => RankThird,
+            Data.Ranking.Fourth => RankFourth,
+            _ => RankFirst, //Sure, why not
+        };
     }
 }
