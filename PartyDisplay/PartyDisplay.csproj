@@ -159,6 +159,7 @@
     <None Remove="Load\mp7\addresses.json" />
     <None Remove="Load\mp7\bonusstars.json" />
     <None Remove="Load\mp7\orbs.json" />
+    <None Remove="Load\mp8\addresses.json" />
     <None Remove="Load\mp8\bonusstars.json" />
     <None Remove="Load\mp8\candies.json" />
   </ItemGroup>

@@ -76,6 +76,7 @@ public class MainViewModel:ViewModelBase {
 
         switch(Games.CheckGame(GameId)) {
         case Game.MP2:
+            MetaViewmodel.Instance.GameHarness = Mp2Harness.Connection;
             player1.DataContext = new Mp2PlayerViewModel();
             player2.DataContext = new Mp2PlayerViewModel();
             player3.DataContext = new Mp2PlayerViewModel();
@@ -110,10 +111,11 @@ public class MainViewModel:ViewModelBase {
             player4.DataContext = new Mp7PlayerViewModel(3);
             break;
         case Game.MP8:
-            player1.DataContext = new Mp8PlayerViewModel();
-            player2.DataContext = new Mp8PlayerViewModel();
-            player3.DataContext = new Mp8PlayerViewModel();
-            player4.DataContext = new Mp8PlayerViewModel();
+            MetaViewmodel.Instance.GameHarness = Mp8Harness.Connection;
+            player1.DataContext = new Mp8PlayerViewModel(0);
+            player2.DataContext = new Mp8PlayerViewModel(1);
+            player3.DataContext = new Mp8PlayerViewModel(2);
+            player4.DataContext = new Mp8PlayerViewModel(3);
             break;
         default:
             throw new NotImplementedException();

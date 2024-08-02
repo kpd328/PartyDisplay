@@ -2,31 +2,31 @@
   {
     "Name": "Minigame Star",
     "ProgressTitle": "Minigame Coins",
-    "IconFile": "/Assets/mp7/BonusStars/Minigame.png"
+    "IconFile": "/Assets/mp8/BonusStars/Minigame.png"
   },
   {
     "Name": "Candy Star",
     "ProgressTitle": "Candies Used",
-    "IconFile": "/Assets/mp7/BonusStars/Candy.png"
+    "IconFile": "/Assets/mp8/BonusStars/Candy.png"
   },
   {
     "Name": "Green Star",
     "ProgressTitle": "Green Count",
-    "IconFile": "/Assets/mp5/BonusStars/Green.png"
+    "IconFile": "/Assets/mp8/BonusStars/Green.png"
   },
   {
     "Name": "Running Star",
     "ProgressTitle": "Spaces Moved",
-    "IconFile": "/Assets/mp5/BonusStars/Running.png"
+    "IconFile": "/Assets/mp8/BonusStars/Running.png"
   },
   {
     "Name": "Shopping Star",
     "ProgressTitle": "Coins Spent",
-    "IconFile": "/Assets/mp5/BonusStars/Shopping.png"
+    "IconFile": "/Assets/mp8/BonusStars/Shopping.png"
   },
   {
     "Name": "Red Star",
     "ProgressTitle": "Red Count",
-    "IconFile": "/Assets/mp5/BonusStars/Red.png"
+    "IconFile": "/Assets/mp8/BonusStars/Red.png"
   }
 ]
