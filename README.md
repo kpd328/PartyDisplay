@@ -2,6 +2,8 @@
 
 A game state data display for Mario Party games playable on the Dolphin Emulator. Perfect for streaming Mario Party games with an overlay that shows up to date and accurate information for viewers.
 
+![In-use screenshot of a Mario Party 5 game with the PartyDisplay overlay on the left side of the screen](https://github.com/user-attachments/assets/5c67ffeb-1066-48ac-adbf-730cf6f00dc8)
+
 ## Features
 
 * **Individual Transperent Player Windows** - perfect for custom streaming layouts.
@@ -17,6 +19,8 @@ A game state data display for Mario Party games playable on the Dolphin Emulator
   * Current assets are very lo-res for this day and age
 * [ ] Fix flickering data bug present in all tested games sans Mario Party 5 (How did I get the first one right and mess up the rest?)
 * [ ] Test other regions
+* [ ] Fix hook closing crash
+  * Closing Dolphin or ending emulation before closing PartyDisplay crashes party display, this needs to be more graceful
 * [ ] Create build pipeline for distribution
 * [ ] **Stretch:** Reimplement Dolphin Hook code to be crossplatform (more for Linux then MacOS, don't have access to a MacOS device to build/test).
 
