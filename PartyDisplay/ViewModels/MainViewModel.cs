@@ -68,7 +68,6 @@ public class MainViewModel:ViewModelBase {
     }
 
     void CommandStartGame() {
-        //var notImplemented = MessageBoxManager.GetMessageBoxStandard("Game Not Available", "This game is not currently implemented in the app, try another game.", MsBox.Avalonia.Enums.ButtonEnum.Ok);
         PlayerView player1 = new() { Title = "P1 Player Card" };
         PlayerView player2 = new() { Title = "P2 Player Card" };
         PlayerView player3 = new() { Title = "P3 Player Card" };
@@ -77,10 +76,10 @@ public class MainViewModel:ViewModelBase {
         switch(Games.CheckGame(GameId)) {
         case Game.MP2:
             MetaViewmodel.Instance.GameHarness = Mp2Harness.Connection;
-            player1.DataContext = new Mp2PlayerViewModel();
-            player2.DataContext = new Mp2PlayerViewModel();
-            player3.DataContext = new Mp2PlayerViewModel();
-            player4.DataContext = new Mp2PlayerViewModel();
+            player1.DataContext = new Mp2PlayerViewModel(0);
+            player2.DataContext = new Mp2PlayerViewModel(1);
+            player3.DataContext = new Mp2PlayerViewModel(2);
+            player4.DataContext = new Mp2PlayerViewModel(3);
             break;
         case Game.MP4:
             MetaViewmodel.Instance.GameHarness = Mp4Harness.Connection;

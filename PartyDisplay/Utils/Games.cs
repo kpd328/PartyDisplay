@@ -3,6 +3,7 @@
 namespace PartyDisplay.Utils {
     public static class Games {
         private static readonly Dictionary<string, Game> GameIds = new(){
+            { "NAZE", Game.MP2 },
             { "GMPJ01", Game.MP4 },
             { "GMPE01", Game.MP4 },
             { "GMPP01", Game.MP4 },

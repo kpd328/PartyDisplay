@@ -12,6 +12,10 @@
     "IconFile": "/Assets/mp2/Items/PlunderChest.png"
   },
   {
+    "Name": "Bowser Bomb",
+    "IconFile": "/Assets/mp2/Items/BowserBomb.png"
+  },
+  {
     "Name": "Dueling Glove",
     "IconFile": "/Assets/mp2/Items/DuelingGlove.png"
   },
@@ -24,10 +28,6 @@
     "IconFile": "/Assets/mp2/Items/GoldenMushroom.png"
   },
   {
-    "Name": "Magic Lamp",
-    "IconFile": "/Assets/mp2/Items/MagicLamp.png"
-  },
-  {
     "Name": "Boo Bell",
     "IconFile": "/Assets/mp2/Items/BooBell.png"
   },
@@ -36,7 +36,7 @@
     "IconFile": "/Assets/mp2/Items/BowserSuit.png"
   },
   {
-    "Name": "Bowser Bomb",
-    "IconFile": "/Assets/mp2/Items/BowserBomb.png"
+    "Name": "Magic Lamp",
+    "IconFile": "/Assets/mp2/Items/MagicLamp.png"
   }
 ]
