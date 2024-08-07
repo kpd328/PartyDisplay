@@ -19,6 +19,6 @@ namespace PartyDisplay.ViewModels {
         public virtual IBrush Background { get; set; }
         public virtual ObservableCollection<TItem> CurrentItems { get; }
         public MetaViewmodel Meta => MetaViewmodel.Instance;
-        public Task<string> Name => Task.Run(() => Meta.NameForPort(Port));
+        public virtual Task<string> Name => Task.Run(() => Meta.NameForPort(Port));
     }
 }

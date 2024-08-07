@@ -39,6 +39,8 @@ namespace PartyDisplay.ViewModels {
         private ObservableAsPropertyHelper<IBrush> _background;
         public new IBrush Background => _background.Value;
 
+        public new Task<string> Name => Task.Run(() => Meta.NameForPort(Port));
+
         public Mp7PlayerViewModel(byte port) {
             Port = port;
             _background = this

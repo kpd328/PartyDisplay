@@ -13,11 +13,11 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-		<vm:Mp7PlayerViewModel>
+		<vm:Mp5PlayerViewModel>
 			<x:Arguments>
 				<x:Byte>0</x:Byte>
 			</x:Arguments>
-		</vm:Mp7PlayerViewModel>
+		</vm:Mp5PlayerViewModel>
     </Design.DataContext>
     <Grid Margin="10"
 		  RowDefinitions="*,auto,auto,auto"
@@ -31,10 +31,12 @@
 			   MaxWidth="150"
                Source="{Binding Player.Character.Icon}"/>
         <TextBlock Grid.Row="0" Grid.Column="2"
+				   Grid.ColumnSpan="2"
                    Text="{Binding Name^}"
                    FontSize="24"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center"
+				   TextWrapping="WrapWithOverflow"/>
         <StackPanel Grid.Row="1" Grid.Column="2"
                     Orientation="Horizontal"
 					Margin="5">
@@ -86,7 +88,8 @@
 					<StackPanel Grid.Row="3" Grid.Column="1"
 								Grid.ColumnSpan="3"
 						        Orientation="Horizontal"
-								HorizontalAlignment="Stretch"/>
+								HorizontalAlignment="Stretch"
+								Spacing="75"/>
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
 			<ItemsControl.ItemTemplate>
@@ -99,7 +102,7 @@
 						       Margin="0,0,5,0"/>
 						<TextBlock Text="{Binding Count}"
 								   FontSize="24"
-								   Width="25"/>
+								   MaxWidth="50"/>
 					</StackPanel>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
