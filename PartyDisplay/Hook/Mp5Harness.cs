@@ -98,6 +98,9 @@ namespace PartyDisplay.Hook {
             if(player > 3) {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Player Value. Range [0-3].");
             }
+            if(slot > 2) {
+                throw new ArgumentOutOfRangeException(nameof(slot), "Bad Item Slot. Range [0-2]");
+            }
             uint region = uint.Parse(Addresses.BoardPlayers.PlayerStart[player], NumberStyles.HexNumber);
             uint offset = Addresses.BoardPlayers.Template.Capsules[slot].Offset.Value;
             sbyte capsule = DolphinHook.ByteLookup(region + offset);

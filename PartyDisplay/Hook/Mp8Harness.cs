@@ -15,7 +15,7 @@ namespace PartyDisplay.Hook {
         private Mp8Addresses? Addresses { get; set; }
 
         private Mp8Harness() {
-            Addresses = JsonSerializer.Deserialize<Mp8Addresses>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/Mp8/addresses.json")));
+            Addresses = JsonSerializer.Deserialize<Mp8Addresses>(AssetLoader.Open(new Uri("avares://PartyDisplay/Load/mp8/addresses.json")));
         }
 
         public Mp8Character GetCharacterForBoard(byte player) {
@@ -23,7 +23,8 @@ namespace PartyDisplay.Hook {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
-            byte index = (byte)DolphinHook.ByteLookup(region);
+            uint offset = Addresses.Template.Character.Offset;
+            byte index = (byte)DolphinHook.ByteLookup(region + offset);
             int i = (index & 0x1E) >> 1;
             return Mp8Loader.Data.Characters[i];
         }
@@ -42,6 +43,9 @@ namespace PartyDisplay.Hook {
         public Mp8Candy? GetItem(byte player, byte slot) {
             if(player > 3) {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
+            }
+            if(slot > 2) {
+                throw new ArgumentOutOfRangeException(nameof(slot), "Bad Item Slot. Range [0-2]");
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
             uint offset = Addresses.Template.Items[slot].Offset;

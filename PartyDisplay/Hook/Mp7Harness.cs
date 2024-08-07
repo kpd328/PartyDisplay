@@ -23,7 +23,8 @@ namespace PartyDisplay.Hook {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
-            byte index = (byte)DolphinHook.ByteLookup(region);
+            uint offset = Addresses.Template.Character.Offset;
+            byte index = (byte)DolphinHook.ByteLookup(region + offset);
             int i = (index & 0x1E) >> 1;
             return Mp7Loader.Data.Characters[i];
         }
@@ -42,6 +43,9 @@ namespace PartyDisplay.Hook {
         public Mp7Orb? GetItem(byte player, byte slot) {
             if(player > 3) {
                 throw new ArgumentOutOfRangeException(nameof(player), "Bad Position Value. Range [0-3].");
+            }
+            if(slot > 2) {
+                throw new ArgumentOutOfRangeException(nameof(slot), "Bad Item Slot. Range [0-2]");
             }
             uint region = uint.Parse(Addresses.Offsets[player], NumberStyles.HexNumber);
             uint offset = Addresses.Template.Items[slot].Offset;

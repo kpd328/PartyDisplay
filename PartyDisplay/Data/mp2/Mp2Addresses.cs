@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PartyDisplay.Data.mp8 {
-    public sealed record Mp8Addresses {
+namespace PartyDisplay.Data.mp2 {
+    public sealed record Mp2Addresses {
         [JsonInclude]
         public string[] Offsets;
         [JsonInclude]
@@ -9,29 +9,23 @@ namespace PartyDisplay.Data.mp8 {
 
         public sealed record Mp6Template {
             [JsonInclude]
+            public Address Port;
+            [JsonInclude]
             public Address Character;
             [JsonInclude]
             public Address Ranking;
             [JsonInclude]
-            public Address Port;
+            public Mp2Coins Coins;
             [JsonInclude]
-            public Mp8Coins Coins;
+            public Address Stars;
             [JsonInclude]
-            public Mp8Stars Stars;
-            [JsonInclude]
-            public Mp8Spaces Spaces;
-            [JsonInclude]
-            public Address CandyUsed;
-            [JsonInclude]
-            public Address DiceRoll;
+            public Mp2Spaces Spaces;
             [JsonInclude]
             public Address LandedSpace;
             [JsonInclude]
-            public Address SpacesMoved;
-            [JsonInclude]
-            public Address[] Items;
+            public Address Item;
 
-            public sealed record Mp8Coins {
+            public sealed record Mp2Coins {
                 [JsonInclude]
                 public Address Current;
                 [JsonInclude]
@@ -42,26 +36,23 @@ namespace PartyDisplay.Data.mp8 {
                 public Address Spent;
             }
 
-            public sealed record Mp8Stars {
-                [JsonInclude]
-                public Address Current;
-                [JsonInclude]
-                public Address Max;
-            }
-
-            public sealed record Mp8Spaces {
-                [JsonInclude]
-                public Address Blue;
-                [JsonInclude]
-                public Address Red;
+            public sealed record Mp2Spaces {
                 [JsonInclude]
                 public Address Happening;
                 [JsonInclude]
-                public Address Lucky;
+                public Address Red;
                 [JsonInclude]
-                public Address DK;
+                public Address Blue;
+                [JsonInclude]
+                public Address Chance;
                 [JsonInclude]
                 public Address Bowser;
+                [JsonInclude]
+                public Address Battle;
+                [JsonInclude]
+                public Address Item;
+                [JsonInclude]
+                public Address Bank;
             }
         }
         public sealed record Address {

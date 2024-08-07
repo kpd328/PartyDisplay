@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace PartyDisplay.Data.mp7 {
-    internal class Mp7Addresses {
+    public sealed record Mp7Addresses {
         [JsonInclude]
         public string[] Offsets;
         [JsonInclude]

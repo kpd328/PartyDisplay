@@ -7,7 +7,13 @@ namespace PartyDisplay.Hook {
     public class DolphinHook {
         public static string LoadedGame() {
             if(DolphinAccessor.getStatus() == DolphinAccessor.DolphinStatus.hooked) {
-                string _r = DolphinAccessor.getFormattedValueFromMemory(0, MemType.type_string, 6, MemBase.base_none, false);
+                string _r;
+                if(ByteLookup(0) == 0) {
+                    //Virtual Console Game
+                    _r = DolphinAccessor.getFormattedValueFromMemory(0x3180, MemType.type_string, 4, MemBase.base_none, false);
+                } else {
+                    _r = DolphinAccessor.getFormattedValueFromMemory(0, MemType.type_string, 6, MemBase.base_none, false);
+                }
                 return _r;
             } else {
                 return "No Game Loaded";

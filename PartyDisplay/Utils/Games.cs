@@ -3,6 +3,9 @@
 namespace PartyDisplay.Utils {
     public static class Games {
         private static readonly Dictionary<string, Game> GameIds = new(){
+            { "NAZE", Game.MP2 },
+            { "NAZP", Game.MP2 },
+            { "NAZJ", Game.MP2 },
             { "GMPJ01", Game.MP4 },
             { "GMPE01", Game.MP4 },
             { "GMPP01", Game.MP4 },
@@ -30,25 +33,13 @@ namespace PartyDisplay.Utils {
             }
         }
 
-        public static string CheckRegion(string g) {
-            if(CheckGame(g) != null) {
-                switch(g[3]) {
-                case 'E':
-                    return "NTSC";
-                case 'J':
-                    return "Japan";
-                case 'P':
-                    return "PAL";
-                case 'W':
-                case 'K':
-                    return "Korea";
-                default:
-                    return string.Empty;
-                }
-            } else {
-                return string.Empty;
-            }
-        }
+        public static string CheckRegion(string g) => CheckGame(g) != null ? g[3] switch {
+            'E' => "NTSC",
+            'J' => "Japan",
+            'P' => "PAL",
+            'W' or 'K' => "Korea",
+            _ => string.Empty,
+        } : string.Empty;
 
         public static string ToDisplayString(this Game? g) => g switch {
             Game.MP2 => "Mario Party 2",
