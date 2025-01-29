@@ -1,0 +1,47 @@
+﻿@page "/board"
+@rendermode InteractiveWebAssembly
+@using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
+
+<h1>@Name</h1>
+<h2>Turn @Turn of @TurnLimit</h2>
+
+@code {
+    private HubConnection? _hubConnection;
+
+    private string Name;
+    private short Turn;
+    private short TurnLimit;
+
+    protected override async Task OnInitializedAsync() {
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/board"))
+            .Build();
+
+        _hubConnection.On<string>("SetName", (name) => {
+            Name = name;
+            InvokeAsync(StateHasChanged);
+        });
+
+        _hubConnection.On<short>("ReceiveTurn", (turn) => {
+            Turn = turn;
+            InvokeAsync(StateHasChanged);
+        });
+
+        _hubConnection.On<short>("ReceiveTurnLimit", (limit) => {
+            TurnLimit = limit;
+            InvokeAsync(StateHasChanged);
+        });
+
+        await _hubConnection.StartAsync();
+    }
+
+    public bool IsConnected => _hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync() {
+        if (_hubConnection is not null) {
+            await _hubConnection.DisposeAsync();
+        }
+    }
+}
