@@ -10,7 +10,7 @@
 
 <h1>@Name</h1>
 <h2>@Ranking</h2>
-<h3>@Character.Name</h3>
+<h3>@Character?.Name</h3>
 
 <p>Stars: @Stars</p>
 <p>Coins: @Coins</p>
@@ -35,10 +35,10 @@
     short Coins;
     Ranking Ranking = Ranking.First;
     SpaceColor? CurrentSpace;
-    ICharacter Character;
+    ICharacter? Character;
     IStatus? Status;
-    IItem?[] Items;
-    BonusStar[] BonusStars;
+    IItem?[] Items = [];
+    BonusStar[] BonusStars = [];
 
     protected override async Task OnInitializedAsync() {
         if (Port < 1 || Port > 4) {
@@ -46,7 +46,7 @@
         }
 
         _hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri($"/player/{Port}"))
+            .WithUrl(Navigation.ToAbsoluteUri($"/hub/player/{Port}"))
             .Build();
 
         _hubConnection.On<string>("SetName", (name) => {
@@ -88,21 +88,16 @@
             Items = new IItem[size];
         });
 
-        _hubConnection.On<IItem?>("ReceiveItem1", (item) => {
-            if (Items.Length < 1) return;
-            Items[1] = item;
-            InvokeAsync(StateHasChanged);
-        });
-
-        _hubConnection.On<IItem?>("ReceiveItem2", (item) => {
-            if (Items.Length < 2) return;
-            Items[2] = item;
-            InvokeAsync(StateHasChanged);
-        });
-
-        _hubConnection.On<IItem?>("ReceiveItem3", (item) => {
-            if (Items.Length < 3) return;
-            Items[3] = item;
+        _hubConnection.On<IItem?, IItem?, IItem?>("ReceiveItems", (item1, item2, item3) => {
+            if (Items.Length > 0) {
+                Items[0] = item1;
+            }
+            if (Items.Length > 1) {
+            Items[1] = item2;
+            }
+            if (Items.Length > 2) {
+            Items[2] = item3;
+            }
             InvokeAsync(StateHasChanged);
         });
 

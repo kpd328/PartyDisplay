@@ -1,0 +1,70 @@
+﻿@page "/admin"
+@rendermode InteractiveWebAssembly
+@using Microsoft.AspNetCore.SignalR.Client
+@using PartyDisplay.OBS.Lib.Xfer
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
+
+<PageTitle>Admin Override</PageTitle>
+
+<div class="form-group">
+    <label>
+        Game:
+        <input @bind="_gameNameInput"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Board:
+        <input @bind="_boardNameInput"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Turn:
+        <InputNumber @bind-Value="_turnInput.Count"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Turn Limit:
+        <InputNumber @bind-Value="_turnInput.Limit"/>
+    </label>
+</div>
+<button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
+
+@code {
+    private HubConnection? _boardHubConnection;
+    private string? _gameNameInput;
+    private string? _boardNameInput;
+    private Turn _turnInput = new();
+
+    protected override async Task OnInitializedAsync() {
+        _boardHubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/hub/board"))
+            .Build();
+        
+        _boardHubConnection.On<string>("SetGame", (game) => {
+            _gameNameInput = game;
+            InvokeAsync(StateHasChanged);
+        });
+
+        await _boardHubConnection.StartAsync();
+    }
+
+    private async Task UpdateBoard() {
+        if (_boardHubConnection is not null) {
+            await _boardHubConnection.SendAsync("SetGame", _gameNameInput);
+            await _boardHubConnection.SendAsync("SetName", _boardNameInput);
+            await _boardHubConnection.SendAsync("ReceiveTurn", _turnInput);
+        }
+    }
+
+    private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;
+    
+    public async ValueTask DisposeAsync() {
+        if (_boardHubConnection is not null) {
+            await _boardHubConnection.DisposeAsync();
+        }
+    }
+}

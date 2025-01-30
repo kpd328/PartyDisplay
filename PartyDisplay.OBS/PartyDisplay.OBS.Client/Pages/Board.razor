@@ -1,36 +1,39 @@
 ﻿@page "/board"
 @rendermode InteractiveWebAssembly
 @using Microsoft.AspNetCore.SignalR.Client
+@using PartyDisplay.OBS.Lib.Xfer
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
-<h1>@Name</h1>
-<h2>Turn @Turn of @TurnLimit</h2>
+<PageTitle>Board Info</PageTitle>
+
+<h3>@_game</h3>
+<h1>@_name</h1>
+<h2>Turn @_turn.Count / @_turn.Limit</h2>
 
 @code {
     private HubConnection? _hubConnection;
-
-    private string Name;
-    private short Turn;
-    private short TurnLimit;
+    private string? _game;
+    private string? _name;
+    private Turn _turn = new();
 
     protected override async Task OnInitializedAsync() {
         _hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/board"))
+            .WithUrl(Navigation.ToAbsoluteUri("/hub/board"))
             .Build();
 
+        _hubConnection.On<string>("SetGame", (game) => {
+            _game = game;
+            InvokeAsync(StateHasChanged);
+        });
+        
         _hubConnection.On<string>("SetName", (name) => {
-            Name = name;
+            _name = name;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<short>("ReceiveTurn", (turn) => {
-            Turn = turn;
-            InvokeAsync(StateHasChanged);
-        });
-
-        _hubConnection.On<short>("ReceiveTurnLimit", (limit) => {
-            TurnLimit = limit;
+        _hubConnection.On<Turn>("ReceiveTurn", (turn) => {
+            _turn = turn;
             InvokeAsync(StateHasChanged);
         });
 
