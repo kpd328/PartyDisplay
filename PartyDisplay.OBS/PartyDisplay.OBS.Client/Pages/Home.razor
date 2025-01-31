@@ -36,10 +36,7 @@
 
 @code {
     private HubConnection? _boardHubConnection;
-    private HubConnection? _p1HubConnection;
-    private HubConnection? _p2HubConnection;
-    private HubConnection? _p3HubConnection;
-    private HubConnection? _p4HubConnection;
+    private HubConnection? _playerHubConnection;
     private string? _game;
     private string? _p1Name;
     private string? _p2Name;
@@ -49,6 +46,7 @@
     protected override async Task OnInitializedAsync() {
         _boardHubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/hub/board"))
+            .WithAutomaticReconnect()
             .Build();
 
         _boardHubConnection.On<string>("SetGame", (game) => {
@@ -58,59 +56,53 @@
         
         await _boardHubConnection.StartAsync();
 
-        _p1HubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/hub/player/1"))
+        _playerHubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/hub/player"))
+            .WithAutomaticReconnect()
             .Build();
-
-        await _p1HubConnection.StartAsync();
         
-        _p2HubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/hub/player/2"))
-            .Build();
+        _playerHubConnection.On<byte, string>("SetName", (player, name) => {
+            switch (player) {
+                case 1:
+                    _p1Name = name;
+                    break;
+                case 2:
+                    _p2Name = name;
+                    break;
+                case 3:
+                    _p3Name = name;
+                    break;
+                case 4:
+                    _p4Name = name;
+                    break;
+            }
 
-        await _p2HubConnection.StartAsync();
-        
-        _p3HubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/hub/player/3"))
-            .Build();
+            InvokeAsync(StateHasChanged);
+        });
 
-        await _p3HubConnection.StartAsync();
-        
-        _p4HubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/hub/player/4"))
-            .Build();
-
-        await _p4HubConnection.StartAsync();
+        await _playerHubConnection.StartAsync();
     }
 
     private async Task Update() {
-        if (_p1HubConnection is not null) {
-            await _p1HubConnection.SendAsync("SetName", _p1Name);
-        }
-
-        if (_p2HubConnection is not null) {
-            await _p2HubConnection.SendAsync("SetName", _p2Name);
-        }
-
-        if (_p3HubConnection is not null) {
-            await _p3HubConnection.SendAsync("SetName", _p3Name);
-        }
-
-        if (_p4HubConnection is not null) {
-            await _p4HubConnection.SendAsync("SetName", _p4Name);
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.SendAsync("SetName", 1, _p1Name);
+            await _playerHubConnection.SendAsync("SetName", 2, _p2Name);
+            await _playerHubConnection.SendAsync("SetName", 3, _p3Name);
+            await _playerHubConnection.SendAsync("SetName", 4, _p4Name);
         }
     }
-    
-    private bool IsConnected => IsBoardConnected && IsP1Connected && IsP2Connected && IsP3Connected && IsP4Connected;
+
+    private bool IsConnected => IsBoardConnected && IsPlayerConnected;
     private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;
-    private bool IsP1Connected => _p1HubConnection?.State == HubConnectionState.Connected;
-    private bool IsP2Connected => _p2HubConnection?.State == HubConnectionState.Connected;
-    private bool IsP3Connected => _p3HubConnection?.State == HubConnectionState.Connected;
-    private bool IsP4Connected => _p4HubConnection?.State == HubConnectionState.Connected;
+    private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
     
     public async ValueTask DisposeAsync() {
         if (_boardHubConnection is not null) {
             await _boardHubConnection.DisposeAsync();
+        }
+
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.DisposeAsync();
         }
     }
 

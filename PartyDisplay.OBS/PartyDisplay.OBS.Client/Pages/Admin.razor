@@ -1,70 +1,329 @@
 ﻿@page "/admin"
 @rendermode InteractiveWebAssembly
 @using Microsoft.AspNetCore.SignalR.Client
+@using PartyDisplay.OBS.Lib.Data
 @using PartyDisplay.OBS.Lib.Xfer
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
 <PageTitle>Admin Override</PageTitle>
-
+<h3>Board</h3>
 <div class="form-group">
     <label>
-        Game:
-        <input @bind="_gameNameInput"/>
+        Game Override:
+        <InputSelect @bind-value="_gameName">
+            @* TODO: Replace this with an actual list of available games from the server. *@
+            @for (var i = 2; i <= 8; i++) {
+                @if (i == 3) continue;
+                <option value="Mario Party @i">Mario Party @i</option>
+            }
+        </InputSelect>
+    </label>
+    <label>
+        Region:
+        @* TODO: Make this actually matter *@
+        <InputSelect @bind-value="_gameRegion">
+            <option value="NTSC">NTSC</option>
+            <option value="PAL">PAL</option>
+            <option value="NTSC-J">NTSC-J</option>
+        </InputSelect>
     </label>
 </div>
 <div class="form-group">
     <label>
         Board:
-        <input @bind="_boardNameInput"/>
+        <input @bind="_boardName"/>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn:
-        <InputNumber @bind-Value="_turnInput.Count"/>
+        <InputNumber @bind-Value="_turn.Count"/>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn Limit:
-        <InputNumber @bind-Value="_turnInput.Limit"/>
+        <InputNumber @bind-Value="_turn.Limit"/>
     </label>
 </div>
 <button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
 
+<h3>Player 1</h3>
+<div class="form-group">
+    <label>
+        Name:
+        <input @bind="_p1.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Star Count:
+        <InputNumber @bind-value="_p1.StarCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Coin Count:
+        <InputNumber @bind-value="_p1.CoinCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Ranking:
+        <InputSelect @bind-value="_p1.Ranking">
+            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                <option value="@rank">@rank</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Landing Space:
+        <InputSelect @bind-value="_p1.LandingColor">
+            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
+                <option value="@space">@space</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<button @onclick="UpdateP1" disabled="@(!IsPlayerConnected)">Update Player 1</button>
+
+<h3>Player 2</h3>
+<div class="form-group">
+    <label>
+        Name:
+        <input @bind="_p2.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Star Count:
+        <InputNumber @bind-value="_p2.StarCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Coin Count:
+        <InputNumber @bind-value="_p2.CoinCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Ranking:
+        <InputSelect @bind-value="_p2.Ranking">
+            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                <option value="@rank">@rank</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Landing Space:
+        <InputSelect @bind-value="_p2.LandingColor">
+            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
+                <option value="@space">@space</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<button @onclick="UpdateP2" disabled="@(!IsPlayerConnected)">Update Player 2</button>
+
+<h3>Player 3</h3>
+<div class="form-group">
+    <label>
+        Name:
+        <input @bind="_p3.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Star Count:
+        <InputNumber @bind-value="_p3.StarCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Coin Count:
+        <InputNumber @bind-value="_p3.CoinCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Ranking:
+        <InputSelect @bind-value="_p3.Ranking">
+            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                <option value="@rank">@rank</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Landing Space:
+        <InputSelect @bind-value="_p3.LandingColor">
+            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
+                <option value="@space">@space</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<button @onclick="UpdateP3" disabled="@(!IsPlayerConnected)">Update Player 3</button>
+
+<h3>Player 4</h3>
+<div class="form-group">
+    <label>
+        Name:
+        <input @bind="_p4.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Star Count:
+        <InputNumber @bind-value="_p4.StarCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Coin Count:
+        <InputNumber @bind-value="_p4.CoinCount"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Ranking:
+        <InputSelect @bind-value="_p4.Ranking">
+            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                <option value="@rank">@rank</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Landing Space:
+        <InputSelect @bind-value="_p4.LandingColor">
+            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
+                <option value="@space">@space</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<button @onclick="UpdateP4" disabled="@(!IsPlayerConnected)">Update Player 4</button>
+
+
 @code {
     private HubConnection? _boardHubConnection;
-    private string? _gameNameInput;
-    private string? _boardNameInput;
-    private Turn _turnInput = new();
+    private HubConnection? _playerHubConnection;
+    private string? _gameName;
+    private string? _gameRegion;
+    private string? _boardName;
+    private Turn _turn = new();
+    private IPlayer _p1 = new Lib.Xfer.Player();
+    private IPlayer _p2 = new Lib.Xfer.Player();
+    private IPlayer _p3 = new Lib.Xfer.Player();
+    private IPlayer _p4 = new Lib.Xfer.Player();
 
     protected override async Task OnInitializedAsync() {
         _boardHubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/hub/board"))
+            .WithAutomaticReconnect()
             .Build();
         
         _boardHubConnection.On<string>("SetGame", (game) => {
-            _gameNameInput = game;
+            _gameName = game;
             InvokeAsync(StateHasChanged);
         });
 
         await _boardHubConnection.StartAsync();
+
+        _playerHubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/hub/player"))
+            .WithAutomaticReconnect()
+            .Build();
+
+        _playerHubConnection.On<byte, string>("SetName", (player, name) => {
+            switch (player) {
+                case 1:
+                    _p1.Name = name;
+                    break;
+                case 2:
+                    _p2.Name = name;
+                    break;
+                case 3:
+                    _p3.Name = name;
+                    break;
+                case 4:
+                    _p4.Name = name;
+                    break;
+            }
+
+            InvokeAsync(StateHasChanged);
+        });
+        
+        await _playerHubConnection.StartAsync();
     }
 
     private async Task UpdateBoard() {
         if (_boardHubConnection is not null) {
-            await _boardHubConnection.SendAsync("SetGame", _gameNameInput);
-            await _boardHubConnection.SendAsync("SetName", _boardNameInput);
-            await _boardHubConnection.SendAsync("ReceiveTurn", _turnInput);
+            await _boardHubConnection.SendAsync("SetGame", _gameName);
+            await _boardHubConnection.SendAsync("SetName", _boardName);
+            await _boardHubConnection.SendAsync("ReceiveTurn", _turn);
+        }
+    }
+
+    private async Task UpdateP1() {
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.SendAsync("SetName", 1, _p1.Name);
+            await _playerHubConnection.SendAsync("ReceiveStarCount", 1, _p1.StarCount);
+            await _playerHubConnection.SendAsync("ReceiveCoinCount", 1, _p1.CoinCount);
+            await _playerHubConnection.SendAsync("ReceiveRank", 1, _p1.Ranking);
+            await _playerHubConnection.SendAsync("ReceiveSpace", 1, _p1.LandingColor);
+        }
+    }
+
+    private async Task UpdateP2() {
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.SendAsync("SetName", 2, _p2.Name);
+            await _playerHubConnection.SendAsync("ReceiveStarCount", 2, _p2.StarCount);
+            await _playerHubConnection.SendAsync("ReceiveCoinCount", 2, _p2.CoinCount);
+            await _playerHubConnection.SendAsync("ReceiveRank", 2, _p2.Ranking);
+            await _playerHubConnection.SendAsync("ReceiveSpace", 2, _p2.LandingColor);
+        }
+    }
+
+    private async Task UpdateP3() {
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.SendAsync("SetName", 3, _p3.Name);
+            await _playerHubConnection.SendAsync("ReceiveStarCount", 3, _p3.StarCount);
+            await _playerHubConnection.SendAsync("ReceiveCoinCount", 3, _p3.CoinCount);
+            await _playerHubConnection.SendAsync("ReceiveRank", 3, _p3.Ranking);
+            await _playerHubConnection.SendAsync("ReceiveSpace", 3, _p3.LandingColor);
+        }
+    }
+
+    private async Task UpdateP4() {
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.SendAsync("SetName", 4, _p4.Name);
+            await _playerHubConnection.SendAsync("ReceiveStarCount", 4, _p4.StarCount);
+            await _playerHubConnection.SendAsync("ReceiveCoinCount", 4, _p4.CoinCount);
+            await _playerHubConnection.SendAsync("ReceiveRank", 4, _p4.Ranking);
+            await _playerHubConnection.SendAsync("ReceiveSpace", 4, _p4.LandingColor);
         }
     }
 
     private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;
+    private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
     
     public async ValueTask DisposeAsync() {
         if (_boardHubConnection is not null) {
             await _boardHubConnection.DisposeAsync();
+        }
+
+        if (_playerHubConnection is not null) {
+            await _playerHubConnection.DisposeAsync();
         }
     }
 }

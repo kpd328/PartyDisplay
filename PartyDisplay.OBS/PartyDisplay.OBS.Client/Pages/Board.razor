@@ -20,6 +20,7 @@
     protected override async Task OnInitializedAsync() {
         _hubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/hub/board"))
+            .WithAutomaticReconnect()
             .Build();
 
         _hubConnection.On<string>("SetGame", (game) => {

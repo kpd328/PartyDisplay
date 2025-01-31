@@ -8,19 +8,19 @@
 
 <PageTitle>Player @Port</PageTitle>
 
-<h1>@Name</h1>
-<h2>@Ranking</h2>
-<h3>@Character?.Name</h3>
+<h1>@_name</h1>
+<h2>@_ranking</h2>
+<h3>@_character?.Name</h3>
 
-<p>Stars: @Stars</p>
-<p>Coins: @Coins</p>
+<p>Stars: @_stars</p>
+<p>Coins: @_coins</p>
 <ul>
-    @foreach (var item in Items) {
+    @foreach (var item in _items) {
         <li>@item?.Name</li>
     }
 </ul>
 <ul>
-    @foreach (var bs in BonusStars) {
+    @foreach (var bs in _bonusStars) {
         <li>@bs.Name: @bs.Count</li>
     }
 </ul>
@@ -30,84 +30,94 @@
     public int Port { get; set; }
 
     private HubConnection? _hubConnection;
-    string Name;
-    short Stars;
-    short Coins;
-    Ranking Ranking = Ranking.First;
-    SpaceColor? CurrentSpace;
-    ICharacter? Character;
-    IStatus? Status;
-    IItem?[] Items = [];
-    BonusStar[] BonusStars = [];
+    private string? _name;
+    private short _stars;
+    private short _coins;
+    private Ranking? _ranking;
+    private SpaceColor? _currentSpace;
+    private ICharacter? _character;
+    private IStatus? _status;
+    private IItem?[] _items = [];
+    private BonusStar[] _bonusStars = [];
 
     protected override async Task OnInitializedAsync() {
-        if (Port < 1 || Port > 4) {
+        if (Port is < 1 or > 4) {
             Navigation.NavigateTo("/Error");
         }
 
         _hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri($"/hub/player/{Port}"))
+            .WithUrl(Navigation.ToAbsoluteUri($"/hub/player"))
+            .WithAutomaticReconnect()
             .Build();
-
-        _hubConnection.On<string>("SetName", (name) => {
-            Name = name;
+        
+        _hubConnection.On<byte, string>("SetName", (player, name) => {
+            if (player != Port) return;
+            _name = name;
             InvokeAsync(StateHasChanged);
         });
         
-        _hubConnection.On<short>("ReceiveStarCount", (count) => {
-            Stars = count;
+        _hubConnection.On<byte, short>("ReceiveStarCount", (player, count) => {
+            if (player != Port) return;
+            _stars = count;
             InvokeAsync(StateHasChanged);
         });
         
-        _hubConnection.On<short>("ReceiveCoinCount", (count) => {
-            Coins = count;
+        _hubConnection.On<byte, short>("ReceiveCoinCount", (player, count) => {
+            if (player != Port) return;
+            _coins = count;
             InvokeAsync(StateHasChanged);
         });
         
-        _hubConnection.On<Ranking>("ReceiveRank", (ranking) => {
-            Ranking = ranking;
+        _hubConnection.On<byte, Ranking>("ReceiveRank", (player, ranking) => {
+            if (player != Port) return;
+            _ranking = ranking;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<SpaceColor?>("ReceiveSpace", (color) => {
-            CurrentSpace = color;
+        _hubConnection.On<byte, SpaceColor?>("ReceiveSpace", (player, color) => {
+            if (player != Port) return;
+            _currentSpace = color;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<ICharacter>("ReceiveCharacter", (character) => {
-            Character = character;
+        _hubConnection.On<byte, ICharacter>("ReceiveCharacter", (player, character) => {
+            if (player != Port) return;
+            _character = character;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<IStatus?>("ReceiveStatus", (status) => {
-            Status = status;
+        _hubConnection.On<byte, IStatus?>("ReceiveStatus", (player, status) => {
+            if (player != Port) return;
+            _status = status;
             InvokeAsync(StateHasChanged);
         });
 
         _hubConnection.On<byte>("InitItems", (size) => {
-            Items = new IItem[size];
+            _items = new IItem[size];
         });
 
-        _hubConnection.On<IItem?, IItem?, IItem?>("ReceiveItems", (item1, item2, item3) => {
-            if (Items.Length > 0) {
-                Items[0] = item1;
+        _hubConnection.On<byte, IItem?, IItem?, IItem?>("ReceiveItems", (player, item1, item2, item3) => {
+            if (player != Port) return;
+            if (_items.Length > 0) {
+                _items[0] = item1;
             }
-            if (Items.Length > 1) {
-            Items[1] = item2;
+            if (_items.Length > 1) {
+            _items[1] = item2;
             }
-            if (Items.Length > 2) {
-            Items[2] = item3;
+            if (_items.Length > 2) {
+            _items[2] = item3;
             }
             InvokeAsync(StateHasChanged);
         });
 
         _hubConnection.On<BonusStar[]>("SetupBonusStars", (bonusStars) => {
-            BonusStars = bonusStars;
+            _bonusStars = bonusStars;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<BonusStar>("UpdateBonusStar", (bonusStar) => {
-            var toUpdate = BonusStars.Where((bs) => bs.Name == bonusStar.Name).Single();
+        _hubConnection.On<byte, BonusStar>("UpdateBonusStar", (player, bonusStar) => {
+            if (player != Port) return;
+            var toUpdate = _bonusStars.Single(bs => bs.Name == bonusStar.Name);
             toUpdate.Count = bonusStar.Count;
             toUpdate.InLead = bonusStar.InLead;
         });

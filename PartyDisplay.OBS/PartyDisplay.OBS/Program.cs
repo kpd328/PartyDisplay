@@ -40,10 +40,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(PartyDisplay.OBS.Client._Imports).Assembly);
 
-app.MapHub<PlayerHub>("/hub/player/1");
-app.MapHub<PlayerHub>("/hub/player/2");
-app.MapHub<PlayerHub>("/hub/player/3");
-app.MapHub<PlayerHub>("/hub/player/4");
+app.MapHub<PlayerHub>("/hub/player");
 app.MapHub<BoardHub>("/hub/board");
 
 app.Run();
