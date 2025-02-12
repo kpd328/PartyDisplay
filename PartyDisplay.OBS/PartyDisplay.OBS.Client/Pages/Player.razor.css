@@ -1,0 +1,5 @@
+﻿.player-container {
+    margin: auto;
+    padding: 10px;
+    background-color: var(--mp-space-red);
+}

@@ -7,23 +7,24 @@
 @implements IAsyncDisposable
 
 <PageTitle>Player @Port</PageTitle>
+<div class="player-container">
+    <h1>@_name</h1>
+    <h2>@_ranking</h2>
+    <h3>@_character?.Name</h3>
 
-<h1>@_name</h1>
-<h2>@_ranking</h2>
-<h3>@_character?.Name</h3>
-
-<p>Stars: @_stars</p>
-<p>Coins: @_coins</p>
-<ul>
-    @foreach (var item in _items) {
-        <li>@item?.Name</li>
-    }
-</ul>
-<ul>
-    @foreach (var bs in _bonusStars) {
-        <li>@bs.Name: @bs.Count</li>
-    }
-</ul>
+    <p>Stars: @_stars</p>
+    <p>Coins: @_coins</p>
+    <ul>
+        @foreach (var item in _items) {
+            <li>@item?.Name</li>
+        }
+    </ul>
+    <ul>
+        @foreach (var bs in _bonusStars) {
+            <li>@bs.Name: @bs.Count</li>
+        }
+    </ul>
+</div>
 
 @code {
     [Parameter]
