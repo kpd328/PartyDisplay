@@ -7,14 +7,16 @@
 
 <PageTitle>Board Info</PageTitle>
 
-<h3>@_game</h3>
-<h1>@_name</h1>
+<img class="game-img" src="@_gameImg" alt="@_game"/>
+<img class="board-img" src="@_boardImg" alt="@_board"/>
 <h2>Turn @_turn.Count / @_turn.Limit</h2>
 
 @code {
     private HubConnection? _hubConnection;
     private string? _game;
-    private string? _name;
+    private string? _gameImg;
+    private string? _board;
+    private string? _boardImg;
     private Turn _turn = new();
 
     protected override async Task OnInitializedAsync() {
@@ -25,11 +27,13 @@
 
         _hubConnection.On<string>("SetGame", (game) => {
             _game = game;
+            _gameImg = GetGameAbr(game) == game ? "" : $"/img/title/{GetGameAbr(game)}.png";
             InvokeAsync(StateHasChanged);
         });
         
         _hubConnection.On<string>("SetName", (name) => {
-            _name = name;
+            _board = name;
+            _boardImg = $"/img/board/{GetGameAbr(_game)}.{NormalizeName(_board)}.logo.png";
             InvokeAsync(StateHasChanged);
         });
 
@@ -48,4 +52,22 @@
             await _hubConnection.DisposeAsync();
         }
     }
+
+    private static string GetGameAbr(string game) => game switch {
+        "Mario Party 2" => "mp2",
+        "Mario Party 4" => "mp4",
+        "Mario Party 5" => "mp5",
+        "Mario Party 6" => "mp6",
+        "Mario Party 7" => "mp7",
+        "Mario Party 8" => "mp8",
+        _ => game
+    };
+
+    private string NormalizeName(string name) => name
+        .Trim()
+        .ToLower()
+        .Replace(' ', '_')
+        .Replace("\'", "")
+        .Replace(".", "")
+        .Replace("!", "");
 }
