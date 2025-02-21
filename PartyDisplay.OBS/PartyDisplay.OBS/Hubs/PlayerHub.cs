@@ -8,27 +8,27 @@ public class PlayerHub : Hub {
     }
 
     public async Task UpdateStarCount(byte player, short count) {
-        await Clients.Others.SendAsync("ReceiveStarCount", player, count);
+        await Clients.Others.SendAsync("UpdateStarCount", player, count);
     }
 
     public async Task UpdateCoinCount(byte player, short count) {
-        await Clients.Others.SendAsync("ReceiveCoinCount", player, count);
+        await Clients.Others.SendAsync("UpdateCoinCount", player, count);
     }
     
     public async Task UpdateRank(byte player, Ranking ranking) {
-        await Clients.Others.SendAsync("ReceiveRank", player, ranking);
+        await Clients.Others.SendAsync("UpdateRank", player, ranking);
     }
 
     public async Task UpdateSpace(byte player, SpaceColor? color = null) {
-        await Clients.Others.SendAsync("ReceiveSpace", player, color);
+        await Clients.Others.SendAsync("UpdateSpace", player, color);
     }
 
     public async Task UpdateCharacter(byte player, ICharacter character) {
-        await Clients.Others.SendAsync("ReceiveCharacter", player, character);
+        await Clients.Others.SendAsync("UpdateCharacter", player, character);
     }
 
     public async Task UpdateStatus(byte player, IStatus? status = null) {
-        await Clients.Others.SendAsync("ReceiveStatus", player, status);
+        await Clients.Others.SendAsync("UpdateStatus", player, status);
     }
 
     public async Task InitItems(byte size) {
@@ -36,7 +36,7 @@ public class PlayerHub : Hub {
     }
 
     public async Task UpdateItems(byte player, IItem? item1, IItem? item2 = null, IItem? item3 = null) {
-        await Clients.Others.SendAsync("ReceiveItems", player, item1, item2, item3);
+        await Clients.Others.SendAsync("UpdateItems", player, item1, item2, item3);
     }
 
     public async Task SetupBonusStars(params BonusStar[] stars) {

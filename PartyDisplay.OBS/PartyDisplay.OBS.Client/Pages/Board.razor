@@ -12,9 +12,11 @@
 <p class="turn-count">Turn @_turn.Count / @_turn.Limit</p>
 @if (GameAbr == "mp6" || (GameAbr == "mp2" && _board == "Horror Land")) {
     // TODO: Insert Day/Night Cycle State & Counter
+    <p>Insert Day/Night Cycle Here</p>
 }
 @if (GameAbr == "mp7") {
     // TODO: Insert Bowser Time Counter
+    <p>Insert Bowser Time Here</p>
 }
 
 @code {
@@ -34,7 +36,7 @@
         "Mario Party 8" => "mp8",
         _ => _game
     };
-    private string? BoardNormalized => _board.Trim()
+    private string? BoardNormalized => _board?.Trim()
         .ToLower()
         .Replace(' ', '_')
         .Replace("\'", "")
@@ -59,7 +61,7 @@
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<Turn>("ReceiveTurn", (turn) => {
+        _hubConnection.On<Turn>("SetTurn", (turn) => {
             _turn = turn;
             InvokeAsync(StateHasChanged);
         });

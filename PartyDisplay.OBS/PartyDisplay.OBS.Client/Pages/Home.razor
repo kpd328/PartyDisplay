@@ -6,7 +6,7 @@
 
 <PageTitle>Game Setup</PageTitle>
 
-<h3>Connected to game: <b>@_game</b></h3>
+<h3>Connected to game: <img src="@_gameImg" alt="@_game"/></h3>
 <div class="form-group">
     <label>
         Player 1 Name:
@@ -38,10 +38,21 @@
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
     private string? _game;
+    private string? _gameImg;
     private string? _p1Name;
     private string? _p2Name;
     private string? _p3Name;
     private string? _p4Name;
+    
+    private string? GameAbr => _game switch {
+        "Mario Party 2" => "mp2",
+        "Mario Party 4" => "mp4",
+        "Mario Party 5" => "mp5",
+        "Mario Party 6" => "mp6",
+        "Mario Party 7" => "mp7",
+        "Mario Party 8" => "mp8",
+        _ => _game
+    };
 
     protected override async Task OnInitializedAsync() {
         _boardHubConnection = new HubConnectionBuilder()
@@ -51,6 +62,7 @@
 
         _boardHubConnection.On<string>("SetGame", (game) => {
             _game = game;
+            _gameImg = GameAbr == game ? "" : $"/img/title/{GameAbr}.png";
             InvokeAsync(StateHasChanged);
         });
         

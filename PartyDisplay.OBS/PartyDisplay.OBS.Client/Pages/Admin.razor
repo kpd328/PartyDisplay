@@ -1,5 +1,6 @@
 ﻿@page "/admin"
 @rendermode InteractiveWebAssembly
+@using System.Text.Json
 @using Microsoft.AspNetCore.SignalR.Client
 @using PartyDisplay.OBS.Lib.Data
 @using PartyDisplay.OBS.Lib.Xfer
@@ -270,47 +271,47 @@
         if (_boardHubConnection is not null) {
             await _boardHubConnection.SendAsync("SetGame", _gameName);
             await _boardHubConnection.SendAsync("SetName", _boardName);
-            await _boardHubConnection.SendAsync("ReceiveTurn", _turn);
+            await _boardHubConnection.SendAsync("SetTurn", _turn);
         }
     }
 
     private async Task UpdateP1() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 1, _p1.Name);
-            await _playerHubConnection.SendAsync("ReceiveStarCount", 1, _p1.StarCount);
-            await _playerHubConnection.SendAsync("ReceiveCoinCount", 1, _p1.CoinCount);
-            await _playerHubConnection.SendAsync("ReceiveRank", 1, _p1.Ranking);
-            await _playerHubConnection.SendAsync("ReceiveSpace", 1, _p1.LandingColor);
+            await _playerHubConnection.SendAsync("UpdateStarCount", 1, _p1.StarCount);
+            await _playerHubConnection.SendAsync("UpdateCoinCount", 1, _p1.CoinCount);
+            await _playerHubConnection.SendAsync("UpdateRank", 1, _p1.Ranking);
+            await _playerHubConnection.SendAsync("UpdateSpace", 1, _p1.LandingColor);
         }
     }
 
     private async Task UpdateP2() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 2, _p2.Name);
-            await _playerHubConnection.SendAsync("ReceiveStarCount", 2, _p2.StarCount);
-            await _playerHubConnection.SendAsync("ReceiveCoinCount", 2, _p2.CoinCount);
-            await _playerHubConnection.SendAsync("ReceiveRank", 2, _p2.Ranking);
-            await _playerHubConnection.SendAsync("ReceiveSpace", 2, _p2.LandingColor);
+            await _playerHubConnection.SendAsync("UpdateStarCount", 2, _p2.StarCount);
+            await _playerHubConnection.SendAsync("UpdateCoinCount", 2, _p2.CoinCount);
+            await _playerHubConnection.SendAsync("UpdateRank", 2, _p2.Ranking);
+            await _playerHubConnection.SendAsync("UpdateSpace", 2, _p2.LandingColor);
         }
     }
 
     private async Task UpdateP3() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 3, _p3.Name);
-            await _playerHubConnection.SendAsync("ReceiveStarCount", 3, _p3.StarCount);
-            await _playerHubConnection.SendAsync("ReceiveCoinCount", 3, _p3.CoinCount);
-            await _playerHubConnection.SendAsync("ReceiveRank", 3, _p3.Ranking);
-            await _playerHubConnection.SendAsync("ReceiveSpace", 3, _p3.LandingColor);
+            await _playerHubConnection.SendAsync("UpdateStarCount", 3, _p3.StarCount);
+            await _playerHubConnection.SendAsync("UpdateCoinCount", 3, _p3.CoinCount);
+            await _playerHubConnection.SendAsync("UpdateRank", 3, _p3.Ranking);
+            await _playerHubConnection.SendAsync("UpdateSpace", 3, _p3.LandingColor);
         }
     }
 
     private async Task UpdateP4() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 4, _p4.Name);
-            await _playerHubConnection.SendAsync("ReceiveStarCount", 4, _p4.StarCount);
-            await _playerHubConnection.SendAsync("ReceiveCoinCount", 4, _p4.CoinCount);
-            await _playerHubConnection.SendAsync("ReceiveRank", 4, _p4.Ranking);
-            await _playerHubConnection.SendAsync("ReceiveSpace", 4, _p4.LandingColor);
+            await _playerHubConnection.SendAsync("UpdateStarCount", 4, _p4.StarCount);
+            await _playerHubConnection.SendAsync("UpdateCoinCount", 4, _p4.CoinCount);
+            await _playerHubConnection.SendAsync("UpdateRank", 4, _p4.Ranking);
+            await _playerHubConnection.SendAsync("UpdateSpace", 4, _p4.LandingColor);
         }
     }
 
