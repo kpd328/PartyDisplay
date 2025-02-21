@@ -1,7 +1,26 @@
-﻿.game-img {
+﻿.game-frame {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+}
+
+.game-img {
     width: 250px;
+}
+
+.board-frame {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
 }
 
 .board-img {
     width: 250px;
+}
+
+.turn-count {
+    font-size: 12vw;
+    text-align: center;
 }
