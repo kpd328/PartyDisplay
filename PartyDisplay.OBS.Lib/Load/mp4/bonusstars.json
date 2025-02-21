@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Minigame Star",
+    "ProgressTitle": "Minigame Coins",
+    "Icon": "/img/bonusstar/mp4.minigame.png"
+  },
+  {
+    "Name": "Coin Star",
+    "ProgressTitle": "Coin Total",
+    "Icon": "/img/bonusstar/mp4.coin.png"
+  },
+  {
+    "Name": "Happening Star",
+    "ProgressTitle": "Happening Count",
+    "Icon": "/img/bonusstar/mp4.happening.png"
+  }
+]

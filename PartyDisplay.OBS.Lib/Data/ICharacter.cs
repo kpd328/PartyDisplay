@@ -2,5 +2,5 @@
 
 public interface ICharacter {
     public string Name { get; }
-    public string IconFile { get; }
+    public string Icon { get; }
 }

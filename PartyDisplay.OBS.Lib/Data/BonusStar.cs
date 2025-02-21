@@ -10,7 +10,7 @@ public class BonusStar {
     [JsonIgnore]
     public short Count { get; set; }
     [JsonInclude]
-    public string IconFile { get; init; }
+    public string Icon { get; init; }
     [JsonIgnore]
     public bool InLead { get; set; }
 
@@ -19,7 +19,7 @@ public class BonusStar {
             Name = this.Name,
             ProgressTitle = this.ProgressTitle,
             Count = this.Count,
-            IconFile = this.IconFile
+            Icon = this.Icon
         };
     }
 }

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\board\" />
+    <Folder Include="wwwroot\img\bonusstar\" />
     <Folder Include="wwwroot\img\title\" />
   </ItemGroup>
 

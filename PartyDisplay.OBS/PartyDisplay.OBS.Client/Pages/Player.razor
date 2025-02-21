@@ -8,10 +8,10 @@
 
 <PageTitle>Player @Port</PageTitle>
 <div class="player-container">
-    <div class="landed-space"></div>
+    <div class="landed-space space-@_currentSpace"></div>
     <h1 class="player-name">@_name</h1>
     <div class="rank-container"><img class="rank-img" src="@_rankImg" alt="@_ranking"/></div>
-    <h3 class="character-name">@_character?.Name</h3>
+    <img class="character-name" src="@_character?.Icon" alt="@_character?.Name"/>
 
     <p class="star-count">Stars: @_stars</p>
     <p class="coin-count">Coins: @_coins</p>

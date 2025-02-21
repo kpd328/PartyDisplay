@@ -39,13 +39,13 @@
 <div class="form-group">
     <label>
         Turn:
-        <InputNumber @bind-Value="_turn.Count"/>
+        <InputNumber @bind-Value="_turnCount"/>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn Limit:
-        <InputNumber @bind-Value="_turn.Limit"/>
+        <InputNumber @bind-Value="_turnLimit"/>
     </label>
 </div>
 <button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
@@ -221,7 +221,8 @@
     private string? _gameName;
     private string? _gameRegion;
     private string? _boardName;
-    private Turn _turn = new();
+    private short _turnCount = 0;
+    private short _turnLimit = 0;
     private IPlayer _p1 = new Lib.Xfer.Player();
     private IPlayer _p2 = new Lib.Xfer.Player();
     private IPlayer _p3 = new Lib.Xfer.Player();
@@ -271,7 +272,8 @@
         if (_boardHubConnection is not null) {
             await _boardHubConnection.SendAsync("SetGame", _gameName);
             await _boardHubConnection.SendAsync("SetName", _boardName);
-            await _boardHubConnection.SendAsync("SetTurn", _turn);
+            await _boardHubConnection.SendAsync("SetTurnCurrent", _turnCount);
+            await _boardHubConnection.SendAsync("SetTurnLimit", _turnLimit);
         }
     }
 

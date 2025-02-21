@@ -12,7 +12,11 @@ public class BoardHub : Hub {
         await Clients.Others.SendAsync("SetName", name);
     }
 
-    public async Task SetTurn(Turn turn) {
-        await Clients.Others.SendAsync("SetTurn", turn);
+    public async Task SetTurnCurrent(short turn) {
+        await Clients.Others.SendAsync("SetTurnCurrent", turn);
+    }
+
+    public async Task SetTurnLimit(short limit) {
+        await Clients.Others.SendAsync("SetTurnLimit", limit);
     }
 }

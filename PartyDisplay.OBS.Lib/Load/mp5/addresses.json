@@ -1,0 +1,122 @@
+{
+  "Offsets": [
+    "22A070",
+    "22A178",
+    "22A280",
+    "22A388"
+  ],
+  "Template": {
+    "Character": {
+      "Type": "Byte",
+      "Offset": 0
+    },
+    "Status": {
+      "Type": "Byte",
+      "Offset": 1
+    },
+    "Ranking": {
+      "Type": "Byte",
+      "Offset": 9
+    },
+    "Port": {
+      "Type": "Byte",
+      "Offset": 4
+    },
+    "Coins": {
+      "Current": {
+        "Type": "Hword",
+        "Offset": 32
+      },
+      "Minigame": {
+        "Type": "Hword",
+        "Offset": 34
+      },
+      "Max": {
+        "Type": "Hword",
+        "Offset": 38
+      },
+      "EndTurnCount": {
+        "Type": "Array",
+        "Subtype": "Hword",
+        "Size": 50,
+        "Offset": 162
+      }
+    },
+    "Stars": {
+      "Current": {
+        "Type": "Hword",
+        "Offset": 52
+      },
+      "Max": {
+        "Type": "Hword",
+        "Offset": 54
+      },
+      "EndTurnCount": {
+        "Type": "Array",
+        "Subtype": "Hword",
+        "Size": 50,
+        "Offset": 58
+      }
+    },
+    "Spaces": {
+      "Blue": {
+        "Type": "Byte",
+        "Offset": 20
+      },
+      "Red": {
+        "Type": "Byte",
+        "Offset": 21
+      },
+      "Capsule": {
+        "Type": "Byte",
+        "Offset": 22
+      },
+      "Happening": {
+        "Type": "Byte",
+        "Offset": 23
+      },
+      "Bowser": {
+        "Type": "Byte",
+        "Offset": 24
+      },
+      "DK": {
+        "Type": "Byte",
+        "Offset": 30
+      }
+    },
+    "DiceRoll": {
+      "Type": "Byte",
+      "Offset": 10
+    },
+    "LandedSpace": {
+      "Type": "Byte",
+      "Offset": 8
+    },
+    "Capsules": [
+      {
+        "Type": "Byte",
+        "Offset": 5
+      },
+      {
+        "Type": "Byte",
+        "Offset": 6
+      },
+      {
+        "Type": "Byte",
+        "Offset": 7
+      }
+    ]
+  },
+  "BoardInfo": {
+    "Turn": {
+      "Current": {
+        "Type": "Byte",
+        "Index": "23769E"
+      },
+      "Limit": {
+        "Type": "Byte",
+        "Index": "23769F"
+      }
+    }
+  }
+}

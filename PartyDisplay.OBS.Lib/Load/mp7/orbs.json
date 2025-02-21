@@ -1,0 +1,170 @@
+[
+  {
+    "Index": 0,
+    "Name": "Mushroom",
+    "Icon": "/img/item/mp7.mushroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 1,
+    "Name": "Super 'Shroom",
+    "Icon": "/img/item/mp7.supershroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 2,
+    "Name": "Slow 'Shroom",
+    "Icon": "/img/item/mp7.slowshroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 3,
+    "Name": "Metal Mushroom",
+    "Icon": "/img/item/mp7.metalmushroom.png",
+    "Type": 0
+  },
+  {
+    "Index": 4,
+    "Name": "Flutter",
+    "Icon": "/img/item/mp7.flutter.png",
+    "Type": 0
+  },
+  {
+    "Index": 5,
+    "Name": "Cannon",
+    "Icon": "/img/item/mp7.cannon.png",
+    "Type": 0
+  },
+  {
+    "Index": 6,
+    "Name": "Snack",
+    "Icon": "/img/item/mp7.snack.png",
+    "Type": 0
+  },
+  {
+    "Index": 7,
+    "Name": "Lakitu",
+    "Icon": "/img/item/mp7.lakitu.png",
+    "Type": 0
+  },
+  {
+    "Index": 10,
+    "Name": "Hammer Bro",
+    "Icon": "/img/item/mp7.hammerbro.png",
+    "Type": 1
+  },
+  {
+    "Index": 11,
+    "Name": "Piranha Plant",
+    "Icon": "/img/item/mp7.piranhaplant.png",
+    "Type": 1
+  },
+  {
+    "Index": 12,
+    "Name": "Spear Guy",
+    "Icon": "/img/item/mp7.spearguy.png",
+    "Type": 1
+  },
+  {
+    "Index": 13,
+    "Name": "Kamek",
+    "Icon": "/img/item/mp7.kamek.png",
+    "Type": 1
+  },
+  {
+    "Index": 14,
+    "Name": "Toady",
+    "Icon": "/img/item/mp7.toady.png",
+    "Type": 1
+  },
+  {
+    "Index": 15,
+    "Name": "Mr. Blizzard",
+    "Icon": "/img/item/mp7.mrblizzard.png",
+    "Type": 1
+  },
+  {
+    "Index": 16,
+    "Name": "Bandit",
+    "Icon": "/img/item/mp7.bandit.png",
+    "Type": 1
+  },
+  {
+    "Index": 17,
+    "Name": "Pink Boo",
+    "Icon": "/img/item/mp7.pinkboo.png",
+    "Type": 1
+  },
+  {
+    "Index": 20,
+    "Name": "Spiny",
+    "Icon": "/img/item/mp7.spiny.png",
+    "Type": 2
+  },
+  {
+    "Index": 21,
+    "Name": "Zap",
+    "Icon": "/img/item/mp7.zap.png",
+    "Type": 2
+  },
+  {
+    "Index": 22,
+    "Name": "Tweester",
+    "Icon": "/img/item/mp7.tweester.png",
+    "Type": 2
+  },
+  {
+    "Index": 23,
+    "Name": "Thwomp",
+    "Icon": "/img/item/mp7.thwomp.png",
+    "Type": 2
+  },
+  {
+    "Index": 24,
+    "Name": "Warp Pipe",
+    "Icon": "/img/item/mp7.warppipe.png",
+    "Type": 2
+  },
+  {
+    "Index": 25,
+    "Name": "Bob-omb",
+    "Icon": "/img/item/mp7.bobomb.png",
+    "Type": 2
+  },
+  {
+    "Index": 30,
+    "Name": "Fireball",
+    "Icon": "/img/item/mp7.fireball.png",
+    "Type": 3
+  },
+  {
+    "Index": 31,
+    "Name": "Flower",
+    "Icon": "/img/item/mp7.flower.png",
+    "Type": 3
+  },
+  {
+    "Index": 32,
+    "Name": "Egg",
+    "Icon": "/img/item/mp7.egg.png",
+    "Type": 3
+  },
+  {
+    "Index": 33,
+    "Name": "Vacuum",
+    "Icon": "/img/item/mp7.vacuum.png",
+    "Type": 3
+  },
+  {
+    "Index": 34,
+    "Name": "Magic",
+    "Icon": "/img/item/mp7.magic.png",
+    "Type": 3
+  },
+  {
+    "Index": 35,
+    "Name": "Triple 'Shroom",
+    "Icon": "/img/item/mp7.tripleshroom.png",
+    "Type": 3
+  }
+]
