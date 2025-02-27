@@ -1,4 +1,3 @@
-using PartyDisplay.OBS.Client.Pages;
 using PartyDisplay.OBS.Components;
 using Microsoft.AspNetCore.ResponseCompression;
 using PartyDisplay.OBS.Hubs;
