@@ -1,9 +1,8 @@
 ﻿@page "/admin"
 @rendermode InteractiveWebAssembly
-@using System.Text.Json
 @using Microsoft.AspNetCore.SignalR.Client
 @using PartyDisplay.OBS.Lib.Data
-@using PartyDisplay.OBS.Lib.Xfer
+@using PartyDisplay.OBS.Lib.Data.Store
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
@@ -12,11 +11,11 @@
 <div class="form-group">
     <label>
         Game Override:
-        <InputSelect @bind-value="_gameName">
+        <InputSelect @bind-value="GameName">
             @* TODO: Replace this with an actual list of available games from the server. *@
             @for (var i = 2; i <= 8; i++) {
                 @if (i == 3) continue;
-                <option value="Mario Party @i">Mario Party @i</option>
+                <option value="@($"mp{i}")">Mario Party @i</option>
             }
         </InputSelect>
     </label>
@@ -55,6 +54,16 @@
     <label>
         Name:
         <input @bind="_p1.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Character:
+        <InputSelect @bind-Value="P1Character">
+            @foreach (var c in _characters) {
+                <option value="@c.Name">@c.Name</option>
+            }
+        </InputSelect>
     </label>
 </div>
 <div class="form-group">
@@ -100,6 +109,16 @@
 </div>
 <div class="form-group">
     <label>
+        Character:
+        <InputSelect @bind-value="P2Character">
+            @foreach (var c in _characters) {
+                <option value="@c.Name">@c.Name</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
         Star Count:
         <InputNumber @bind-value="_p2.StarCount"/>
     </label>
@@ -137,6 +156,16 @@
     <label>
         Name:
         <input @bind="_p3.Name"/>
+    </label>
+</div>
+<div class="form-group">
+    <label>
+        Character:
+        <InputSelect @bind-value="P3Character">
+            @foreach (var c in _characters) {
+                <option value="@c.Name">@c.Name</option>
+            }
+        </InputSelect>
     </label>
 </div>
 <div class="form-group">
@@ -182,6 +211,16 @@
 </div>
 <div class="form-group">
     <label>
+        Character:
+        <InputSelect @bind-value="P4Character">
+            @foreach (var c in _characters) {
+                <option value="@c.Name">@c.Name</option>
+            }
+        </InputSelect>
+    </label>
+</div>
+<div class="form-group">
+    <label>
         Star Count:
         <InputNumber @bind-value="_p4.StarCount"/>
     </label>
@@ -218,15 +257,63 @@
 @code {
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
-    private string? _gameName;
     private string? _gameRegion;
     private string? _boardName;
-    private short _turnCount = 0;
-    private short _turnLimit = 0;
+    private short _turnCount;
+    private short _turnLimit;
     private IPlayer _p1 = new Lib.Xfer.Player();
     private IPlayer _p2 = new Lib.Xfer.Player();
     private IPlayer _p3 = new Lib.Xfer.Player();
     private IPlayer _p4 = new Lib.Xfer.Player();
+    private ICharacter[] _characters = [];
+
+    private string P1Character {
+        get => _p1.Character?.Name ?? string.Empty;
+        set => _p1.Character = _characters.Single(c => c.Name == value);
+    }
+
+    private string P2Character {
+        get => _p2.Character?.Name ?? string.Empty;
+        set => _p2.Character = _characters.Single(c => c.Name == value);
+    }
+    
+    private string P3Character {
+        get => _p3.Character?.Name ?? string.Empty;
+        set => _p3.Character = _characters.Single(c => c.Name == value);
+    }
+
+    private string P4Character {
+        get => _p4.Character?.Name ?? string.Empty;
+        set => _p4.Character = _characters.Single(c => c.Name == value);
+    }
+    
+    private string? _gameName;
+    private string? GameName {
+        get => _gameName;
+        set {
+            _gameName = value;
+            switch (_gameName) {
+                case "mp2":
+                    _characters = Mp2.Characters;
+                    break;
+                case "mp4":
+                    _characters = Mp4.Characters;
+                    break;
+                case "mp5":
+                    _characters = Mp5.Characters;
+                    break;
+                case "mp6":
+                    _characters = Mp6.Characters;
+                    break;
+                case "mp7":
+                    _characters = Mp7.Characters;
+                    break;
+                case "mp8":
+                    _characters = Mp8.Characters;
+                    break;
+            }
+        }
+    }
 
     protected override async Task OnInitializedAsync() {
         _boardHubConnection = new HubConnectionBuilder()
@@ -234,8 +321,8 @@
             .WithAutomaticReconnect()
             .Build();
         
-        _boardHubConnection.On<string>("SetGame", (game) => {
-            _gameName = game;
+        _boardHubConnection.On<string>("GetGame", (game) => {
+            GameName = game;
             InvokeAsync(StateHasChanged);
         });
 
@@ -246,7 +333,7 @@
             .WithAutomaticReconnect()
             .Build();
 
-        _playerHubConnection.On<byte, string>("SetName", (player, name) => {
+        _playerHubConnection.On<byte, string>("GetName", (player, name) => {
             switch (player) {
                 case 1:
                     _p1.Name = name;
@@ -270,7 +357,7 @@
 
     private async Task UpdateBoard() {
         if (_boardHubConnection is not null) {
-            await _boardHubConnection.SendAsync("SetGame", _gameName);
+            await _boardHubConnection.SendAsync("SetGame", GameName);
             await _boardHubConnection.SendAsync("SetName", _boardName);
             await _boardHubConnection.SendAsync("SetTurnCurrent", _turnCount);
             await _boardHubConnection.SendAsync("SetTurnLimit", _turnLimit);
@@ -280,6 +367,7 @@
     private async Task UpdateP1() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 1, _p1.Name);
+            await _playerHubConnection.SendAsync("UpdateCharacter", 1, _p1.Character);
             await _playerHubConnection.SendAsync("UpdateStarCount", 1, _p1.StarCount);
             await _playerHubConnection.SendAsync("UpdateCoinCount", 1, _p1.CoinCount);
             await _playerHubConnection.SendAsync("UpdateRank", 1, _p1.Ranking);
@@ -290,6 +378,7 @@
     private async Task UpdateP2() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 2, _p2.Name);
+            await _playerHubConnection.SendAsync("UpdateCharacter", 2, _p2.Character);
             await _playerHubConnection.SendAsync("UpdateStarCount", 2, _p2.StarCount);
             await _playerHubConnection.SendAsync("UpdateCoinCount", 2, _p2.CoinCount);
             await _playerHubConnection.SendAsync("UpdateRank", 2, _p2.Ranking);
@@ -300,6 +389,7 @@
     private async Task UpdateP3() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 3, _p3.Name);
+            await _playerHubConnection.SendAsync("UpdateCharacter", 3, _p3.Character);
             await _playerHubConnection.SendAsync("UpdateStarCount", 3, _p3.StarCount);
             await _playerHubConnection.SendAsync("UpdateCoinCount", 3, _p3.CoinCount);
             await _playerHubConnection.SendAsync("UpdateRank", 3, _p3.Ranking);
@@ -310,6 +400,7 @@
     private async Task UpdateP4() {
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", 4, _p4.Name);
+            await _playerHubConnection.SendAsync("UpdateCharacter", 4, _p4.Character);
             await _playerHubConnection.SendAsync("UpdateStarCount", 4, _p4.StarCount);
             await _playerHubConnection.SendAsync("UpdateCoinCount", 4, _p4.CoinCount);
             await _playerHubConnection.SendAsync("UpdateRank", 4, _p4.Ranking);

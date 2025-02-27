@@ -6,7 +6,7 @@
 
 <PageTitle>Game Setup</PageTitle>
 
-<h3>Connected to game: <img src="@_gameImg" alt="@_game"/></h3>
+<h3>Connected to game: <img src="@_gameImg" alt="@GameName"/></h3>
 <div class="form-group">
     <label>
         Player 1 Name:
@@ -44,13 +44,13 @@
     private string? _p3Name;
     private string? _p4Name;
     
-    private string? GameAbr => _game switch {
-        "Mario Party 2" => "mp2",
-        "Mario Party 4" => "mp4",
-        "Mario Party 5" => "mp5",
-        "Mario Party 6" => "mp6",
-        "Mario Party 7" => "mp7",
-        "Mario Party 8" => "mp8",
+    private string? GameName => _game switch {
+        "mp2" => "Mario Party 2",
+        "mp4" => "Mario Party 4",
+        "mp5" => "Mario Party 5",
+        "mp6" => "Mario Party 6",
+        "mp7" => "Mario Party 7",
+        "mp8" => "Mario Party 8",
         _ => _game
     };
 
@@ -62,7 +62,7 @@
 
         _boardHubConnection.On<string>("SetGame", (game) => {
             _game = game;
-            _gameImg = GameAbr == game ? "" : $"/img/title/{GameAbr}.png";
+            _gameImg = GameName == game ? string.Empty : $"/img/title/{_game}.png";
             InvokeAsync(StateHasChanged);
         });
         

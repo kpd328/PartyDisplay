@@ -7,14 +7,14 @@
 
 <PageTitle>Board Info</PageTitle>
 
-<div class="game-frame"><img class="game-img" src="@_gameImg" alt="@_game"/></div>
+<div class="game-frame"><img class="game-img" src="@_gameImg" alt="@GameName"/></div>
 <div class="board-frame"><img class="board-img" src="@_boardImg" alt="@_board"/></div>
 <p class="turn-count">Turn @_turnCount / @_turnLimit</p>
-@if (GameAbr == "mp6" || (GameAbr == "mp2" && _board == "Horror Land")) {
+@if (_game == "mp6" || (_game == "mp2" && _board == "Horror Land")) {
     // TODO: Insert Day/Night Cycle State & Counter
     <p>Insert Day/Night Cycle Here</p>
 }
-@if (GameAbr == "mp7") {
+@if (_game == "mp7") {
     // TODO: Insert Bowser Time Counter
     <p>Insert Bowser Time Here</p>
 }
@@ -28,13 +28,13 @@
     private short _turnCount = 0;
     private short _turnLimit = 0;
     
-    private string? GameAbr => _game switch {
-        "Mario Party 2" => "mp2",
-        "Mario Party 4" => "mp4",
-        "Mario Party 5" => "mp5",
-        "Mario Party 6" => "mp6",
-        "Mario Party 7" => "mp7",
-        "Mario Party 8" => "mp8",
+    private string? GameName => _game switch {
+        "mp2" => "Mario Party 2",
+        "mp4" => "Mario Party 4",
+        "mp5" => "Mario Party 5",
+        "mp6" => "Mario Party 6",
+        "mp7" => "Mario Party 7",
+        "mp8" => "Mario Party 8",
         _ => _game
     };
     private string? BoardNormalized => _board?.Trim()
@@ -50,24 +50,24 @@
             .WithAutomaticReconnect()
             .Build();
 
-        _hubConnection.On<string>("SetGame", (game) => {
+        _hubConnection.On<string>("GetGame", (game) => {
             _game = game;
-            _gameImg = GameAbr == game ? "" : $"/img/title/{GameAbr}.png";
+            _gameImg = GameName == game ? "" : $"/img/title/{_game}.png";
             InvokeAsync(StateHasChanged);
         });
         
-        _hubConnection.On<string>("SetName", (name) => {
+        _hubConnection.On<string>("GetName", (name) => {
             _board = name;
-            _boardImg = $"/img/board/{GameAbr}.{BoardNormalized}.logo.png";
+            _boardImg = _board is null  ? string.Empty : $"/img/board/{_game}.{BoardNormalized}.logo.png";
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<short>("SetTurnCurrent", (turn) => {
+        _hubConnection.On<short>("GetTurnCurrent", (turn) => {
             _turnCount = turn;
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<short>("SetTurnLimit", (limit) => {
+        _hubConnection.On<short>("GetTurnLimit", (limit) => {
             _turnLimit = limit;
             InvokeAsync(StateHasChanged);
         });

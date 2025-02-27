@@ -46,7 +46,7 @@
     max-width: 25px;
 }
 
-.character-name {
+.character {
     grid-row: 2;
     grid-column: 1 / span 2;
 }
