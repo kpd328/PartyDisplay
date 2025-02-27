@@ -49,210 +49,65 @@
 </div>
 <button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
 
-<h3>Player 1</h3>
-<div class="form-group">
-    <label>
-        Name:
-        <input @bind="_p1.Name"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Character:
-        <InputSelect @bind-Value="P1Character">
-            @foreach (var c in _characters) {
-                <option value="@c.Name">@c.Name</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Star Count:
-        <InputNumber @bind-value="_p1.StarCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Coin Count:
-        <InputNumber @bind-value="_p1.CoinCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Ranking:
-        <InputSelect @bind-value="_p1.Ranking">
-            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
-                <option value="@rank">@rank</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Landing Space:
-        <InputSelect @bind-value="_p1.LandingColor">
-            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
-                <option value="@space">@space</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<button @onclick="UpdateP1" disabled="@(!IsPlayerConnected)">Update Player 1</button>
-
-<h3>Player 2</h3>
-<div class="form-group">
-    <label>
-        Name:
-        <input @bind="_p2.Name"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Character:
-        <InputSelect @bind-value="P2Character">
-            @foreach (var c in _characters) {
-                <option value="@c.Name">@c.Name</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Star Count:
-        <InputNumber @bind-value="_p2.StarCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Coin Count:
-        <InputNumber @bind-value="_p2.CoinCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Ranking:
-        <InputSelect @bind-value="_p2.Ranking">
-            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
-                <option value="@rank">@rank</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Landing Space:
-        <InputSelect @bind-value="_p2.LandingColor">
-            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
-                <option value="@space">@space</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<button @onclick="UpdateP2" disabled="@(!IsPlayerConnected)">Update Player 2</button>
-
-<h3>Player 3</h3>
-<div class="form-group">
-    <label>
-        Name:
-        <input @bind="_p3.Name"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Character:
-        <InputSelect @bind-value="P3Character">
-            @foreach (var c in _characters) {
-                <option value="@c.Name">@c.Name</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Star Count:
-        <InputNumber @bind-value="_p3.StarCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Coin Count:
-        <InputNumber @bind-value="_p3.CoinCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Ranking:
-        <InputSelect @bind-value="_p3.Ranking">
-            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
-                <option value="@rank">@rank</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Landing Space:
-        <InputSelect @bind-value="_p3.LandingColor">
-            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
-                <option value="@space">@space</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<button @onclick="UpdateP3" disabled="@(!IsPlayerConnected)">Update Player 3</button>
-
-<h3>Player 4</h3>
-<div class="form-group">
-    <label>
-        Name:
-        <input @bind="_p4.Name"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Character:
-        <InputSelect @bind-value="P4Character">
-            @foreach (var c in _characters) {
-                <option value="@c.Name">@c.Name</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Star Count:
-        <InputNumber @bind-value="_p4.StarCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Coin Count:
-        <InputNumber @bind-value="_p4.CoinCount"/>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Ranking:
-        <InputSelect @bind-value="_p4.Ranking">
-            @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
-                <option value="@rank">@rank</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Landing Space:
-        <InputSelect @bind-value="_p4.LandingColor">
-            @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
-                <option value="@space">@space</option>
-            }
-        </InputSelect>
-    </label>
-</div>
-<button @onclick="UpdateP4" disabled="@(!IsPlayerConnected)">Update Player 4</button>
-
+@{
+    var i = 1;
+    foreach (var player in _players) {
+        <h3>Player @i</h3>
+        <div class="form-group">
+            <label>
+                Name:
+                <input type="text" @bind="player.Name"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Character:
+                <select @bind:get="player.Character?.Name" @bind:set="x => SetCharacter(player, x)">
+                    <option value=""></option>
+                    @foreach (var c in _characters) {
+                        <option value="@c.Name">@c.Name</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Star Count:
+                <input type="number" @bind-value="player.StarCount"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Coin Count:
+                <input type="number" @bind-value="player.CoinCount"/>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Ranking:
+                <select @bind="player.Ranking">
+                    <option value=""></option>
+                    @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                        <option value="@rank">@rank</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Landing Space:
+                <select @bind="player.LandingColor">
+                    <option value=""></option>
+                    @foreach (var space in Enum.GetValues(typeof(SpaceColor))) {
+                        <option value="@space">@space</option>
+                    }
+                </select>
+            </label>
+        </div>
+        <button @onclick="@(x => UpdatePlayer(player))" disabled="@(!IsPlayerConnected)">Update Player @i</button>
+        i++;
+    }
+}
 
 @code {
     private HubConnection? _boardHubConnection;
@@ -261,31 +116,13 @@
     private string? _boardName;
     private short _turnCount;
     private short _turnLimit;
-    private IPlayer _p1 = new Lib.Xfer.Player();
-    private IPlayer _p2 = new Lib.Xfer.Player();
-    private IPlayer _p3 = new Lib.Xfer.Player();
-    private IPlayer _p4 = new Lib.Xfer.Player();
+    private readonly IPlayer<ICharacter, IItem, IStatus>[] _players = [
+        new Lib.Xfer.Player(),
+        new Lib.Xfer.Player(),
+        new Lib.Xfer.Player(),
+        new Lib.Xfer.Player()
+    ];
     private ICharacter[] _characters = [];
-
-    private string P1Character {
-        get => _p1.Character?.Name ?? string.Empty;
-        set => _p1.Character = _characters.Single(c => c.Name == value);
-    }
-
-    private string P2Character {
-        get => _p2.Character?.Name ?? string.Empty;
-        set => _p2.Character = _characters.Single(c => c.Name == value);
-    }
-    
-    private string P3Character {
-        get => _p3.Character?.Name ?? string.Empty;
-        set => _p3.Character = _characters.Single(c => c.Name == value);
-    }
-
-    private string P4Character {
-        get => _p4.Character?.Name ?? string.Empty;
-        set => _p4.Character = _characters.Single(c => c.Name == value);
-    }
     
     private string? _gameName;
     private string? GameName {
@@ -295,21 +132,45 @@
             switch (_gameName) {
                 case "mp2":
                     _characters = Mp2.Characters;
+                    _players[1].BonusStars = new(Mp2.BonusStars);
+                    _players[2].BonusStars = new(Mp2.BonusStars);
+                    _players[3].BonusStars = new(Mp2.BonusStars);
+                    _players[0].BonusStars = new(Mp2.BonusStars);
                     break;
                 case "mp4":
                     _characters = Mp4.Characters;
+                    _players[1].BonusStars = new(Mp4.BonusStars);
+                    _players[2].BonusStars = new(Mp4.BonusStars);
+                    _players[3].BonusStars = new(Mp4.BonusStars);
+                    _players[0].BonusStars = new(Mp4.BonusStars);
                     break;
                 case "mp5":
                     _characters = Mp5.Characters;
+                    _players[1].BonusStars = new(Mp5.BonusStars);
+                    _players[2].BonusStars = new(Mp5.BonusStars);
+                    _players[3].BonusStars = new(Mp5.BonusStars);
+                    _players[0].BonusStars = new(Mp5.BonusStars);
                     break;
                 case "mp6":
                     _characters = Mp6.Characters;
+                    _players[1].BonusStars = new(Mp6.BonusStars);
+                    _players[2].BonusStars = new(Mp6.BonusStars);
+                    _players[3].BonusStars = new(Mp6.BonusStars);
+                    _players[0].BonusStars = new(Mp6.BonusStars);
                     break;
                 case "mp7":
                     _characters = Mp7.Characters;
+                    _players[1].BonusStars = new(Mp7.BonusStars);
+                    _players[2].BonusStars = new(Mp7.BonusStars);
+                    _players[3].BonusStars = new(Mp7.BonusStars);
+                    _players[0].BonusStars = new(Mp7.BonusStars);
                     break;
                 case "mp8":
                     _characters = Mp8.Characters;
+                    _players[1].BonusStars = new(Mp8.BonusStars);
+                    _players[2].BonusStars = new(Mp8.BonusStars);
+                    _players[3].BonusStars = new(Mp8.BonusStars);
+                    _players[0].BonusStars = new(Mp8.BonusStars);
                     break;
             }
         }
@@ -334,21 +195,7 @@
             .Build();
 
         _playerHubConnection.On<byte, string>("GetName", (player, name) => {
-            switch (player) {
-                case 1:
-                    _p1.Name = name;
-                    break;
-                case 2:
-                    _p2.Name = name;
-                    break;
-                case 3:
-                    _p3.Name = name;
-                    break;
-                case 4:
-                    _p4.Name = name;
-                    break;
-            }
-
+            _players[player].Name = name;
             InvokeAsync(StateHasChanged);
         });
         
@@ -364,48 +211,21 @@
         }
     }
 
-    private async Task UpdateP1() {
+    private async Task UpdatePlayer(IPlayer<ICharacter, IItem, IStatus> p) {
+        int i = Array.IndexOf(_players, p) + 1;
         if (_playerHubConnection is not null) {
-            await _playerHubConnection.SendAsync("SetName", 1, _p1.Name);
-            await _playerHubConnection.SendAsync("UpdateCharacter", 1, _p1.Character);
-            await _playerHubConnection.SendAsync("UpdateStarCount", 1, _p1.StarCount);
-            await _playerHubConnection.SendAsync("UpdateCoinCount", 1, _p1.CoinCount);
-            await _playerHubConnection.SendAsync("UpdateRank", 1, _p1.Ranking);
-            await _playerHubConnection.SendAsync("UpdateSpace", 1, _p1.LandingColor);
+            await _playerHubConnection.SendAsync("SetName", i, p.Name);
+            await _playerHubConnection.SendAsync("UpdateCharacter", i, p.Character);
+            await _playerHubConnection.SendAsync("UpdateStarCount", i, p.StarCount);
+            await _playerHubConnection.SendAsync("UpdateCoinCount", i, p.CoinCount);
+            await _playerHubConnection.SendAsync("UpdateRank", i, p.Ranking);
+            await _playerHubConnection.SendAsync("UpdateSpace", i, p.LandingColor);
         }
     }
 
-    private async Task UpdateP2() {
-        if (_playerHubConnection is not null) {
-            await _playerHubConnection.SendAsync("SetName", 2, _p2.Name);
-            await _playerHubConnection.SendAsync("UpdateCharacter", 2, _p2.Character);
-            await _playerHubConnection.SendAsync("UpdateStarCount", 2, _p2.StarCount);
-            await _playerHubConnection.SendAsync("UpdateCoinCount", 2, _p2.CoinCount);
-            await _playerHubConnection.SendAsync("UpdateRank", 2, _p2.Ranking);
-            await _playerHubConnection.SendAsync("UpdateSpace", 2, _p2.LandingColor);
-        }
-    }
-
-    private async Task UpdateP3() {
-        if (_playerHubConnection is not null) {
-            await _playerHubConnection.SendAsync("SetName", 3, _p3.Name);
-            await _playerHubConnection.SendAsync("UpdateCharacter", 3, _p3.Character);
-            await _playerHubConnection.SendAsync("UpdateStarCount", 3, _p3.StarCount);
-            await _playerHubConnection.SendAsync("UpdateCoinCount", 3, _p3.CoinCount);
-            await _playerHubConnection.SendAsync("UpdateRank", 3, _p3.Ranking);
-            await _playerHubConnection.SendAsync("UpdateSpace", 3, _p3.LandingColor);
-        }
-    }
-
-    private async Task UpdateP4() {
-        if (_playerHubConnection is not null) {
-            await _playerHubConnection.SendAsync("SetName", 4, _p4.Name);
-            await _playerHubConnection.SendAsync("UpdateCharacter", 4, _p4.Character);
-            await _playerHubConnection.SendAsync("UpdateStarCount", 4, _p4.StarCount);
-            await _playerHubConnection.SendAsync("UpdateCoinCount", 4, _p4.CoinCount);
-            await _playerHubConnection.SendAsync("UpdateRank", 4, _p4.Ranking);
-            await _playerHubConnection.SendAsync("UpdateSpace", 4, _p4.LandingColor);
-        }
+    private void SetCharacter(IPlayer<ICharacter, IItem, IStatus> p, string? c) {
+        if (c is null) return;
+        p.Character = _characters.Single(x => x.Name == c);
     }
 
     private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;

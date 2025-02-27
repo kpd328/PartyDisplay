@@ -3,7 +3,7 @@ using PartyDisplay.OBS.Lib.Data;
 
 namespace PartyDisplay.OBS.Lib.Xfer;
 
-public class Player : IPlayer{
+public class Player : IPlayer<ICharacter, IItem, IStatus>{
     public string Name { get; set; }
     public short StarCount { get; set; }
     public short CoinCount { get; set; }
