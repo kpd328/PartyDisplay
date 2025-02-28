@@ -31,4 +31,6 @@ public sealed class Mp2 {
         new(name: "Coin Star", progressTitle: "Coin Total", icon: "/img/bonusstar/mp2.coin.png"),
         new(name: "Happening Star", progressTitle: "Happening Count", icon: "/img/bonusstar/mp2.happening.png")
     ];
+
+    public static Status[] Statuses => [];
 }

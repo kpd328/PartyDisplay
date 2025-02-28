@@ -59,4 +59,6 @@ public class Mp6 {
         new(name: "Orb Star", progressTitle: "Orbs Thrown", icon: "/img/bonusstar/mp6.orb.png"),
         new(name: "Action Star", progressTitle: "Action Count", icon: "/img/bonusstar/mp6.action.png")
     ];
+
+    public static Status[] Statuses => [];
 }

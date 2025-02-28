@@ -1,6 +1,13 @@
 ﻿namespace PartyDisplay.OBS.Lib.Data;
 
-public interface IStatus {
-    public string Name { get; }
-    public string IconFile { get; }
+public class Status {
+    public Status() { }
+
+    public Status(string name, string icon) {
+        Name = name;
+        Icon = icon;
+    }
+
+    public string Name { get; init; }
+    public string Icon { get; init; }
 }

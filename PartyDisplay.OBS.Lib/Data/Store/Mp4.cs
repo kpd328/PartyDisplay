@@ -37,4 +37,9 @@ public class Mp4 {
         new(name: "Coin Star", progressTitle: "Coin Total", icon: "/img/bonusstar/mp4.coin.png"),
         new(name: "Happening Star", progressTitle: "Happening Count", icon: "/img/bonusstar/mp4.happening.png")
     ];
+
+    public static Status[] Statuses => [
+        new(name: "Mini Hammer", icon: "/img/status/mp4.minimegahammer.mini.png"),
+        new(name: "Mega Hammer", icon: "/img/status/mp4.minimegahammer.mega.png")
+    ];
 }

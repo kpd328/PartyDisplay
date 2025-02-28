@@ -27,7 +27,7 @@ public class PlayerHub : Hub {
         await Clients.Others.SendAsync("GetCharacter", player, character);
     }
 
-    public async Task UpdateStatus(byte player, IStatus? status = null) {
+    public async Task UpdateStatus(byte player, Status? status = null) {
         await Clients.Others.SendAsync("GetStatus", player, status);
     }
 
@@ -35,11 +35,11 @@ public class PlayerHub : Hub {
         await Clients.Others.SendAsync("GetItemsInit", size);
     }
 
-    public async Task UpdateItems(byte player, IItem? item1, IItem? item2 = null, IItem? item3 = null) {
-        await Clients.Others.SendAsync("GetItems", player, item1, item2, item3);
+    public async Task UpdateItems(byte player, params IItem?[] items) {
+        await Clients.Others.SendAsync("GetItems", player, items);
     }
 
-    public async Task SetupBonusStars(params BonusStar[] stars) {
+    public async Task InitBonusStars(params BonusStar[] stars) {
         await Clients.Others.SendAsync("GetBonusStarsInit", stars);
     }
 

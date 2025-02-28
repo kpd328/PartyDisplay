@@ -66,4 +66,11 @@ public class Mp5 {
         new(name: "Coin Star", progressTitle: "Coin Total", icon: "/img/bonusstar/mp5.coin.png"),
         new(name: "Happening Star", progressTitle: "Happening Count", icon: "/img/bonusstar/mp5.happening.png")
     ];
+
+    public static Status[] Statuses => [
+        new(name: "Mushroom", icon: "/img/status/mp5.mushroom.png"),
+        new(name: "Super Mushroom", icon: "/img/status/mp5.supermushroom.png"),
+        new(name: "Cursed Mushroom", icon: "/img/status/mp5.cursedmushroom.png"),
+        new(name: "Bullet Bill", icon: "/img/status/mp5.bulletbill.png")
+    ];
 }

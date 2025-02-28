@@ -68,4 +68,17 @@ public class Mp7 {
         new(name: "Shopping Star", progressTitle: "Coins Spent", icon: "/img/bonusstar/mp7.shopping.png"),
         new(name: "Red Star", progressTitle: "Red Count", icon: "/img/bonusstar/mp7.red.png")
     ];
+    
+    public static Status[] Statuses => [
+        new(name: "Mushroom", icon: "/img/status/mp7.mushroom.png"),
+        new(name: "Super 'Shroom", icon: "/img/status/mp7.supershroom.png"),
+        new(name: "Slow 'Shroom", icon: "/img/status/mp7.slowshroom.png"),
+        new(name: "Metal Mushroom", icon: "/img/status/mp7.metalmushroom.png"),
+        new(name: "Cursed Mushroom", icon: "/img/status/mp7.cursedmushroom.png"),
+        new(name: "Snack", icon: "/img/status/mp7.snack.png"),
+        new(name: "Fireball", icon: "/img/status/mp7.fireball.png"),
+        new(name: "Flower", icon: "/img/status/mp7.flower.png"),
+        new(name: "Egg", icon: "/img/status/mp7.egg.png"),
+        new(name: "Magic", icon: "/img/status/mp7.magic.png"),
+    ];
 }

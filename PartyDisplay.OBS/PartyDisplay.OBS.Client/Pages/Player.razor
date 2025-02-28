@@ -12,17 +12,17 @@
     <h1 class="player-name">@_name</h1>
     <div class="rank-container"><img class="rank-img" src="@_rankImg" alt="@_ranking"/></div>
     <img class="character" src="@_character?.Icon" alt="@_character?.Name"/>
-
+    <img class="status" src="@_status?.Icon" alt="@_status?.Name"/>
     <p class="star-count">Stars: @_stars</p>
     <p class="coin-count">Coins: @_coins</p>
     <ul class="item-box">
         @foreach (var item in _items) {
-            <li>@item?.Name</li>
+            <li><img class="item-img" src="@item?.Icon" alt="@item?.Name"/></li>
         }
     </ul>
     <ul class="bonus-stars">
         @foreach (var bs in _bonusStars) {
-            <li>@bs.Name: @bs.Count</li>
+            <li><img class="bonus-star-img" src="@bs.Icon" alt="@bs.Name"/> @bs.Count</li>
         }
     </ul>
 </div>
@@ -41,7 +41,7 @@
     private string? _rankImg;
     private SpaceColor? _currentSpace;
     private ICharacter? _character;
-    private IStatus? _status;
+    private Status? _status;
     private IItem?[] _items = [];
     private BonusStar[] _bonusStars = [];
 
@@ -92,7 +92,7 @@
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<byte, IStatus?>("GetStatus", (player, status) => {
+        _hubConnection.On<byte, Status?>("GetStatus", (player, status) => {
             if (player != Port) return;
             _status = status;
             InvokeAsync(StateHasChanged);
@@ -102,17 +102,9 @@
             _items = new IItem[size];
         });
 
-        _hubConnection.On<byte, IItem?, IItem?, IItem?>("GetItems", (player, item1, item2, item3) => {
+        _hubConnection.On<byte, IItem?[]>("GetItems", (player, items) => {
             if (player != Port) return;
-            if (_items.Length > 0) {
-                _items[0] = item1;
-            }
-            if (_items.Length > 1) {
-            _items[1] = item2;
-            }
-            if (_items.Length > 2) {
-            _items[2] = item3;
-            }
+            _items = items;
             InvokeAsync(StateHasChanged);
         });
 

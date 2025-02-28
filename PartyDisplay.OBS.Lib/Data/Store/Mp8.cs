@@ -46,4 +46,6 @@ public class Mp8 {
         new(name: "Shopping Star", progressTitle: "Coins Spent", icon: "/img/bonusstar/mp8.shopping.png"),
         new(name: "Red Star", progressTitle: "Red Count", icon: "/img/bonusstar/mp8.red.png")
     ];
+    
+    public static Status[] Statuses => [];
 }
