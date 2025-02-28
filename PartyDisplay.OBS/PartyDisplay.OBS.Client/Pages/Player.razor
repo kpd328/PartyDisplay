@@ -103,9 +103,9 @@
             _items = new IItem[size];
         });
 
-        _hubConnection.On<byte, IItem?[]>("GetItems", (player, items) => {
+        _hubConnection.On<byte, byte, IItem>("GetItem", (player, slot, item) => {
             if (player != Port) return;
-            _items = items;
+            _items[slot] = item;
             InvokeAsync(StateHasChanged);
         });
 

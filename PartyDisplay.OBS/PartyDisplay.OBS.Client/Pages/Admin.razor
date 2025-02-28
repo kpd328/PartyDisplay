@@ -114,7 +114,7 @@
                 <select @bind="player.LandingColor">
                     <option value=""></option>
                     @foreach (SpaceColor space in Enum.GetValues(typeof(SpaceColor))) {
-                        if(Game is not null && space == SpaceColor.Pink && (_game.Code != "mp6" || _game.Code != "mp7")) continue;
+                        if(Game is not null && space == SpaceColor.Pink && Game.Code is not ("mp6" or "mp7")) continue;
                         <option value="@space">@space</option>
                     }
                 </select>
@@ -143,7 +143,7 @@
                         <select @bind:get="slot?.Name" @bind:set="x => SetItem(player, slotIndex, x)">
                             <option value=""></option>
                             @foreach (var item in _items.Where(x => x is not null)) {
-                                <option value="@item.Name">@item.Name</option>
+                                <option value="@item?.Name">@item?.Name</option>
                             }
                         </select>
                         j++;
@@ -382,7 +382,11 @@
             await _playerHubConnection.SendAsync("UpdateRank", i, p.Ranking);
             await _playerHubConnection.SendAsync("UpdateSpace", i, p.LandingColor);
             await _playerHubConnection.SendAsync("UpdateStatus", i, p.Status);
-            await _playerHubConnection.SendAsync("UpdateItems", i, p.Items);
+            var j = 0;
+            foreach (var item in p.Items) {
+                await _playerHubConnection.SendAsync("UpdateItem", i, j, item);
+                j++;
+            }
             foreach (var star in p.BonusStars) {
                 await _playerHubConnection.SendAsync("UpdateBonusStar", i, star);
             }
@@ -393,11 +397,14 @@
     
     private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 
-    private void SetCharacter(IPlayer<IItem> player, string? character) => player.Character = character is null ? null! : _characters.Single(x => x.Name == character);
+    private void SetCharacter(IPlayer<IItem> player, string? character) => player.Character = character is null ?
+        null! : _characters.Single(x => x.Name == character);
 
-    private void SetItem(IPlayer<IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ? null : _items.Single(x => x?.Name == selected);
+    private void SetItem(IPlayer<IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ?
+        null : _items.Single(x => x?.Name == selected);
 
-    private void SetStatus(IPlayer<IItem> player, string? selected) => player.Status = selected is null ? null : _statuses.Single(x => x.Name == selected);
+    private void SetStatus(IPlayer<IItem> player, string? selected) => player.Status = selected is null ?
+        null : _statuses.Single(x => x.Name == selected);
 
     private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
 
