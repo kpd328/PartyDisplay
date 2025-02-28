@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using PartyDisplay.OBS.Lib.Data;
+using PartyDisplay.OBS.Lib.Data.Store;
 using PartyDisplay.OBS.Lib.Xfer;
 
 namespace PartyDisplay.OBS.Hubs;
 
 public class BoardHub : Hub {
-    public async Task SetGame(string game) {
+    public async Task SetGame(Game game) {
         await Clients.Others.SendAsync("GetGame", game);
     }
     

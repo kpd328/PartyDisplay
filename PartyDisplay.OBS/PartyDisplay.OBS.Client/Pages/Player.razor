@@ -10,7 +10,7 @@
 <div class="player-container">
     <div class="landed-space space-@_currentSpace"></div>
     <h1 class="player-name">@_name</h1>
-    <div class="rank-container"><img class="rank-img" src="@_rankImg" alt="@_ranking"/></div>
+    <div class="rank-container"><img class="rank-img" src="@RankImg" alt="@_ranking"/></div>
     <img class="character" src="@_character?.Icon" alt="@_character?.Name"/>
     <img class="status" src="@_status?.Icon" alt="@_status?.Name"/>
     <p class="star-count">Stars: @_stars</p>
@@ -33,18 +33,20 @@
 
     private HubConnection? _hubConnection;
     private HubConnection? _gameConnection;
-    private string? _game;
+    private Game? _game;
     private string? _name;
     private short _stars;
     private short _coins;
     private Ranking? _ranking;
-    private string? _rankImg;
     private SpaceColor? _currentSpace;
     private ICharacter? _character;
     private Status? _status;
     private IItem?[] _items = [];
     private BonusStar[] _bonusStars = [];
-
+    
+    private string RankImg => _game is not null && _ranking is not null ?
+        $"/img/ranking/{_game?.Code}.{_ranking?.ToString().ToLower()}.png" : string.Empty;
+    
     protected override async Task OnInitializedAsync() {
         if (Port is < 1 or > 4) {
             Navigation.NavigateTo("/Error");
@@ -76,7 +78,6 @@
         _hubConnection.On<byte, Ranking>("GetRank", (player, ranking) => {
             if (player != Port) return;
             _ranking = ranking;
-            _rankImg = $"/img/ranking/{_game}.{ranking.ToString().ToLower()}.png";
             InvokeAsync(StateHasChanged);
         });
 
@@ -127,8 +128,9 @@
             .WithAutomaticReconnect()
             .Build();
         
-        _gameConnection.On<string>("GetGame", (game) => {
+        _gameConnection.On<Game>("GetGame", (game) => {
             _game = game;
+            InvokeAsync(StateHasChanged);
         });
 
         await _gameConnection.StartAsync();

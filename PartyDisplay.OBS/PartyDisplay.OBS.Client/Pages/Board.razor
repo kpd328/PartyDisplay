@@ -7,36 +7,25 @@
 
 <PageTitle>Board Info</PageTitle>
 
-<div class="game-frame"><img class="game-img" src="@_gameImg" alt="@GameName"/></div>
+<div class="game-frame"><img class="game-img" src="@_game?.Icon" alt="@_game?.Name"/></div>
 <div class="board-frame"><img class="board-img" src="@BoardImage" alt="@_board?.Name"/></div>
 <p class="turn-count">Turn @_turnCount / @_turnLimit</p>
-@if (_game == "mp6" || (_game == "mp2" && _board.Name == "Horror Land")) {
+@if (_game?.Code == "mp6" || (_game?.Code == "mp2" && _board?.Name == "Horror Land")) {
     // TODO: Insert Day/Night Cycle State & Counter
     <p>Insert Day/Night Cycle Here</p>
 }
-@if (_game == "mp7") {
+@if (_game?.Code == "mp7") {
     // TODO: Insert Bowser Time Counter
     <p>Insert Bowser Time Here</p>
 }
 
 @code {
     private HubConnection? _hubConnection;
-    private string? _game;
-    private string? _gameImg;
+    private Game? _game;
     private Lib.Data.Board? _board;
     private short _turnCount;
     private short _turnLimit;
     private BoardImageClass _imageClass = BoardImageClass.Logo;
-    
-    private string? GameName => _game switch {
-        "mp2" => "Mario Party 2",
-        "mp4" => "Mario Party 4",
-        "mp5" => "Mario Party 5",
-        "mp6" => "Mario Party 6",
-        "mp7" => "Mario Party 7",
-        "mp8" => "Mario Party 8",
-        _ => _game
-    };
     
     private string? BoardImage => _imageClass switch {
         BoardImageClass.Logo => _board?.Logo,
@@ -50,9 +39,8 @@
             .WithAutomaticReconnect()
             .Build();
 
-        _hubConnection.On<string>("GetGame", (game) => {
+        _hubConnection.On<Game>("GetGame", (game) => {
             _game = game;
-            _gameImg = GameName == game ? "" : $"/img/title/{_game}.png";
             InvokeAsync(StateHasChanged);
         });
         

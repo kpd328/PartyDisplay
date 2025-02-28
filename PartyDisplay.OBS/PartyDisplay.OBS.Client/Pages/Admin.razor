@@ -11,29 +11,29 @@
 <div class="form-group">
     <label>
         Game Override:
-        <select @bind="GameName">
+        <select @bind:get="Game?.Code" @bind:set="SetGame">
             <option value=""></option>
-            @* TODO: Replace this with an actual list of available games from the server. *@
-            @for (var g = 2; g <= 8; g++) {
-                @if (g == 3) continue;
-                <option value="@($"mp{g}")">Mario Party @g</option>
+            @foreach (var g in Games.List) {
+                <option value="@g.Code">@g.Name</option>
             }
         </select>
     </label>
-    <label>
-        Region:
-        @* TODO: Make this actually matter *@
-        <select @bind="_gameRegion">
-            <option value="NTSC">NTSC</option>
-            <option value="PAL">PAL</option>
-            <option value="NTSC-J">NTSC-J</option>
-        </select>
-    </label>
+    @if (Game is not null) {
+        <label>
+            Region:
+            <select @bind="GameRegion">
+                <option value=""></option>
+                @foreach (var r in Game.AvailableRegions) {
+                    <option value="@r">@(r.ToString().Replace("_", "-"))</option>
+                }
+            </select>
+        </label>
+    }
 </div>
 <div class="form-group">
     <label>
         Board:
-        <select @bind:get="Board?.Name" @bind:set="x => SetBoard(x)">
+        <select @bind:get="Board?.Name" @bind:set="SetBoard">
             <option value=""></option>
             @foreach (var b in _boards) {
                 <option value="@b.Name">@b.Name</option>
@@ -114,7 +114,7 @@
                 <select @bind="player.LandingColor">
                     <option value=""></option>
                     @foreach (SpaceColor space in Enum.GetValues(typeof(SpaceColor))) {
-                        if(space == SpaceColor.Pink && (_gameName != "mp6" || _gameName != "mp7")) continue;
+                        if(Game is not null && space == SpaceColor.Pink && (_game.Code != "mp6" || _game.Code != "mp7")) continue;
                         <option value="@space">@space</option>
                     }
                 </select>
@@ -169,7 +169,6 @@
 @code {
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
-    private string? _gameRegion;
 
     private readonly IPlayer<ICharacter, IItem>[] _players = [
         new Lib.Xfer.Player(),
@@ -183,13 +182,13 @@
     private Status[] _statuses = [];
     private Lib.Data.Board[] _boards = [];
 
-    private string? _gameName;
-    private string? GameName {
-        get => _gameName;
+    private Game? _game;
+    private Game? Game {
+        get => _game;
         set {
-            _gameName = value;
-            _boardHubConnection?.SendAsync("SetGame", GameName);
-            switch (_gameName) {
+            _game = value;
+            _boardHubConnection?.SendAsync("SetGame", _game);
+            switch (_game?.Code) {
                 case "mp2":
                     _characters = Mp2.Characters;
                     _items = Mp2.Items;
@@ -302,6 +301,14 @@
             }
         }
     }
+
+    private Region GameRegion {
+        get => Game.Region;
+        set {
+            Game.Region = value;
+            _boardHubConnection?.SendAsync("SetGame", _game);
+        }
+    }
     
     private Lib.Data.Board? _board;
     private Lib.Data.Board? Board {
@@ -345,8 +352,8 @@
             .WithAutomaticReconnect()
             .Build();
 
-        _boardHubConnection.On<string>("GetGame", (game) => {
-            GameName = game;
+        _boardHubConnection.On<Game>("GetGame", (game) => {
+            Game = game;
             InvokeAsync(StateHasChanged);
         });
 
@@ -382,39 +389,16 @@
         }
     }
 
-    private void SetBoard(string? board) {
-        if (board is null) {
-            Board = null;
-            return;
-        }
+    private void SetGame(string? game) => Game = game is null ? null : Games.List.Single(g => g.Code == game);
+    
+    private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 
-        Board = _boards.Single(b => b.Name == board);
-    }
+    private void SetCharacter(IPlayer<ICharacter, IItem> player, string? character) => player.Character = character is null ? null! : _characters.Single(x => x.Name == character);
 
-    private void SetCharacter(IPlayer<ICharacter, IItem> player, string? character) {
-        if (character is null) return;
-        player.Character = _characters.Single(x => x.Name == character);
-    }
+    private void SetItem(IPlayer<ICharacter, IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ? null : _items.Single(x => x?.Name == selected);
 
-    private void SetItem(IPlayer<ICharacter, IItem> player, int slot, string? selected) {
-        if (selected is null) {
-            player.Items[slot] = null;
-            return;
-        }
+    private void SetStatus(IPlayer<ICharacter, IItem> player, string? selected) => player.Status = selected is null ? null : _statuses.Single(x => x.Name == selected);
 
-        player.Items[slot] = _items.Single(x => x?.Name == selected);
-    }
-
-    private void SetStatus(IPlayer<ICharacter, IItem> player, string? selected) {
-        if (selected is null) {
-            player.Status = null;
-            return;
-        }
-
-        player.Status = _statuses.Single(x => x.Name == selected);
-    }
-
-    private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;
     private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync() {
