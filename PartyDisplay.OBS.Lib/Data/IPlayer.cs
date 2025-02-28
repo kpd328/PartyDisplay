@@ -13,7 +13,7 @@ public interface IPlayer<TCharacter, TItem>
     public TCharacter Character { get; set; }
     public Status? Status { get; set; }
     public TItem?[] Items { get; set; }
-    public ObservableCollection<BonusStar> BonusStars { get; set; }
+    public BonusStar[] BonusStars { get; set; }
 }
 
 public enum Ranking {

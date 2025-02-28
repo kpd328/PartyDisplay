@@ -14,5 +14,5 @@ public class Mp8Player : IPlayer<Mp8Character, Mp8Candy> {
     public Mp8Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp8Candy?[] Items { get; set; } = new Mp8Candy[3];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp8.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp8.BonusStars;
 }

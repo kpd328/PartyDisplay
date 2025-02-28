@@ -14,5 +14,5 @@ public class Mp7Player : IPlayer<Mp7Character, Mp7Orb> {
     public Mp7Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp7Orb?[] Items { get; set; } = new Mp7Orb[3];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp7.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp7.BonusStars;
 }

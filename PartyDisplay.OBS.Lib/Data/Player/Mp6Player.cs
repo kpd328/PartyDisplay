@@ -14,5 +14,5 @@ public class Mp6Player : IPlayer<Mp6Character, Mp6Orb> {
     public Mp6Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp6Orb?[] Items { get; set; } = new Mp6Orb[3];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp6.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp6.BonusStars;
 }

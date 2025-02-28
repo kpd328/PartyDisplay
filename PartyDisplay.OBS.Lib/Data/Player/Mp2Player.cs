@@ -14,5 +14,5 @@ public class Mp2Player : IPlayer<Mp2Character, Mp2Item> {
     public Mp2Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp2Item?[] Items { get; set; } = new Mp2Item[1];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp2.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp2.BonusStars;
 }

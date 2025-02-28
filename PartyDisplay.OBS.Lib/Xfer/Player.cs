@@ -12,5 +12,5 @@ public class Player : IPlayer<ICharacter, IItem>{
     public ICharacter Character { get; set; }
     public Status? Status { get; set; }
     public IItem?[] Items { get; set; } = [];
-    public ObservableCollection<BonusStar> BonusStars { get; set; }
+    public BonusStar[] BonusStars { get; set; }
 }

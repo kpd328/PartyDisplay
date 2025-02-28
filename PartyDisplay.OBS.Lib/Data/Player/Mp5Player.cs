@@ -14,5 +14,5 @@ public class Mp5Player : IPlayer<Mp5Character, Mp5Capsule> {
     public Mp5Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp5Capsule?[] Items { get; set; } = new Mp5Capsule[3];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp5.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp5.BonusStars;
 }

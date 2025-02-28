@@ -14,5 +14,5 @@ public class Mp4Player : IPlayer<Mp4Character, Mp4Item> {
     public Mp4Character Character { get; set; }
     public Status? Status { get; set; }
     public Mp4Item?[] Items { get; set; } = new Mp4Item[3];
-    public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp4.BonusStars);
+    public BonusStar[] BonusStars { get; set; } = Mp4.BonusStars;
 }
