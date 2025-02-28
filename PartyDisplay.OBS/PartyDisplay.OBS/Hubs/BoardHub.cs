@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using PartyDisplay.OBS.Lib.Data;
 using PartyDisplay.OBS.Lib.Xfer;
 
 namespace PartyDisplay.OBS.Hubs;
@@ -8,8 +9,8 @@ public class BoardHub : Hub {
         await Clients.Others.SendAsync("GetGame", game);
     }
     
-    public async Task SetName(string name) {
-        await Clients.Others.SendAsync("GetName", name);
+    public async Task SetBoard(Board board) {
+        await Clients.Others.SendAsync("GetBoard", board);
     }
 
     public async Task SetTurnCurrent(short turn) {
@@ -18,5 +19,9 @@ public class BoardHub : Hub {
 
     public async Task SetTurnLimit(short limit) {
         await Clients.Others.SendAsync("GetTurnLimit", limit);
+    }
+
+    public async Task SetBoardImageClass(BoardImageClass img) {
+        await Clients.Others.SendAsync("GetBoardImageClass", img);
     }
 }

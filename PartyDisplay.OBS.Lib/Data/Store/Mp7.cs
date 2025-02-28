@@ -20,6 +20,21 @@ public class Mp7 {
         new(name: "Birdo", icon: "/img/character/mp7.birdo.png"),
         new(name: "Dry Bones", icon: "/img/character/mp7.drybones.png")
     ];
+    
+    public static Board[] Boards => [
+        new(name: "Grand Canal", logo: "/img/board/mp7.grand_canal.logo.png",
+            small: "/img/board/mp7.grand_canal.small.png"),
+        new(name: "Pagoda Peak", logo: "/img/board/mp7.pagoda_peak.logo.png",
+            small: "/img/board/mp7.pagoda_peak.small.png"),
+        new(name: "Pyramid Park", logo: "/img/board/mp7.pyramid_park.logo.png",
+            small: "/img/board/mp7.pyramid_park.small.png"),
+        new(name: "Neon Heights", logo: "/img/board/mp7.neon_heights.logo.png",
+            small: "/img/board/mp7.neon_heights.small.png"),
+        new(name: "Windmillville", logo: "/img/board/mp7.windmillville.logo.png",
+            small: "/img/board/mp7.windmillville.small.png"),
+        new(name: "Bowser'S Enchanted Inferno!", logo: "/img/board/mp7.bowsers_enchanted_inferno.logo.png",
+            small: "/img/board/mp7.bowsers_enchanted_inferno.small.png"),
+    ];
 
     public static Mp7Orb?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp7.mushroom.png", type: SELF),

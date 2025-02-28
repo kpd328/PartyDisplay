@@ -18,6 +18,21 @@ public class Mp6 {
         new(name: "Koopa Kid", icon: "/img/character/mp6.koopakid.png"),
         new(name: "Toadette", icon: "/img/character/mp6.toadette.png")
     ];
+    
+    public static Board[] Boards => [
+        new(name: "Towering Treetop", logo: "/img/board/mp6.towering_treetop.logo.png",
+            small: "/img/board/mp6.towering_treetop.small.png"),
+        new(name: "E. Gadd'S Garage", logo: "/img/board/mp6.egadds_garage.logo.png",
+            small: "/img/board/mp6.egadds_garage.small.png"),
+        new(name: "Faire Square", logo: "/img/board/mp6.faire_square.logo.png",
+            small: "/img/board/mp6.faire_square.small.png"),
+        new(name: "Snowflake Lake", logo: "/img/board/mp6.snowflake_lake.logo.png",
+            small: "/img/board/mp6.snowflake_lake.small.png"),
+        new(name: "Castaway Bay", logo: "/img/board/mp6.castaway_bay.logo.png",
+            small: "/img/board/mp6.castaway_bay.small.png"),
+        new(name: "Clockwork Castle", logo: "/img/board/mp6.clockwork_castle.logo.png",
+            small: "/img/board/mp6.clockwork_castle.small.png"),
+    ];
 
     public static Mp6Orb?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp6.mushroom.png", type: GREEN),

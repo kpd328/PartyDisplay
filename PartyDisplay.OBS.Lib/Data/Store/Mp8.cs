@@ -20,6 +20,21 @@ public class Mp8 {
         new(name: "Blooper", icon: "/img/character/mp8.blooper.png"),
         new(name: "Hammer Bro", icon: "/img/character/mp8.hammerbro.png")
     ];
+    
+    public static Board[] Boards => [
+        new(name: "DK's Treetop Temple", logo: "/img/board/mp8.dks_treetop_temple.logo.png",
+            small: "/img/board/mp8.dks_treetop_temple.small.png"),
+        new(name: "Goomba's Booty Boardwalk", logo: "/img/board/mp8.goombas_booty_boardwalk.logo.png",
+            small: "/img/board/mp8.goombas_booty_boardwalk.small.png"),
+        new(name: "King Boo's Haunted Hideaway", logo: "/img/board/mp8.king_boos_haunted_hideaway.logo.png",
+            small: "/img/board/mp8.king_boos_haunted_hideaway.small.png"),
+        new(name: "Shy Guy's Perplex Express", logo: "/img/board/mp8.shy_guys_perplex_express.logo.png",
+            small: "/img/board/mp8.shy_guys_perplex_express.small.png"),
+        new(name: "Koopa's Tycoon Town", logo: "/img/board/mp8.koopas_tycoon_town.logo.png",
+            small: "/img/board/mp8.koopas_tycoon_town.small.png"),
+        new(name: "Bowser's Warped Orbit", logo: "/img/board/mp8.bowsers_warped_orbit.logo.png",
+            small: "/img/board/mp8.bowsers_warped_orbit.small.png"),
+    ];
 
     public static Mp8Candy?[] Items => [
         new(name: "Twice Candy", icon: "/img/item/mp8.twice.png", type: Mp8CandyType.RED),

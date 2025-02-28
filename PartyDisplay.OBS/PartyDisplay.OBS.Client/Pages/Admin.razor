@@ -12,6 +12,7 @@
     <label>
         Game Override:
         <select @bind="GameName">
+            <option value=""></option>
             @* TODO: Replace this with an actual list of available games from the server. *@
             @for (var g = 2; g <= 8; g++) {
                 @if (g == 3) continue;
@@ -32,22 +33,36 @@
 <div class="form-group">
     <label>
         Board:
-        <input @bind="_boardName"/>
+        <select @bind:get="Board?.Name" @bind:set="x => SetBoard(x)">
+            <option value=""></option>
+            @foreach (var b in _boards) {
+                <option value="@b.Name">@b.Name</option>
+            }
+        </select>
+    </label>
+    <label>
+        Image Type:
+        <select @bind="ImageClass">
+            <option value=""></option>
+            @foreach (BoardImageClass img in Enum.GetValues(typeof(BoardImageClass))) {
+                <option value="@img">@img</option>
+            }
+        </select>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn:
-        <input type="number" @bind="_turnCount"/>
+        <input type="number" @bind="TurnCount"/>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn Limit:
-        <input type="number" @bind="_turnLimit"/>
+        <input type="number" @bind="TurnLimit"/>
     </label>
 </div>
-<button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
+<br/>
 
 @{
     var i = 1;
@@ -87,7 +102,7 @@
                 Ranking:
                 <select @bind="player.Ranking">
                     <option value=""></option>
-                    @foreach (var rank in Enum.GetValues(typeof(Ranking))) {
+                    @foreach (Ranking rank in Enum.GetValues(typeof(Ranking))) {
                         <option value="@rank">@rank</option>
                     }
                 </select>
@@ -146,6 +161,7 @@
         }
 
         <button @onclick="@(_ => UpdatePlayer(player))" disabled="@(!IsPlayerConnected)">Update Player @i</button>
+        <br/>
         i++;
     }
 }
@@ -154,9 +170,6 @@
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
     private string? _gameRegion;
-    private string? _boardName;
-    private short _turnCount;
-    private short _turnLimit;
 
     private readonly IPlayer<ICharacter, IItem>[] _players = [
         new Lib.Xfer.Player(),
@@ -168,18 +181,21 @@
     private ICharacter[] _characters = [];
     private IItem?[] _items = [];
     private Status[] _statuses = [];
+    private Lib.Data.Board[] _boards = [];
 
     private string? _gameName;
-
     private string? GameName {
         get => _gameName;
         set {
             _gameName = value;
+            _boardHubConnection?.SendAsync("SetGame", GameName);
             switch (_gameName) {
                 case "mp2":
                     _characters = Mp2.Characters;
                     _items = Mp2.Items;
                     _statuses = Mp2.Statuses;
+                    _boards = Mp2.Boards;
+                    
                     _players[0].BonusStars = Mp2.BonusStars;
                     _players[1].BonusStars = Mp2.BonusStars;
                     _players[2].BonusStars = Mp2.BonusStars;
@@ -196,6 +212,8 @@
                     _characters = Mp4.Characters;
                     _items = Mp4.Items;
                     _statuses = Mp4.Statuses;
+                    _boards = Mp4.Boards;
+                    
                     _players[0].BonusStars = Mp4.BonusStars;
                     _players[1].BonusStars = Mp4.BonusStars;
                     _players[2].BonusStars = Mp4.BonusStars;
@@ -212,6 +230,8 @@
                     _characters = Mp5.Characters;
                     _items = Mp5.Items;
                     _statuses = Mp5.Statuses;
+                    _boards = Mp5.Boards;
+                    
                     _players[0].BonusStars = Mp5.BonusStars;
                     _players[1].BonusStars = Mp5.BonusStars;
                     _players[2].BonusStars = Mp5.BonusStars;
@@ -229,6 +249,8 @@
                     _characters = Mp6.Characters;
                     _items = Mp6.Items;
                     _statuses = Mp6.Statuses;
+                    _boards = Mp6.Boards;
+                    
                     _players[1].BonusStars = Mp6.BonusStars;
                     _players[2].BonusStars = Mp6.BonusStars;
                     _players[3].BonusStars = Mp6.BonusStars;
@@ -245,6 +267,8 @@
                     _characters = Mp7.Characters;
                     _items = Mp7.Items;
                     _statuses = Mp7.Statuses;
+                    _boards = Mp7.Boards;
+                    
                     _players[1].BonusStars = Mp7.BonusStars;
                     _players[2].BonusStars = Mp7.BonusStars;
                     _players[3].BonusStars = Mp7.BonusStars;
@@ -261,6 +285,8 @@
                     _characters = Mp8.Characters;
                     _items = Mp8.Items;
                     _statuses = Mp8.Statuses;
+                    _boards = Mp8.Boards;
+                    
                     _players[1].BonusStars = Mp8.BonusStars;
                     _players[2].BonusStars = Mp8.BonusStars;
                     _players[3].BonusStars = Mp8.BonusStars;
@@ -274,6 +300,42 @@
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp8.BonusStars);
                     break;
             }
+        }
+    }
+    
+    private Lib.Data.Board? _board;
+    private Lib.Data.Board? Board {
+        get => _board;
+        set {
+            _board = value;
+            _boardHubConnection?.SendAsync("SetBoard", _board);
+        }
+    }
+    
+    private short _turnCount;
+    private short TurnCount {
+        get => _turnCount;
+        set {
+            _turnCount = value;
+            _boardHubConnection?.SendAsync("SetTurnCurrent", _turnCount);
+        }
+    }
+    
+    private short _turnLimit;
+    private short TurnLimit {
+        get => _turnLimit;
+        set {
+            _turnLimit = value;
+            _boardHubConnection?.SendAsync("SetTurnLimit", _turnLimit);
+        }
+    }
+
+    private BoardImageClass? _imageClass;
+    public BoardImageClass? ImageClass {
+        get => _imageClass;
+        set {
+            _imageClass = value;
+            _boardHubConnection?.SendAsync("SetBoardImageClass", (_imageClass ?? BoardImageClass.Logo));
         }
     }
 
@@ -303,15 +365,6 @@
         await _playerHubConnection.StartAsync();
     }
 
-    private async Task UpdateBoard() {
-        if (_boardHubConnection is not null) {
-            await _boardHubConnection.SendAsync("SetGame", GameName);
-            await _boardHubConnection.SendAsync("SetName", _boardName);
-            await _boardHubConnection.SendAsync("SetTurnCurrent", _turnCount);
-            await _boardHubConnection.SendAsync("SetTurnLimit", _turnLimit);
-        }
-    }
-
     private async Task UpdatePlayer(IPlayer<ICharacter, IItem> p) {
         int i = Array.IndexOf(_players, p) + 1;
         if (_playerHubConnection is not null) {
@@ -327,6 +380,15 @@
                 await _playerHubConnection.SendAsync("UpdateBonusStar", i, star);
             }
         }
+    }
+
+    private void SetBoard(string? board) {
+        if (board is null) {
+            Board = null;
+            return;
+        }
+
+        Board = _boards.Single(b => b.Name == board);
     }
 
     private void SetCharacter(IPlayer<ICharacter, IItem> player, string? character) {

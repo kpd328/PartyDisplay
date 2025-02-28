@@ -14,6 +14,21 @@ public class Mp4 {
         new(name: "Daisy", icon: "/img/character/mp4.daisy.png"),
         new(name: "Waluigi", icon: "/img/character/mp4.waluigi.png")
     ];
+    
+    public static Board[] Boards => [
+        new(name: "Toad's Midway Madness", logo: "/img/board/mp4.toads_midway_madness.logo.png",
+            small: "/img/board/mp4.toads_midway_madness.small.png"),
+        new(name: "Shy Guy's Jungle Jam", logo: "/img/board/mp4.shy_guys_jungle_jam.logo.png",
+            small: "/img/board/mp4.shy_guys_jungle_jam.small.png"),
+        new(name: "Goomba's Greedy Gala", logo: "/img/board/mp4.goombas_greedy_gala.logo.png",
+            small: "/img/board/mp4.goombas_greedy_gala.small.png"),
+        new(name: "Boo's Haunted Bash", logo: "/img/board/mp4.boos_haunted_bash.logo.png",
+            small: "/img/board/mp4.boos_haunted_bash.small.png"),
+        new(name: "Koopa's Seaside Soiree", logo: "/img/board/mp4.koopas_seaside_soiree.logo.png",
+            small: "/img/board/mp4.koopas_seaside_soiree.small.png"),
+        new(name: "Bowser's Gnarly Party", logo: "/img/board/mp4.bowsers_gnarly_party.logo.png",
+            small: "/img/board/mp4.bowsers_gnarly_party.small.png"),
+    ];
 
     public static Mp4Item?[] Items => [
         new(name: "Mini Mushroom", icon: "/img/item/mp4.minimushroom.png"),

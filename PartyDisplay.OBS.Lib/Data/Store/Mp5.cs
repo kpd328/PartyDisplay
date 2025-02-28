@@ -20,6 +20,23 @@ public class Mp5 {
         new(name: "Green Koopa Kid", icon: "/img/character/mp5.greenkkid.png"),
         new(name: "Blue Koopa Kid", icon: "/img/character/mp5.bluekkid.png")
     ];
+    
+    public static Board[] Boards => [
+        new(name: "Toy Dream", logo: "/img/board/mp5.toy_dream.logo.png",
+            small: "/img/board/mp5.toy_dream.small.png"),
+        new(name: "Rainbow Dream", logo: "/img/board/mp5.rainbow_dream.logo.png",
+            small: "/img/board/mp5.rainbow_dream.small.png"),
+        new(name: "Pirate Dream", logo: "/img/board/mp5.pirate_dream.logo.png",
+            small: "/img/board/mp5.pirate_dream.small.png"),
+        new(name: "Undersea Dream", logo: "/img/board/mp5.undersea_dream.logo.png",
+            small: "/img/board/mp5.undersea_dream.small.png"),
+        new(name: "Future Dream", logo: "/img/board/mp5.future_dream.logo.png",
+            small: "/img/board/mp5.future_dream.small.png"),
+        new(name: "Sweet Dream", logo: "/img/board/mp5.sweet_dream.logo.png",
+            small: "/img/board/mp5.sweet_dream.small.png"),
+        new(name: "Bowser Nightmare", logo: "/img/board/mp5.bowser_nightmare.logo.png",
+            small: "/img/board/mp5.bowser_nightmare.small.png"),
+    ];
 
     public static Mp5Capsule?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp5.mushroom.png", type: MOVE, cost: 5),

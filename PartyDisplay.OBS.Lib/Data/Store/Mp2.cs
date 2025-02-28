@@ -13,6 +13,21 @@ public sealed class Mp2 {
         new(name: "Donkey Kong", icon: "/img/character/mp2.dk.png")
     ];
 
+    public static Board[] Boards => [
+        new(name: "Pirate Land", logo: "/img/board/mp2.pirate_land.logo.png",
+            small: "/img/board/mp2.pirate_land.small.png"),
+        new(name: "Western Land", logo: "/img/board/mp2.western_land.logo.png",
+            small: "/img/board/mp2.western_land.small.png"),
+        new(name: "Space Land", logo: "/img/board/mp2.space_land.logo.png",
+            small: "/img/board/mp2.space_land.small.png"),
+        new(name: "Mystery Land", logo: "/img/board/mp2.mystery_land.logo.png",
+            small: "/img/board/mp2.mystery_land.small.png"),
+        new(name: "Horror Land", logo: "/img/board/mp2.horror_land.logo.png",
+            small: "/img/board/mp2.horror_land.small.png"),
+        new(name: "Bowser Land", logo: "/img/board/mp2.bowser_land.logo.png",
+            small: "/img/board/mp2.bowser_land.small.png"),
+    ];
+
     public static Mp2Item?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp2.mushroom.png"),
         new(name: "Skeleton Key", icon: "/img/item/mp2.skeletonkey.png"),
