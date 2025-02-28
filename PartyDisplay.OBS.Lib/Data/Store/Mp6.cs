@@ -19,7 +19,7 @@ public class Mp6 {
         new(name: "Toadette", icon: "/img/character/mp6.toadette.png")
     ];
 
-    public static Mp6Orb[] Items => [
+    public static Mp6Orb?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp6.mushroom.png", type: GREEN),
         new(name: "Super 'Shroom", icon: "/img/item/mp6.supershroom.png", type: GREEN),
         new(name: "Sluggish 'Shroom", icon: "/img/item/mp6.sluggishshroom.png", type: GREEN),
@@ -28,28 +28,28 @@ public class Mp6 {
         new(name: "Warp Pipe", icon: "/img/item/mp6.warppipe.png", type: GREEN),
         new(name: "Flutter", icon: "/img/item/mp6.flutter.png", type: GREEN),
         new(name: "Cursed Mushroom", icon: "/img/item/mp6.cursedmushroom.png", type: GREEN),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Spiny", icon: "/img/item/mp6.spiny.png", type: YELLOW),
         new(name: "Goomba", icon: "/img/item/mp6.goomba.png", type: YELLOW),
         new(name: "Piranha Plant", icon: "/img/item/mp6.piranhaplant.png", type: YELLOW),
         new(name: "Klepto", icon: "/img/item/mp6.klepto.png", type: YELLOW),
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Toady", icon: "/img/item/mp6.toady.png", type: YELLOW),
         new(name: "Kamek", icon: "/img/item/mp6.kamek.png", type: YELLOW),
         new(name: "Mr. Blizzard", icon: "/img/item/mp6.mrblizzard.png", type: YELLOW),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Podoboo", icon: "/img/item/mp6.podoboo.png", type: RED),
         new(name: "Zap", icon: "/img/item/mp6.zap.png", type: RED),
         new(name: "Tweester", icon: "/img/item/mp6.tweester.png", type: RED),
         new(name: "Thwomp", icon: "/img/item/mp6.thwomp.png", type: RED),
         new(name: "Bob-omb", icon: "/img/item/mp6.bobomb.png", type: RED),
         new(name: "Koopa Troopa", icon: "/img/item/mp6.koopatroopa.png", type: RED),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Snack", icon: "/img/item/mp6.snack.png", type: BLUE),
         new(name: "Boo-Away", icon: "/img/item/mp6.booaway.png", type: BLUE)
     ];

@@ -13,6 +13,6 @@ public class Mp6Player : IPlayer<Mp6Character, Mp6Orb, IStatus> {
     public SpaceColor? LandingColor { get; set; }
     public Mp6Character Character { get; set; }
     public IStatus? Status { get; set; }
-    public ObservableCollection<Mp6Orb> Items { get; set; }
+    public Mp6Orb[] Items { get; set; } = new Mp6Orb[3];
     public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp6.BonusStars);
 }

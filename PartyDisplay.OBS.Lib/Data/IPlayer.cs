@@ -13,7 +13,7 @@ public interface IPlayer<TCharacter, TItem, TStatus>
     public SpaceColor? LandingColor { get; set; }
     public TCharacter Character { get; set; }
     public TStatus? Status { get; set; }
-    public ObservableCollection<TItem> Items { get; set; }
+    public TItem[] Items { get; set; }
     public ObservableCollection<BonusStar> BonusStars { get; set; }
 }
 

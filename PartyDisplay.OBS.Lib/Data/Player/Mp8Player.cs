@@ -13,6 +13,6 @@ public class Mp8Player : IPlayer<Mp8Character, Mp8Candy, IStatus> {
     public SpaceColor? LandingColor { get; set; }
     public Mp8Character Character { get; set; }
     public IStatus? Status { get; set; }
-    public ObservableCollection<Mp8Candy> Items { get; set; }
+    public Mp8Candy[] Items { get; set; } = new Mp8Candy[3];
     public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp8.BonusStars);
 }

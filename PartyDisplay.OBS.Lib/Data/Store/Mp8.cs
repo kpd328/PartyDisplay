@@ -21,7 +21,7 @@ public class Mp8 {
         new(name: "Hammer Bro", icon: "/img/character/mp8.hammerbro.png")
     ];
 
-    public static Mp8Candy[] Items => [
+    public static Mp8Candy?[] Items => [
         new(name: "Twice Candy", icon: "/img/item/mp8.twice.png", type: Mp8CandyType.RED),
         new(name: "Thrice Candy", icon: "/img/item/mp8.thrice.png", type: Mp8CandyType.RED),
         new(name: "Slowgo Candy", icon: "/img/item/mp8.slowgo.png", type: Mp8CandyType.RED),

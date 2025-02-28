@@ -13,6 +13,6 @@ public class Mp5Player : IPlayer<Mp5Character, Mp5Capsule, IStatus> {
     public SpaceColor? LandingColor { get; set; }
     public Mp5Character Character { get; set; }
     public IStatus? Status { get; set; }
-    public ObservableCollection<Mp5Capsule> Items { get; set; }
+    public Mp5Capsule[] Items { get; set; } = new Mp5Capsule[3];
     public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp5.BonusStars);
 }

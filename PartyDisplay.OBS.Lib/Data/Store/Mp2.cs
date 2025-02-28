@@ -13,7 +13,7 @@ public sealed class Mp2 {
         new(name: "Donkey Kong", icon: "/img/character/mp2.dk.png")
     ];
 
-    public static Mp2Item[] Items => [
+    public static Mp2Item?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp2.mushroom.png"),
         new(name: "Skeleton Key", icon: "/img/item/mp2.skeletonkey.png"),
         new(name: "Plunder Chest", icon: "/img/item/mp2.plunderchest.png"),

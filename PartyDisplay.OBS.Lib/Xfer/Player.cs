@@ -11,6 +11,6 @@ public class Player : IPlayer<ICharacter, IItem, IStatus>{
     public SpaceColor? LandingColor { get; set; }
     public ICharacter Character { get; set; }
     public IStatus? Status { get; set; }
-    public ObservableCollection<IItem> Items { get; set; }
+    public IItem[] Items { get; set; } = [];
     public ObservableCollection<BonusStar> BonusStars { get; set; }
 }

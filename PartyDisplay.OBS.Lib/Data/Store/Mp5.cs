@@ -21,7 +21,7 @@ public class Mp5 {
         new(name: "Blue Koopa Kid", icon: "/img/character/mp5.bluekkid.png")
     ];
 
-    public static Mp5Capsule[] Items => [
+    public static Mp5Capsule?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp5.mushroom.png", type: MOVE, cost: 5),
         new(name: "Super Mushroom", icon: "/img/item/mp5.supermushroom.png", type: MOVE, cost: 10),
         new(name: "Cursed Mushroom", icon: "/img/item/mp5.cursedmushroom.png", type: MOVE, cost: 5),
@@ -29,9 +29,9 @@ public class Mp5 {
         new(name: "Klepto", icon: "/img/item/mp5.klepto.png", type: MOVE, cost: 10),
         new(name: "Bubble", icon: "/img/item/mp5.bubble.png", type: MOVE, cost: 10),
         new(name: "Wiggler", icon: "/img/item/mp5.wiggler.png", type: MOVE, cost: 20),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Hammer Bro", icon: "/img/item/mp5.hammerbro.png", type: COIN, cost: 5),
         new(name: "Coin Block", icon: "/img/item/mp5.coinblock.png", type: COIN, cost: 5),
         new(name: "Spiny", icon: "/img/item/mp5.spiny.png", type: COIN, cost: 5),
@@ -40,18 +40,18 @@ public class Mp5 {
         new(name: "Goomba", icon: "/img/item/mp5.goomba.png", type: COIN, cost: 5),
         new(name: "Bob-omb", icon: "/img/item/mp5.bobomb.png", type: COIN, cost: 0),
         new(name: "Koopa Bank", icon: "/img/item/mp5.koopabank.png", type: COIN, cost: 10),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Kamek", icon: "/img/item/mp5.kamek.png", type: CAPSULE, cost: 10),
         new(name: "Mr. Blizzard", icon: "/img/item/mp5.mrblizzard.png", type: CAPSULE, cost: 5),
         new(name: "Piranha Plant", icon: "/img/item/mp5.piranhaplant.png", type: COIN, cost: 5),
         new(name: "Magikoopa", icon: "/img/item/mp5.magikoopa.png", type: CAPSULE, cost: 10),
         new(name: "Ukiki", icon: "/img/item/mp5.ukiki.png", type: CAPSULE, cost: 10),
         new(name: "Lakitu", icon: "/img/item/mp5.lakitu.png", type: CAPSULE, cost: 10),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Tweester", icon: "/img/item/mp5.tweester.png", type: SPECIAL, cost: 15),
         new(name: "Duel", icon: "/img/item/mp5.duel.png", type: SPECIAL, cost: 10),
         new(name: "Chain Chomp", icon: "/img/item/mp5.chainchomp.png", type: SPECIAL, cost: 0),

@@ -18,6 +18,5 @@ public enum Mp7OrbType {
     SELF,
     THROWN,
     ROADBLOCK,
-    CHARACTER,
-    OTHER
+    CHARACTER
 }

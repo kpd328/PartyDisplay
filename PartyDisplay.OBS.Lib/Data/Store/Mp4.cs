@@ -15,7 +15,7 @@ public class Mp4 {
         new(name: "Waluigi", icon: "/img/character/mp4.waluigi.png")
     ];
 
-    public static Mp4Item[] Items => [
+    public static Mp4Item?[] Items => [
         new(name: "Mini Mushroom", icon: "/img/item/mp4.minimushroom.png"),
         new(name: "Mega Mushroom", icon: "/img/item/mp4.megamushroom.png"),
         new(name: "Super Mini Mushroom", icon: "/img/item/mp4.superminimushroom.png"),

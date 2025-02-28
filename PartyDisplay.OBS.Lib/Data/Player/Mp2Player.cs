@@ -13,6 +13,6 @@ public class Mp2Player : IPlayer<Mp2Character, Mp2Item, IStatus> {
     public SpaceColor? LandingColor { get; set; }
     public Mp2Character Character { get; set; }
     public IStatus? Status { get; set; }
-    public ObservableCollection<Mp2Item> Items { get; set; }
+    public Mp2Item[] Items { get; set; } = new Mp2Item[1];
     public ObservableCollection<BonusStar> BonusStars { get; set; } = new(Mp2.BonusStars);
 }

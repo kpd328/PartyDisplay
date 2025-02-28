@@ -11,22 +11,22 @@
 <div class="form-group">
     <label>
         Game Override:
-        <InputSelect @bind-value="GameName">
+        <select @bind="GameName">
             @* TODO: Replace this with an actual list of available games from the server. *@
-            @for (var i = 2; i <= 8; i++) {
-                @if (i == 3) continue;
-                <option value="@($"mp{i}")">Mario Party @i</option>
+            @for (var g = 2; g <= 8; g++) {
+                @if (g == 3) continue;
+                <option value="@($"mp{g}")">Mario Party @g</option>
             }
-        </InputSelect>
+        </select>
     </label>
     <label>
         Region:
         @* TODO: Make this actually matter *@
-        <InputSelect @bind-value="_gameRegion">
+        <select @bind="_gameRegion">
             <option value="NTSC">NTSC</option>
             <option value="PAL">PAL</option>
             <option value="NTSC-J">NTSC-J</option>
-        </InputSelect>
+        </select>
     </label>
 </div>
 <div class="form-group">
@@ -38,13 +38,13 @@
 <div class="form-group">
     <label>
         Turn:
-        <InputNumber @bind-Value="_turnCount"/>
+        <input type="number" @bind="_turnCount"/>
     </label>
 </div>
 <div class="form-group">
     <label>
         Turn Limit:
-        <InputNumber @bind-Value="_turnLimit"/>
+        <input type="number" @bind="_turnLimit"/>
     </label>
 </div>
 <button @onclick="UpdateBoard" disabled="@(!IsBoardConnected)">Update Board</button>
@@ -104,6 +104,25 @@
                 </select>
             </label>
         </div>
+        <div class="form-group">
+            <label>
+                Item(s):
+                @{
+                    int j = 0;
+                    foreach (var slot in player.Items) {
+                        int slotIndex = j;
+                        <select @bind:get="slot?.Name" @bind:set="x => SetItem(player, slotIndex, x)">
+                            <option value=""></option>
+                            @foreach (var item in _items) {
+                                if(item is null) continue;
+                                <option value="@item.Name">@item.Name</option>
+                            }
+                        </select>
+                        j++;
+                    }
+                }
+            </label>
+        </div>
         <button @onclick="@(x => UpdatePlayer(player))" disabled="@(!IsPlayerConnected)">Update Player @i</button>
         i++;
     }
@@ -123,6 +142,7 @@
         new Lib.Xfer.Player()
     ];
     private ICharacter[] _characters = [];
+    private IItem?[] _items = [];
     
     private string? _gameName;
     private string? GameName {
@@ -132,45 +152,75 @@
             switch (_gameName) {
                 case "mp2":
                     _characters = Mp2.Characters;
+                    _items = Mp2.Items;
+                    _players[0].BonusStars = new(Mp2.BonusStars);
                     _players[1].BonusStars = new(Mp2.BonusStars);
                     _players[2].BonusStars = new(Mp2.BonusStars);
                     _players[3].BonusStars = new(Mp2.BonusStars);
-                    _players[0].BonusStars = new(Mp2.BonusStars);
+                    _players[0].Items = new IItem[1];
+                    _players[1].Items = new IItem[1];
+                    _players[2].Items = new IItem[1];
+                    _players[3].Items = new IItem[1];
                     break;
                 case "mp4":
                     _characters = Mp4.Characters;
+                    _items = Mp4.Items;
+                    _players[0].BonusStars = new(Mp4.BonusStars);
                     _players[1].BonusStars = new(Mp4.BonusStars);
                     _players[2].BonusStars = new(Mp4.BonusStars);
                     _players[3].BonusStars = new(Mp4.BonusStars);
-                    _players[0].BonusStars = new(Mp4.BonusStars);
+                    _players[0].Items = new IItem[3];
+                    _players[1].Items = new IItem[3];
+                    _players[2].Items = new IItem[3];
+                    _players[3].Items = new IItem[3];
                     break;
                 case "mp5":
                     _characters = Mp5.Characters;
+                    _items = Mp5.Items;
+                    _players[0].BonusStars = new(Mp5.BonusStars);
                     _players[1].BonusStars = new(Mp5.BonusStars);
                     _players[2].BonusStars = new(Mp5.BonusStars);
                     _players[3].BonusStars = new(Mp5.BonusStars);
-                    _players[0].BonusStars = new(Mp5.BonusStars);
+                    _players[0].Items = new IItem[3];
+                    _players[1].Items = new IItem[3];
+                    _players[2].Items = new IItem[3];
+                    _players[3].Items = new IItem[3];
                     break;
                 case "mp6":
                     _characters = Mp6.Characters;
+                    _items = Mp6.Items;
                     _players[1].BonusStars = new(Mp6.BonusStars);
                     _players[2].BonusStars = new(Mp6.BonusStars);
                     _players[3].BonusStars = new(Mp6.BonusStars);
                     _players[0].BonusStars = new(Mp6.BonusStars);
+                    _players[0].Items = new IItem[3];
+                    _players[1].Items = new IItem[3];
+                    _players[2].Items = new IItem[3];
+                    _players[3].Items = new IItem[3];
                     break;
                 case "mp7":
                     _characters = Mp7.Characters;
+                    _items = Mp7.Items;
                     _players[1].BonusStars = new(Mp7.BonusStars);
                     _players[2].BonusStars = new(Mp7.BonusStars);
                     _players[3].BonusStars = new(Mp7.BonusStars);
                     _players[0].BonusStars = new(Mp7.BonusStars);
+                    _players[0].Items = new IItem[3];
+                    _players[1].Items = new IItem[3];
+                    _players[2].Items = new IItem[3];
+                    _players[3].Items = new IItem[3];
                     break;
                 case "mp8":
                     _characters = Mp8.Characters;
+                    _items = Mp8.Items;
                     _players[1].BonusStars = new(Mp8.BonusStars);
                     _players[2].BonusStars = new(Mp8.BonusStars);
                     _players[3].BonusStars = new(Mp8.BonusStars);
                     _players[0].BonusStars = new(Mp8.BonusStars);
+                    _players[0].Items = new IItem[3];
+                    _players[1].Items = new IItem[3];
+                    _players[2].Items = new IItem[3];
+                    _players[3].Items = new IItem[3];
                     break;
             }
         }
@@ -223,9 +273,13 @@
         }
     }
 
-    private void SetCharacter(IPlayer<ICharacter, IItem, IStatus> p, string? c) {
-        if (c is null) return;
-        p.Character = _characters.Single(x => x.Name == c);
+    private void SetCharacter(IPlayer<ICharacter, IItem, IStatus> player, string? character) {
+        if (character is null) return;
+        player.Character = _characters.Single(x => x.Name == character);
+    }
+    
+    private void SetItem(IPlayer<ICharacter, IItem, IStatus> player, int slot, string selected) {
+        player.Items[slot] = _items.Single(x => x.Name == selected);
     }
 
     private bool IsBoardConnected => _boardHubConnection?.State == HubConnectionState.Connected;

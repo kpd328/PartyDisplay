@@ -21,7 +21,7 @@ public class Mp7 {
         new(name: "Dry Bones", icon: "/img/character/mp7.drybones.png")
     ];
 
-    public static Mp7Orb[] Items => [
+    public static Mp7Orb?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp7.mushroom.png", type: SELF),
         new(name: "Super 'Shroom", icon: "/img/item/mp7.supershroom.png", type: SELF),
         new(name: "Slow 'Shroom", icon: "/img/item/mp7.slowshroom.png", type: SELF),
@@ -30,8 +30,8 @@ public class Mp7 {
         new(name: "Cannon", icon: "/img/item/mp7.cannon.png", type: SELF),
         new(name: "Snack", icon: "/img/item/mp7.snack.png", type: SELF),
         new(name: "Lakitu", icon: "/img/item/mp7.lakitu.png", type: SELF),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Hammer Bro", icon: "/img/item/mp7.hammerbro.png", type: THROWN),
         new(name: "Piranha Plant", icon: "/img/item/mp7.piranhaplant.png", type: THROWN),
         new(name: "Spear Guy", icon: "/img/item/mp7.spearguy.png", type: THROWN),
@@ -40,18 +40,18 @@ public class Mp7 {
         new(name: "Mr. Blizzard", icon: "/img/item/mp7.mrblizzard.png", type: THROWN),
         new(name: "Bandit", icon: "/img/item/mp7.bandit.png", type: THROWN),
         new(name: "Pink Boo", icon: "/img/item/mp7.pinkboo.png", type: THROWN),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Spiny", icon: "/img/item/mp7.spiny.png", type: ROADBLOCK),
         new(name: "Zap", icon: "/img/item/mp7.zap.png", type: ROADBLOCK),
         new(name: "Tweester", icon: "/img/item/mp7.tweester.png", type: ROADBLOCK),
         new(name: "Thwomp", icon: "/img/item/mp7.thwomp.png", type: ROADBLOCK),
         new(name: "Warp Pipe", icon: "/img/item/mp7.warppipe.png", type: ROADBLOCK),
         new(name: "Bob-omb", icon: "/img/item/mp7.bobomb.png", type: ROADBLOCK),
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
-        new(), //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
         new(name: "Fireball", icon: "/img/item/mp7.fireball.png", type: CHARACTER),
         new(name: "Flower", icon: "/img/item/mp7.flower.png", type: CHARACTER),
         new(name: "Egg", icon: "/img/item/mp7.egg.png", type: CHARACTER),
