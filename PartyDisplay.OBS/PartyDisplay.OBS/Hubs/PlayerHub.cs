@@ -23,7 +23,7 @@ public class PlayerHub : Hub {
         await Clients.Others.SendAsync("GetSpace", player, color);
     }
 
-    public async Task UpdateCharacter(byte player, ICharacter character) {
+    public async Task UpdateCharacter(byte player, Character character) {
         await Clients.Others.SendAsync("GetCharacter", player, character);
     }
 

@@ -1,10 +1,9 @@
-﻿using PartyDisplay.OBS.Lib.Data.Character;
-using PartyDisplay.OBS.Lib.Data.Item;
+﻿using PartyDisplay.OBS.Lib.Data.Item;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
 public class Mp4 {
-    public static Mp4Character[] Characters => [
+    public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp4.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp4.luigi.png"),
         new(name: "Peach", icon: "/img/character/mp4.peach.png"),

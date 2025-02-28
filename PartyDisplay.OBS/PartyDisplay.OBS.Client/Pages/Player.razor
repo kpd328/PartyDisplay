@@ -39,7 +39,7 @@
     private short _coins;
     private Ranking? _ranking;
     private SpaceColor? _currentSpace;
-    private ICharacter? _character;
+    private Character? _character;
     private Status? _status;
     private IItem?[] _items = [];
     private BonusStar[] _bonusStars = [];
@@ -87,7 +87,7 @@
             InvokeAsync(StateHasChanged);
         });
 
-        _hubConnection.On<byte, ICharacter>("GetCharacter", (player, character) => {
+        _hubConnection.On<byte, Character>("GetCharacter", (player, character) => {
             if (player != Port) return;
             _character = character;
             InvokeAsync(StateHasChanged);

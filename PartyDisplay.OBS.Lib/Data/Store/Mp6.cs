@@ -1,11 +1,10 @@
-﻿using PartyDisplay.OBS.Lib.Data.Character;
-using PartyDisplay.OBS.Lib.Data.Item;
+﻿using PartyDisplay.OBS.Lib.Data.Item;
 using static PartyDisplay.OBS.Lib.Data.Item.Mp6OrbType;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
 public class Mp6 {
-    public static Mp6Character[] Characters => [
+    public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp6.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp6.luigi.png"),
         new(name: "Peach", icon: "/img/character/mp6.peach.png"),

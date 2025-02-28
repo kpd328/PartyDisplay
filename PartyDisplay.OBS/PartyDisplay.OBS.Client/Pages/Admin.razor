@@ -170,14 +170,14 @@
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
 
-    private readonly IPlayer<ICharacter, IItem>[] _players = [
+    private readonly IPlayer<IItem>[] _players = [
         new Lib.Xfer.Player(),
         new Lib.Xfer.Player(),
         new Lib.Xfer.Player(),
         new Lib.Xfer.Player()
     ];
 
-    private ICharacter[] _characters = [];
+    private Character[] _characters = [];
     private IItem?[] _items = [];
     private Status[] _statuses = [];
     private Lib.Data.Board[] _boards = [];
@@ -372,7 +372,7 @@
         await _playerHubConnection.StartAsync();
     }
 
-    private async Task UpdatePlayer(IPlayer<ICharacter, IItem> p) {
+    private async Task UpdatePlayer(IPlayer<IItem> p) {
         int i = Array.IndexOf(_players, p) + 1;
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", i, p.Name);
@@ -393,11 +393,11 @@
     
     private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 
-    private void SetCharacter(IPlayer<ICharacter, IItem> player, string? character) => player.Character = character is null ? null! : _characters.Single(x => x.Name == character);
+    private void SetCharacter(IPlayer<IItem> player, string? character) => player.Character = character is null ? null! : _characters.Single(x => x.Name == character);
 
-    private void SetItem(IPlayer<ICharacter, IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ? null : _items.Single(x => x?.Name == selected);
+    private void SetItem(IPlayer<IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ? null : _items.Single(x => x?.Name == selected);
 
-    private void SetStatus(IPlayer<ICharacter, IItem> player, string? selected) => player.Status = selected is null ? null : _statuses.Single(x => x.Name == selected);
+    private void SetStatus(IPlayer<IItem> player, string? selected) => player.Status = selected is null ? null : _statuses.Single(x => x.Name == selected);
 
     private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
 

@@ -1,10 +1,9 @@
-﻿using PartyDisplay.OBS.Lib.Data.Character;
-using PartyDisplay.OBS.Lib.Data.Item;
+﻿using PartyDisplay.OBS.Lib.Data.Item;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
 public sealed class Mp2 {
-    public static Mp2Character[] Characters => [
+    public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp2.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp2.luigi.png"),
         new(name: "Peach", icon: "/img/character/mp2.peach.png"),
