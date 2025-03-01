@@ -71,13 +71,13 @@
         <div class="form-group">
             <label>
                 Name:
-                <input type="text" @bind="player.Name"/>
+                <input type="text" @bind:get="player.Name" @bind:set="n => SetPlayerName(player, n)"/>
             </label>
         </div>
         <div class="form-group">
             <label>
                 Character:
-                <select @bind:get="player.Character?.Name" @bind:set="x => SetCharacter(player, x)">
+                <select @bind:get="player.Character?.Name" @bind:set="c => SetCharacter(player, c)">
                     <option value=""></option>
                     @foreach (var c in _characters) {
                         <option value="@c.Name">@c.Name</option>
@@ -88,19 +88,19 @@
         <div class="form-group">
             <label>
                 Star Count:
-                <input type="number" @bind="player.StarCount"/>
+                <input type="number" @bind:get="player.StarCount" @bind:set="c => SetStarCount(player, c)"/>
             </label>
         </div>
         <div class="form-group">
             <label>
                 Coin Count:
-                <input type="number" @bind="player.CoinCount"/>
+                <input type="number" @bind:get="player.CoinCount" @bind:set="c => SetCoinCount(player, c)"/>
             </label>
         </div>
         <div class="form-group">
             <label>
                 Ranking:
-                <select @bind="player.Ranking">
+                <select @bind:get="player.Ranking" @bind:set="r => SetRank(player, r)">
                     <option value=""></option>
                     @foreach (Ranking rank in Enum.GetValues(typeof(Ranking))) {
                         <option value="@rank">@rank</option>
@@ -111,7 +111,7 @@
         <div class="form-group">
             <label>
                 Landing Space:
-                <select @bind="player.LandingColor">
+                <select @bind:get="player.LandingColor" @bind:set="s => SetSpace(player, s)">
                     <option value=""></option>
                     @foreach (SpaceColor space in Enum.GetValues(typeof(SpaceColor))) {
                         if(Game is not null && space == SpaceColor.Pink && Game.Code is not ("mp6" or "mp7")) continue;
@@ -124,7 +124,7 @@
             <div class="form-group">
                 <label>
                     Status:
-                    <select @bind:get="player.Status?.Name" @bind:set="x => SetStatus(player, x)">
+                    <select @bind:get="player.Status?.Name" @bind:set="s => SetStatus(player, s)">
                         <option value=""></option>
                         @foreach (var status in _statuses) {
                             <option value="@status.Name">@status.Name</option>
@@ -155,12 +155,11 @@
             <div class="form-goup">
                 <label>
                     @star.Name
-                    <input type="number" @bind="@star.Count"/>
+                    <input type="number" @bind:get="@star.Count" @bind:set="c => SetBonusStar(player, star, c)"/>
                 </label>
             </div>
         }
 
-        <button @onclick="@(_ => UpdatePlayer(player))" disabled="@(!IsPlayerConnected)">Update Player @i</button>
         <br/>
         i++;
     }
@@ -338,7 +337,7 @@
     }
 
     private BoardImageClass? _imageClass;
-    public BoardImageClass? ImageClass {
+    private BoardImageClass? ImageClass {
         get => _imageClass;
         set {
             _imageClass = value;
@@ -372,42 +371,56 @@
         await _playerHubConnection.StartAsync();
     }
 
-    private async Task UpdatePlayer(IPlayer<Item> p) {
-        int i = Array.IndexOf(_players, p) + 1;
-        if (_playerHubConnection is not null) {
-            await _playerHubConnection.SendAsync("SetName", i, p.Name);
-            await _playerHubConnection.SendAsync("UpdateCharacter", i, p.Character);
-            await _playerHubConnection.SendAsync("UpdateStarCount", i, p.StarCount);
-            await _playerHubConnection.SendAsync("UpdateCoinCount", i, p.CoinCount);
-            await _playerHubConnection.SendAsync("UpdateRank", i, p.Ranking);
-            await _playerHubConnection.SendAsync("UpdateSpace", i, p.LandingColor);
-            await _playerHubConnection.SendAsync("UpdateStatus", i, p.Status);
-            var j = 0;
-            foreach (var item in p.Items) {
-                await _playerHubConnection.SendAsync("UpdateItem", i, j, item?.AsItem());
-                j++;
-            }
-            foreach (var star in p.BonusStars) {
-                await _playerHubConnection.SendAsync("UpdateBonusStar", i, star);
-            }
-        }
-    }
-
     private void SetGame(string? game) => Game = game is null ? null : Games.List.Single(g => g.Code == game);
     
     private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 
-    private void SetCharacter(IPlayer<Item> player, string? character) => player.Character = character is null ?
-        null! : _characters.Single(x => x.Name == character);
+    private void SetPlayerName(IPlayer<Item> player, string? name) {
+        player.Name = name ?? string.Empty;
+        _playerHubConnection?.SendAsync("SetName", Array.IndexOf(_players, player) + 1, player.Name);
+    }
+    
+    private void SetCharacter(IPlayer<Item> player, string? character) {
+        player.Character = character is null ? null! : _characters.Single(x => x.Name == character);
+        _playerHubConnection?.SendAsync("UpdateCharacter", Array.IndexOf(_players, player) + 1, player.Character);
+    }
 
-    private void SetItem(IPlayer<Item> player, int slot, string? selected) => player.Items[slot] = selected is null ?
-        null : _items.Single(x => x?.Name == selected);
+    private void SetStarCount(IPlayer<Item> player, short count) {
+        player.StarCount = count;
+        _playerHubConnection?.SendAsync("UpdateStarCount", Array.IndexOf(_players, player) + 1, player.StarCount);
+    }
+    
+    private void SetCoinCount(IPlayer<Item> player, short count) {
+        player.CoinCount = count;
+        _playerHubConnection?.SendAsync("UpdateCoinCount", Array.IndexOf(_players, player) + 1, player.CoinCount);
+    }
 
-    private void SetStatus(IPlayer<Item> player, string? selected) => player.Status = selected is null ?
-        null : _statuses.Single(x => x.Name == selected);
+    private void SetRank(IPlayer<Item> player, Ranking rank) {
+        player.Ranking = rank;
+        _playerHubConnection?.SendAsync("UpdateRank", Array.IndexOf(_players, player) + 1, player.Ranking);
+    }
 
-    private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;
+    private void SetSpace(IPlayer<Item> player, SpaceColor? space) {
+        player.LandingColor = space;
+        _playerHubConnection?.SendAsync("UpdateSpace", Array.IndexOf(_players, player) + 1, player.LandingColor);
+    }
+    
+    private void SetStatus(IPlayer<Item> player, string? selected) {
+        player.Status = selected is null or "" ? null : _statuses.Single(x => x.Name == selected);
+        _playerHubConnection?.SendAsync("UpdateStatus", Array.IndexOf(_players, player) + 1, player.Status);
+    }
+    
+    private void SetItem(IPlayer<Item> player, int slot, string? selected) {
+        player.Items[slot] = selected is null or "" ? null : _items.Single(x => x?.Name == selected);
+        _playerHubConnection?.SendAsync("UpdateItem", Array.IndexOf(_players, player) + 1, slot, player.Items[slot]);
 
+    }
+
+    private void SetBonusStar(IPlayer<Item> player, BonusStar star, short count) {
+        star.Count = count;
+        _playerHubConnection?.SendAsync("UpdateBonusStar", Array.IndexOf(_players, player) + 1, star);
+    }
+    
     public async ValueTask DisposeAsync() {
         if (_boardHubConnection is not null) {
             await _boardHubConnection.DisposeAsync();
