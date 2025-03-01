@@ -1,9 +1,9 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
-using static PartyDisplay.OBS.Lib.Data.Item.Mp7OrbType;
+﻿using PartyDisplay.OBS.Lib.Data.Items;
+using static PartyDisplay.OBS.Lib.Data.Items.Mp7OrbType;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
-public class Mp7 {
+public static class Mp7 {
     public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp7.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp7.luigi.png"),
@@ -36,42 +36,42 @@ public class Mp7 {
     ];
 
     public static Mp7Orb?[] Items => [
-        new(name: "Mushroom", icon: "/img/item/mp7.mushroom.png", type: SELF),
-        new(name: "Super 'Shroom", icon: "/img/item/mp7.supershroom.png", type: SELF),
-        new(name: "Slow 'Shroom", icon: "/img/item/mp7.slowshroom.png", type: SELF),
-        new(name: "Metal Mushroom", icon: "/img/item/mp7.metalmushroom.png", type: SELF),
-        new(name: "Flutter", icon: "/img/item/mp7.flutter.png", type: SELF),
-        new(name: "Cannon", icon: "/img/item/mp7.cannon.png", type: SELF),
-        new(name: "Snack", icon: "/img/item/mp7.snack.png", type: SELF),
-        new(name: "Lakitu", icon: "/img/item/mp7.lakitu.png", type: SELF),
+        new(name: "Mushroom", icon: "/img/item/mp7.mushroom.png", type: Self),
+        new(name: "Super 'Shroom", icon: "/img/item/mp7.supershroom.png", type: Self),
+        new(name: "Slow 'Shroom", icon: "/img/item/mp7.slowshroom.png", type: Self),
+        new(name: "Metal Mushroom", icon: "/img/item/mp7.metalmushroom.png", type: Self),
+        new(name: "Flutter", icon: "/img/item/mp7.flutter.png", type: Self),
+        new(name: "Cannon", icon: "/img/item/mp7.cannon.png", type: Self),
+        new(name: "Snack", icon: "/img/item/mp7.snack.png", type: Self),
+        new(name: "Lakitu", icon: "/img/item/mp7.lakitu.png", type: Self),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
-        new(name: "Hammer Bro", icon: "/img/item/mp7.hammerbro.png", type: THROWN),
-        new(name: "Piranha Plant", icon: "/img/item/mp7.piranhaplant.png", type: THROWN),
-        new(name: "Spear Guy", icon: "/img/item/mp7.spearguy.png", type: THROWN),
-        new(name: "Kamek", icon: "/img/item/mp7.kamek.png", type: THROWN),
-        new(name: "Toady", icon: "/img/item/mp7.toady.png", type: THROWN),
-        new(name: "Mr. Blizzard", icon: "/img/item/mp7.mrblizzard.png", type: THROWN),
-        new(name: "Bandit", icon: "/img/item/mp7.bandit.png", type: THROWN),
-        new(name: "Pink Boo", icon: "/img/item/mp7.pinkboo.png", type: THROWN),
+        new(name: "Hammer Bro", icon: "/img/item/mp7.hammerbro.png", type: Thrown),
+        new(name: "Piranha Plant", icon: "/img/item/mp7.piranhaplant.png", type: Thrown),
+        new(name: "Spear Guy", icon: "/img/item/mp7.spearguy.png", type: Thrown),
+        new(name: "Kamek", icon: "/img/item/mp7.kamek.png", type: Thrown),
+        new(name: "Toady", icon: "/img/item/mp7.toady.png", type: Thrown),
+        new(name: "Mr. Blizzard", icon: "/img/item/mp7.mrblizzard.png", type: Thrown),
+        new(name: "Bandit", icon: "/img/item/mp7.bandit.png", type: Thrown),
+        new(name: "Pink Boo", icon: "/img/item/mp7.pinkboo.png", type: Thrown),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
-        new(name: "Spiny", icon: "/img/item/mp7.spiny.png", type: ROADBLOCK),
-        new(name: "Zap", icon: "/img/item/mp7.zap.png", type: ROADBLOCK),
-        new(name: "Tweester", icon: "/img/item/mp7.tweester.png", type: ROADBLOCK),
-        new(name: "Thwomp", icon: "/img/item/mp7.thwomp.png", type: ROADBLOCK),
-        new(name: "Warp Pipe", icon: "/img/item/mp7.warppipe.png", type: ROADBLOCK),
-        new(name: "Bob-omb", icon: "/img/item/mp7.bobomb.png", type: ROADBLOCK),
+        new(name: "Spiny", icon: "/img/item/mp7.spiny.png", type: Roadblock),
+        new(name: "Zap", icon: "/img/item/mp7.zap.png", type: Roadblock),
+        new(name: "Tweester", icon: "/img/item/mp7.tweester.png", type: Roadblock),
+        new(name: "Thwomp", icon: "/img/item/mp7.thwomp.png", type: Roadblock),
+        new(name: "Warp Pipe", icon: "/img/item/mp7.warppipe.png", type: Roadblock),
+        new(name: "Bob-omb", icon: "/img/item/mp7.bobomb.png", type: Roadblock),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
         null, //These Gaps are intentional
         null, //These Gaps are intentional
-        new(name: "Fireball", icon: "/img/item/mp7.fireball.png", type: CHARACTER),
-        new(name: "Flower", icon: "/img/item/mp7.flower.png", type: CHARACTER),
-        new(name: "Egg", icon: "/img/item/mp7.egg.png", type: CHARACTER),
-        new(name: "Vacuum", icon: "/img/item/mp7.vacuum.png", type: CHARACTER),
-        new(name: "Magic", icon: "/img/item/mp7.magic.png", type: CHARACTER),
-        new(name: "Triple 'Shroom", icon: "/img/item/mp7.tripleshroom.png", type: CHARACTER)
+        new(name: "Fireball", icon: "/img/item/mp7.fireball.png", type: Mp7OrbType.Character),
+        new(name: "Flower", icon: "/img/item/mp7.flower.png", type: Mp7OrbType.Character),
+        new(name: "Egg", icon: "/img/item/mp7.egg.png", type: Mp7OrbType.Character),
+        new(name: "Vacuum", icon: "/img/item/mp7.vacuum.png", type: Mp7OrbType.Character),
+        new(name: "Magic", icon: "/img/item/mp7.magic.png", type: Mp7OrbType.Character),
+        new(name: "Triple 'Shroom", icon: "/img/item/mp7.tripleshroom.png", type: Mp7OrbType.Character)
     ];
 
     public static BonusStar[] BonusStars => [

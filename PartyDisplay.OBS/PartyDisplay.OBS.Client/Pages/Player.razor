@@ -10,21 +10,21 @@
 <div class="player-container">
     <div class="landed-space space-@_currentSpace"></div>
     <h1 class="player-name">@_name</h1>
-    <div class="rank-container"><img class="rank-img" src="@RankImg" alt="@_ranking"/></div>
+    <img class="rank-img" src="@RankImg" alt="@_ranking"/>
     <img class="character" src="@_character?.Icon" alt="@_character?.Name"/>
     <img class="status" src="@_status?.Icon" alt="@_status?.Name"/>
     <p class="star-count">Stars: @_stars</p>
     <p class="coin-count">Coins: @_coins</p>
-    <ul class="item-box">
+    <div class="item-box-container"><ul class="item-box">
         @foreach (var item in _items) {
             <li><img class="item-img" src="@item?.Icon" alt="@item?.Name"/></li>
         }
-    </ul>
-    <ul class="bonus-stars">
+    </ul></div>
+    <div class="bonus-stars-container"><ul class="bonus-stars">
         @foreach (var bs in _bonusStars) {
             <li><img class="bonus-star-img" src="@bs.Icon" alt="@bs.Name"/> @bs.Count</li>
         }
-    </ul>
+    </ul></div>
 </div>
 
 @code {
@@ -41,7 +41,7 @@
     private SpaceColor? _currentSpace;
     private Character? _character;
     private Status? _status;
-    private IItem?[] _items = [];
+    private Item?[] _items = [];
     private BonusStar[] _bonusStars = [];
     
     private string RankImg => _game is not null && _ranking is not null ?
@@ -100,10 +100,10 @@
         });
 
         _hubConnection.On<byte>("GetItemsInit", (size) => {
-            _items = new IItem[size];
+            _items = new Item[size];
         });
 
-        _hubConnection.On<byte, byte, IItem>("GetItem", (player, slot, item) => {
+        _hubConnection.On<byte, byte, Item>("GetItem", (player, slot, item) => {
             if (player != Port) return;
             _items[slot] = item;
             InvokeAsync(StateHasChanged);

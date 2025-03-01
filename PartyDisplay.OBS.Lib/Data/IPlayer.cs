@@ -3,7 +3,7 @@
 namespace PartyDisplay.OBS.Lib.Data;
 
 public interface IPlayer<TItem>
-    where TItem : IItem {
+    where TItem : Item {
     public string Name { get; set; }
     public short StarCount { get; set; }
     public short CoinCount { get; set; }

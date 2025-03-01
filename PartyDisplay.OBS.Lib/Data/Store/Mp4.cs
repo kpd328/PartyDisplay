@@ -1,8 +1,6 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
+﻿namespace PartyDisplay.OBS.Lib.Data.Store;
 
-namespace PartyDisplay.OBS.Lib.Data.Store;
-
-public class Mp4 {
+public static class Mp4 {
     public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp4.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp4.luigi.png"),
@@ -29,7 +27,7 @@ public class Mp4 {
             small: "/img/board/mp4.bowsers_gnarly_party.small.png"),
     ];
 
-    public static Mp4Item?[] Items => [
+    public static Item?[] Items => [
         new(name: "Mini Mushroom", icon: "/img/item/mp4.minimushroom.png"),
         new(name: "Mega Mushroom", icon: "/img/item/mp4.megamushroom.png"),
         new(name: "Super Mini Mushroom", icon: "/img/item/mp4.superminimushroom.png"),

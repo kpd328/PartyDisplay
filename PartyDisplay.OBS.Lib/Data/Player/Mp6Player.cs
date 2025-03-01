@@ -1,4 +1,4 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
+﻿using PartyDisplay.OBS.Lib.Data.Items;
 using PartyDisplay.OBS.Lib.Data.Store;
 
 namespace PartyDisplay.OBS.Lib.Data.Player;

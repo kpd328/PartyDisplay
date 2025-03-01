@@ -1,9 +1,9 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
-using static PartyDisplay.OBS.Lib.Data.Item.Mp6OrbType;
+﻿using PartyDisplay.OBS.Lib.Data.Items;
+using static PartyDisplay.OBS.Lib.Data.Items.Mp6OrbType;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
-public class Mp6 {
+public static class Mp6 {
     public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp6.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp6.luigi.png"),
@@ -34,38 +34,38 @@ public class Mp6 {
     ];
 
     public static Mp6Orb?[] Items => [
-        new(name: "Mushroom", icon: "/img/item/mp6.mushroom.png", type: GREEN),
-        new(name: "Super 'Shroom", icon: "/img/item/mp6.supershroom.png", type: GREEN),
-        new(name: "Sluggish 'Shroom", icon: "/img/item/mp6.sluggishshroom.png", type: GREEN),
-        new(name: "Metal Mushroom", icon: "/img/item/mp6.metalmushroom.png", type: GREEN),
-        new(name: "Bullet Bill", icon: "/img/item/mp6.bulletbill.png", type: GREEN),
-        new(name: "Warp Pipe", icon: "/img/item/mp6.warppipe.png", type: GREEN),
-        new(name: "Flutter", icon: "/img/item/mp6.flutter.png", type: GREEN),
-        new(name: "Cursed Mushroom", icon: "/img/item/mp6.cursedmushroom.png", type: GREEN),
+        new(name: "Mushroom", icon: "/img/item/mp6.mushroom.png", type: Green),
+        new(name: "Super 'Shroom", icon: "/img/item/mp6.supershroom.png", type: Green),
+        new(name: "Sluggish 'Shroom", icon: "/img/item/mp6.sluggishshroom.png", type: Green),
+        new(name: "Metal Mushroom", icon: "/img/item/mp6.metalmushroom.png", type: Green),
+        new(name: "Bullet Bill", icon: "/img/item/mp6.bulletbill.png", type: Green),
+        new(name: "Warp Pipe", icon: "/img/item/mp6.warppipe.png", type: Green),
+        new(name: "Flutter", icon: "/img/item/mp6.flutter.png", type: Green),
+        new(name: "Cursed Mushroom", icon: "/img/item/mp6.cursedmushroom.png", type: Green),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
-        new(name: "Spiny", icon: "/img/item/mp6.spiny.png", type: YELLOW),
-        new(name: "Goomba", icon: "/img/item/mp6.goomba.png", type: YELLOW),
-        new(name: "Piranha Plant", icon: "/img/item/mp6.piranhaplant.png", type: YELLOW),
-        new(name: "Klepto", icon: "/img/item/mp6.klepto.png", type: YELLOW),
+        new(name: "Spiny", icon: "/img/item/mp6.spiny.png", type: Yellow),
+        new(name: "Goomba", icon: "/img/item/mp6.goomba.png", type: Yellow),
+        new(name: "Piranha Plant", icon: "/img/item/mp6.piranhaplant.png", type: Yellow),
+        new(name: "Klepto", icon: "/img/item/mp6.klepto.png", type: Yellow),
         null, //These Gaps are intentional
-        new(name: "Toady", icon: "/img/item/mp6.toady.png", type: YELLOW),
-        new(name: "Kamek", icon: "/img/item/mp6.kamek.png", type: YELLOW),
-        new(name: "Mr. Blizzard", icon: "/img/item/mp6.mrblizzard.png", type: YELLOW),
-        null, //These Gaps are intentional
-        null, //These Gaps are intentional
-        new(name: "Podoboo", icon: "/img/item/mp6.podoboo.png", type: RED),
-        new(name: "Zap", icon: "/img/item/mp6.zap.png", type: RED),
-        new(name: "Tweester", icon: "/img/item/mp6.tweester.png", type: RED),
-        new(name: "Thwomp", icon: "/img/item/mp6.thwomp.png", type: RED),
-        new(name: "Bob-omb", icon: "/img/item/mp6.bobomb.png", type: RED),
-        new(name: "Koopa Troopa", icon: "/img/item/mp6.koopatroopa.png", type: RED),
+        new(name: "Toady", icon: "/img/item/mp6.toady.png", type: Yellow),
+        new(name: "Kamek", icon: "/img/item/mp6.kamek.png", type: Yellow),
+        new(name: "Mr. Blizzard", icon: "/img/item/mp6.mrblizzard.png", type: Yellow),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
+        new(name: "Podoboo", icon: "/img/item/mp6.podoboo.png", type: Red),
+        new(name: "Zap", icon: "/img/item/mp6.zap.png", type: Red),
+        new(name: "Tweester", icon: "/img/item/mp6.tweester.png", type: Red),
+        new(name: "Thwomp", icon: "/img/item/mp6.thwomp.png", type: Red),
+        new(name: "Bob-omb", icon: "/img/item/mp6.bobomb.png", type: Red),
+        new(name: "Koopa Troopa", icon: "/img/item/mp6.koopatroopa.png", type: Red),
         null, //These Gaps are intentional
         null, //These Gaps are intentional
-        new(name: "Snack", icon: "/img/item/mp6.snack.png", type: BLUE),
-        new(name: "Boo-Away", icon: "/img/item/mp6.booaway.png", type: BLUE)
+        null, //These Gaps are intentional
+        null, //These Gaps are intentional
+        new(name: "Snack", icon: "/img/item/mp6.snack.png", type: Blue),
+        new(name: "Boo-Away", icon: "/img/item/mp6.booaway.png", type: Blue)
     ];
 
     public static BonusStar[] BonusStars => [

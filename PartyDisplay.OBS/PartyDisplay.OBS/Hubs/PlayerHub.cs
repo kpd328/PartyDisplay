@@ -35,7 +35,7 @@ public class PlayerHub : Hub {
         await Clients.Others.SendAsync("GetItemsInit", size);
     }
 
-    public async Task UpdateItem(byte player, byte slot, IItem item) {
+    public async Task UpdateItem(byte player, byte slot, Item item) {
         await Clients.Others.SendAsync("GetItem", player, slot, item);
     }
 

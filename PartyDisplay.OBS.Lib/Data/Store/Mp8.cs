@@ -1,8 +1,8 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
+﻿using PartyDisplay.OBS.Lib.Data.Items;
 
 namespace PartyDisplay.OBS.Lib.Data.Store;
 
-public class Mp8 {
+public static class Mp8 {
     public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp8.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp8.luigi.png"),
@@ -36,20 +36,20 @@ public class Mp8 {
     ];
 
     public static Mp8Candy?[] Items => [
-        new(name: "Twice Candy", icon: "/img/item/mp8.twice.png", type: Mp8CandyType.RED),
-        new(name: "Thrice Candy", icon: "/img/item/mp8.thrice.png", type: Mp8CandyType.RED),
-        new(name: "Slowgo Candy", icon: "/img/item/mp8.slowgo.png", type: Mp8CandyType.RED),
-        new(name: "Bitsize Candy", icon: "/img/item/mp8.bitsize.png", type: Mp8CandyType.YELLOW),
-        new(name: "Bloway Candy", icon: "/img/item/mp8.bloway.png", type: Mp8CandyType.YELLOW),
-        new(name: "Bowlo Candy", icon: "/img/item/mp8.bowlo.png", type: Mp8CandyType.YELLOW),
-        new(name: "Weeglee Candy", icon: "/img/item/mp8.weeglee.png", type: Mp8CandyType.YELLOW),
-        new(name: "Cashzap Candy", icon: "/img/item/mp8.cashzap.png", type: Mp8CandyType.GREEN),
-        new(name: "Springo Candy", icon: "/img/item/mp8.springo.png", type: Mp8CandyType.GREEN),
-        new(name: "Vampire Candy", icon: "/img/item/mp8.vampire.png", type: Mp8CandyType.GREEN),
-        new(name: "Bowser Candy", icon: "/img/item/mp8.bowser.png", type: Mp8CandyType.BLUE),
-        new(name: "Bullet Candy", icon: "/img/item/mp8.bullet.png", type: Mp8CandyType.BLUE),
-        new(name: "Duelo Candy", icon: "/img/item/mp8.duelo.png", type: Mp8CandyType.BLUE),
-        new(name: "Thwomp Candy", icon: "/img/item/mp8.thwomp.png", type: Mp8CandyType.BLUE),
+        new(name: "Twice Candy", icon: "/img/item/mp8.twice.png", type: Mp8CandyType.Red),
+        new(name: "Thrice Candy", icon: "/img/item/mp8.thrice.png", type: Mp8CandyType.Red),
+        new(name: "Slowgo Candy", icon: "/img/item/mp8.slowgo.png", type: Mp8CandyType.Red),
+        new(name: "Bitsize Candy", icon: "/img/item/mp8.bitsize.png", type: Mp8CandyType.Yellow),
+        new(name: "Bloway Candy", icon: "/img/item/mp8.bloway.png", type: Mp8CandyType.Yellow),
+        new(name: "Bowlo Candy", icon: "/img/item/mp8.bowlo.png", type: Mp8CandyType.Yellow),
+        new(name: "Weeglee Candy", icon: "/img/item/mp8.weeglee.png", type: Mp8CandyType.Yellow),
+        new(name: "Cashzap Candy", icon: "/img/item/mp8.cashzap.png", type: Mp8CandyType.Green),
+        new(name: "Springo Candy", icon: "/img/item/mp8.springo.png", type: Mp8CandyType.Green),
+        new(name: "Vampire Candy", icon: "/img/item/mp8.vampire.png", type: Mp8CandyType.Green),
+        new(name: "Bowser Candy", icon: "/img/item/mp8.bowser.png", type: Mp8CandyType.Blue),
+        new(name: "Bullet Candy", icon: "/img/item/mp8.bullet.png", type: Mp8CandyType.Blue),
+        new(name: "Duelo Candy", icon: "/img/item/mp8.duelo.png", type: Mp8CandyType.Blue),
+        new(name: "Thwomp Candy", icon: "/img/item/mp8.thwomp.png", type: Mp8CandyType.Blue),
     ];
 
     public static BonusStar[] BonusStars => [

@@ -170,7 +170,7 @@
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
 
-    private readonly IPlayer<IItem>[] _players = [
+    private readonly IPlayer<Item>[] _players = [
         new Lib.Xfer.Player(),
         new Lib.Xfer.Player(),
         new Lib.Xfer.Player(),
@@ -178,7 +178,7 @@
     ];
 
     private Character[] _characters = [];
-    private IItem?[] _items = [];
+    private Item?[] _items = [];
     private Status[] _statuses = [];
     private Lib.Data.Board[] _boards = [];
 
@@ -199,10 +199,10 @@
                     _players[1].BonusStars = Mp2.BonusStars;
                     _players[2].BonusStars = Mp2.BonusStars;
                     _players[3].BonusStars = Mp2.BonusStars;
-                    _players[0].Items = new IItem[1];
-                    _players[1].Items = new IItem[1];
-                    _players[2].Items = new IItem[1];
-                    _players[3].Items = new IItem[1];
+                    _players[0].Items = new Item[1];
+                    _players[1].Items = new Item[1];
+                    _players[2].Items = new Item[1];
+                    _players[3].Items = new Item[1];
 
                     _playerHubConnection?.SendAsync("InitItems", 1);
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp2.BonusStars);
@@ -217,10 +217,10 @@
                     _players[1].BonusStars = Mp4.BonusStars;
                     _players[2].BonusStars = Mp4.BonusStars;
                     _players[3].BonusStars = Mp4.BonusStars;
-                    _players[0].Items = new IItem[3];
-                    _players[1].Items = new IItem[3];
-                    _players[2].Items = new IItem[3];
-                    _players[3].Items = new IItem[3];
+                    _players[0].Items = new Item[3];
+                    _players[1].Items = new Item[3];
+                    _players[2].Items = new Item[3];
+                    _players[3].Items = new Item[3];
                     
                     _playerHubConnection?.SendAsync("InitItems", 3);
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp4.BonusStars);
@@ -235,10 +235,10 @@
                     _players[1].BonusStars = Mp5.BonusStars;
                     _players[2].BonusStars = Mp5.BonusStars;
                     _players[3].BonusStars = Mp5.BonusStars;
-                    _players[0].Items = new IItem[3];
-                    _players[1].Items = new IItem[3];
-                    _players[2].Items = new IItem[3];
-                    _players[3].Items = new IItem[3];
+                    _players[0].Items = new Item[3];
+                    _players[1].Items = new Item[3];
+                    _players[2].Items = new Item[3];
+                    _players[3].Items = new Item[3];
                     
                     _playerHubConnection?.SendAsync("InitItems", 3);
                     
@@ -254,10 +254,10 @@
                     _players[2].BonusStars = Mp6.BonusStars;
                     _players[3].BonusStars = Mp6.BonusStars;
                     _players[0].BonusStars = Mp6.BonusStars;
-                    _players[0].Items = new IItem[3];
-                    _players[1].Items = new IItem[3];
-                    _players[2].Items = new IItem[3];
-                    _players[3].Items = new IItem[3];
+                    _players[0].Items = new Item[3];
+                    _players[1].Items = new Item[3];
+                    _players[2].Items = new Item[3];
+                    _players[3].Items = new Item[3];
                     
                     _playerHubConnection?.SendAsync("InitItems", 3);
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp6.BonusStars);
@@ -272,10 +272,10 @@
                     _players[2].BonusStars = Mp7.BonusStars;
                     _players[3].BonusStars = Mp7.BonusStars;
                     _players[0].BonusStars = Mp7.BonusStars;
-                    _players[0].Items = new IItem[3];
-                    _players[1].Items = new IItem[3];
-                    _players[2].Items = new IItem[3];
-                    _players[3].Items = new IItem[3];
+                    _players[0].Items = new Item[3];
+                    _players[1].Items = new Item[3];
+                    _players[2].Items = new Item[3];
+                    _players[3].Items = new Item[3];
                     
                     _playerHubConnection?.SendAsync("InitItems", 3);
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp7.BonusStars);
@@ -290,10 +290,10 @@
                     _players[2].BonusStars = Mp8.BonusStars;
                     _players[3].BonusStars = Mp8.BonusStars;
                     _players[0].BonusStars = Mp8.BonusStars;
-                    _players[0].Items = new IItem[3];
-                    _players[1].Items = new IItem[3];
-                    _players[2].Items = new IItem[3];
-                    _players[3].Items = new IItem[3];
+                    _players[0].Items = new Item[3];
+                    _players[1].Items = new Item[3];
+                    _players[2].Items = new Item[3];
+                    _players[3].Items = new Item[3];
                     
                     _playerHubConnection?.SendAsync("InitItems", 3);
                     _playerHubConnection?.SendAsync("InitBonusStars", Mp8.BonusStars);
@@ -372,7 +372,7 @@
         await _playerHubConnection.StartAsync();
     }
 
-    private async Task UpdatePlayer(IPlayer<IItem> p) {
+    private async Task UpdatePlayer(IPlayer<Item> p) {
         int i = Array.IndexOf(_players, p) + 1;
         if (_playerHubConnection is not null) {
             await _playerHubConnection.SendAsync("SetName", i, p.Name);
@@ -384,7 +384,7 @@
             await _playerHubConnection.SendAsync("UpdateStatus", i, p.Status);
             var j = 0;
             foreach (var item in p.Items) {
-                await _playerHubConnection.SendAsync("UpdateItem", i, j, item);
+                await _playerHubConnection.SendAsync("UpdateItem", i, j, item?.AsItem());
                 j++;
             }
             foreach (var star in p.BonusStars) {
@@ -397,13 +397,13 @@
     
     private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 
-    private void SetCharacter(IPlayer<IItem> player, string? character) => player.Character = character is null ?
+    private void SetCharacter(IPlayer<Item> player, string? character) => player.Character = character is null ?
         null! : _characters.Single(x => x.Name == character);
 
-    private void SetItem(IPlayer<IItem> player, int slot, string? selected) => player.Items[slot] = selected is null ?
+    private void SetItem(IPlayer<Item> player, int slot, string? selected) => player.Items[slot] = selected is null ?
         null : _items.Single(x => x?.Name == selected);
 
-    private void SetStatus(IPlayer<IItem> player, string? selected) => player.Status = selected is null ?
+    private void SetStatus(IPlayer<Item> player, string? selected) => player.Status = selected is null ?
         null : _statuses.Single(x => x.Name == selected);
 
     private bool IsPlayerConnected => _playerHubConnection?.State == HubConnectionState.Connected;

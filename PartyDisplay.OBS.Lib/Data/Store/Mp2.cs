@@ -1,8 +1,6 @@
-﻿using PartyDisplay.OBS.Lib.Data.Item;
+﻿namespace PartyDisplay.OBS.Lib.Data.Store;
 
-namespace PartyDisplay.OBS.Lib.Data.Store;
-
-public sealed class Mp2 {
+public static class Mp2 {
     public static Character[] Characters => [
         new(name: "Mario", icon: "/img/character/mp2.mario.png"),
         new(name: "Luigi", icon: "/img/character/mp2.luigi.png"),
@@ -27,7 +25,7 @@ public sealed class Mp2 {
             small: "/img/board/mp2.bowser_land.small.png"),
     ];
 
-    public static Mp2Item?[] Items => [
+    public static Item?[] Items => [
         new(name: "Mushroom", icon: "/img/item/mp2.mushroom.png"),
         new(name: "Skeleton Key", icon: "/img/item/mp2.skeletonkey.png"),
         new(name: "Plunder Chest", icon: "/img/item/mp2.plunderchest.png"),
