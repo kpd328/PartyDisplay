@@ -12,12 +12,16 @@
     <h1 class="player-name">@_name</h1>
     <img class="rank-img" src="@RankImg" alt="@_ranking"/>
     <img class="character" src="@_character?.Icon" alt="@_character?.Name"/>
-    <img class="status" src="@_status?.Icon" alt="@_status?.Name"/>
+    @if (_status is not null) {
+        <img class="status" src="@_status?.Icon" alt="@_status?.Name"/>
+    }
     <p class="star-count">Stars: @_stars</p>
     <p class="coin-count">Coins: @_coins</p>
     <div class="item-box-container"><ul class="item-box">
         @foreach (var item in _items) {
-            <li><img class="item-img" src="@item?.Icon" alt="@item?.Name"/></li>
+            @if (item is not null) {
+                <li><img class="item-img" src="@item?.Icon" alt="@item?.Name"/></li>
+            }
         }
     </ul></div>
     <div class="bonus-stars-container"><ul class="bonus-stars">
