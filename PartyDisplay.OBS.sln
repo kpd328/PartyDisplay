@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.OBS", "PartyDi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.OBS.Client", "PartyDisplay.OBS\PartyDisplay.OBS.Client\PartyDisplay.OBS.Client.csproj", "{3796C42E-CD52-4AFC-8B8B-5DF9ACFE1689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.OBS.Lib", "PartyDisplay.OBS.Lib\PartyDisplay.OBS.Lib.csproj", "{9D7FB071-8841-4472-825C-BCBC9FAAEC0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.Lib", "PartyDisplay.Lib\PartyDisplay.Lib.csproj", "{9D7FB071-8841-4472-825C-BCBC9FAAEC0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay", "PartyDisplay\PartyDisplay.csproj", "{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9D7FB071-8841-4472-825C-BCBC9FAAEC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D7FB071-8841-4472-825C-BCBC9FAAEC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D7FB071-8841-4472-825C-BCBC9FAAEC0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

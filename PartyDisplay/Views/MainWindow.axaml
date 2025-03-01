@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:PartyDisplay.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PartyDisplay.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="PartyDisplay">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel>
+        <TextBlock>Currently Connected to Game:</TextBlock>
+        <TextBlock Text="{Binding Game.Name}"/>
+        <TextBox Watermark="Player 1" Text="{Binding P1Name}"/>
+        <TextBox Watermark="Player 2" Text="{Binding P2Name}"/>
+        <TextBox Watermark="Player 3" Text="{Binding P3Name}"/>
+        <TextBox Watermark="Player 4" Text="{Binding P4Name}"/>
+        <Button Command="{Binding Refresh}">Refresh</Button>
+    </StackPanel>
+    
+</Window>

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PartyDisplay.OBS.Lib\PartyDisplay.OBS.Lib.csproj" />
+    <ProjectReference Include="..\..\PartyDisplay.Lib\PartyDisplay.Lib.csproj" />
     <ProjectReference Include="..\PartyDisplay.OBS.Client\PartyDisplay.OBS.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.13" />
   </ItemGroup>

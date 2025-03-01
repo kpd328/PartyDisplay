@@ -1,7 +1,7 @@
 ﻿@page "/board"
 @rendermode InteractiveWebAssembly
 @using Microsoft.AspNetCore.SignalR.Client
-@using PartyDisplay.OBS.Lib.Data
+@using PartyDisplay.Lib.Data
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
@@ -22,7 +22,7 @@
 @code {
     private HubConnection? _hubConnection;
     private Game? _game;
-    private Lib.Data.Board? _board;
+    private PartyDisplay.Lib.Data.Board? _board;
     private short _turnCount;
     private short _turnLimit;
     private BoardImageClass _imageClass = BoardImageClass.Logo;
@@ -44,7 +44,7 @@
             InvokeAsync(StateHasChanged);
         });
         
-        _hubConnection.On<Lib.Data.Board>("GetBoard", (board) => {
+        _hubConnection.On<PartyDisplay.Lib.Data.Board>("GetBoard", (board) => {
             _board = board;
             InvokeAsync(StateHasChanged);
         });

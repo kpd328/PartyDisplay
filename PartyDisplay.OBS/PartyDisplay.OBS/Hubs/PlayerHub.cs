@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using PartyDisplay.OBS.Lib.Data;
+using PartyDisplay.Lib.Data;
 
 namespace PartyDisplay.OBS.Hubs;
 public class PlayerHub : Hub {

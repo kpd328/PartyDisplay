@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PartyDisplay.OBS.Lib\PartyDisplay.OBS.Lib.csproj" />
+    <ProjectReference Include="..\..\PartyDisplay.Lib\PartyDisplay.Lib.csproj" />
   </ItemGroup>
 
 </Project>

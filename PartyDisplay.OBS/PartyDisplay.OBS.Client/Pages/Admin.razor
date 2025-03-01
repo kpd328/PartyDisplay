@@ -1,8 +1,8 @@
 ﻿@page "/admin"
 @rendermode InteractiveWebAssembly
 @using Microsoft.AspNetCore.SignalR.Client
-@using PartyDisplay.OBS.Lib.Data
-@using PartyDisplay.OBS.Lib.Data.Store
+@using PartyDisplay.Lib.Data
+@using PartyDisplay.Lib.Data.Store
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
@@ -170,16 +170,16 @@
     private HubConnection? _playerHubConnection;
 
     private readonly IPlayer<Item>[] _players = [
-        new Lib.Xfer.Player(),
-        new Lib.Xfer.Player(),
-        new Lib.Xfer.Player(),
-        new Lib.Xfer.Player()
+        new PartyDisplay.Lib.Xfer.Player(),
+        new PartyDisplay.Lib.Xfer.Player(),
+        new PartyDisplay.Lib.Xfer.Player(),
+        new PartyDisplay.Lib.Xfer.Player()
     ];
 
     private Character[] _characters = [];
     private Item?[] _items = [];
     private Status[] _statuses = [];
-    private Lib.Data.Board[] _boards = [];
+    private PartyDisplay.Lib.Data.Board[] _boards = [];
 
     private Game? _game;
     private Game? Game {
@@ -309,8 +309,8 @@
         }
     }
     
-    private Lib.Data.Board? _board;
-    private Lib.Data.Board? Board {
+    private PartyDisplay.Lib.Data.Board? _board;
+    private PartyDisplay.Lib.Data.Board? Board {
         get => _board;
         set {
             _board = value;
