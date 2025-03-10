@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.Lib", "PartyDi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay", "PartyDisplay\PartyDisplay.csproj", "{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartyDisplay.Dolphin", "PartyDisplay.Dolphin\PartyDisplay.Dolphin.csproj", "{B7AEE6BE-7B26-4E31-85CE-8E78E732B5C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dolphin.Memory.Access", "..\Dolphin.Memory.Access\dolphin.memory.access\Dolphin.Memory.Access.csproj", "{BF312EEC-DE76-46E9-8720-CDF64DDC3C7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38D9DC8D-A225-4553-9C9D-BF19DE7AE4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7AEE6BE-7B26-4E31-85CE-8E78E732B5C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AEE6BE-7B26-4E31-85CE-8E78E732B5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AEE6BE-7B26-4E31-85CE-8E78E732B5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AEE6BE-7B26-4E31-85CE-8E78E732B5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF312EEC-DE76-46E9-8720-CDF64DDC3C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF312EEC-DE76-46E9-8720-CDF64DDC3C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF312EEC-DE76-46E9-8720-CDF64DDC3C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF312EEC-DE76-46E9-8720-CDF64DDC3C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

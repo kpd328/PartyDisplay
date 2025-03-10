@@ -68,7 +68,7 @@ public class MainWindowViewModel : ViewModelBase {
             Game = game;
         });
         
-        _boardHubConnection.StartAsync();
+        await _boardHubConnection.StartAsync();
         
         _playerHubConnection = new HubConnectionBuilder()
             .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/player")
