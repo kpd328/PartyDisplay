@@ -13,7 +13,7 @@
         Game Override:
         <select @bind:get="Game?.Code" @bind:set="SetGame">
             <option value=""></option>
-            @foreach (var g in Games.List) {
+            @foreach (var g in Games.Templates) {
                 <option value="@g.Code">@g.Name</option>
             }
         </select>
@@ -371,7 +371,7 @@
         await _playerHubConnection.StartAsync();
     }
 
-    private void SetGame(string? game) => Game = game is null ? null : Games.List.Single(g => g.Code == game);
+    private void SetGame(string? game) => Game = game is null ? null : Games.Templates.Single(g => g.Code == game);
     
     private void SetBoard(string? board) => Board = board is null ? null : _boards.Single(b => b.Name == board);
 

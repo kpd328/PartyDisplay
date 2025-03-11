@@ -9,12 +9,22 @@ public class Game {
         Icon = icon;
         AvailableRegions = availableRegions;
     }
+    
+    public Game(string name, string id, string code, string icon, Region region, Region[] availableRegions) {
+        Name = name;
+        Id = id;
+        Code = code;
+        Icon = icon;
+        Region = region;
+        AvailableRegions = availableRegions;
+    }
 
     public string Name { get; init; }
-    public string Code { get; init; }
-    public string Icon { get; init; }
+    public string Id { get; init; }
+    public string Code { get; }
+    public string Icon { get; }
     public Region Region { get; set; } = Region.NTSC;
-    public Region[] AvailableRegions { get; init; }
+    public Region[] AvailableRegions { get; }
 }
 
 public enum Region {

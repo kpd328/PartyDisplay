@@ -26,14 +26,13 @@ public class Memory {
         }
     }
 
+    public Task<string> LoadedGameAsync() => Task.FromResult(LoadedGame());
+
     public string LoadedGame() {
         try {
-            if (SearchByte(BaseAddress) == 0) {
-                //This is a Virtual Console Game
-                return SearchString(VirtualConsoleCode, VirtualConsoleCodeLength);
-            } else {
-                return SearchString(BaseAddress, CodeLength);
-            }
+            return SearchByte(BaseAddress) == 0 ?
+                SearchString(VirtualConsoleCode, VirtualConsoleCodeLength) 
+                : SearchString(BaseAddress, CodeLength);
         } catch (Exception e) {
             throw new FileNotFoundException("No Game Is Loaded", e);
         }

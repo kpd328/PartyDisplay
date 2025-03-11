@@ -28,6 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PartyDisplay.Dolphin\PartyDisplay.Dolphin.csproj" />
       <ProjectReference Include="..\PartyDisplay.Lib\PartyDisplay.Lib.csproj" />
     </ItemGroup>
 

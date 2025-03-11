@@ -1,7 +1,11 @@
-﻿using System.Reactive;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reactive;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PartyDisplay.Lib.Data;
+using PartyDisplay.Lib.Data.Store;
 using ReactiveUI;
 
 namespace PartyDisplay.ViewModels;
@@ -13,7 +17,12 @@ public class MainWindowViewModel : ViewModelBase {
     private Game? _game;
     public Game? Game {
         get => _game;
-        private set => this.RaiseAndSetIfChanged(ref _game, value);
+        private set {
+            this.RaiseAndSetIfChanged(ref _game, value);
+            if (_game is not null) {
+                //TODO: Start Linking Based on game
+            }
+        }
     }
     
     private string? _p1Name;
@@ -52,13 +61,27 @@ public class MainWindowViewModel : ViewModelBase {
         }
     }
 
-    public ReactiveCommand<Unit, Task> Refresh { get; }
+    public ReactiveCommand<Unit, Task> RefreshDolphin { get; }
+    public ReactiveCommand<Unit, Task> RefreshSignalR { get; }
 
     public MainWindowViewModel() {
-        Refresh = ReactiveCommand.Create(RunRefresh);
+        RefreshDolphin = ReactiveCommand.Create(RunRefreshDolphin);
+        RefreshSignalR = ReactiveCommand.Create(RunRefreshSignalR);
+        Task.Run(RunRefreshDolphin);
+        Task.Run(RunRefreshSignalR);
+    }
+    
+    private async Task RunRefreshDolphin() {
+        try {
+            var id = await Dolphin.Memory.Access.LoadedGameAsync();
+            Game = Games.List.SingleOrDefault(i => i.Id == id);
+        } catch (FileNotFoundException e) {
+            Debug.WriteLine(e);
+            Game = null;
+        }
     }
 
-    private async Task RunRefresh() {
+    private async Task RunRefreshSignalR() {
         _boardHubConnection = new HubConnectionBuilder()
             .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/board")
             .WithAutomaticReconnect()
