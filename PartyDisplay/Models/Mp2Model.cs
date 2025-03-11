@@ -13,7 +13,7 @@ public class Mp2Model : DolphinModel<Mp2Reader, Item> {
         Reader = Mp2Reader.Connection;
     }
 
-    public new async Task UpdateLoop() {
+    public override async Task UpdateLoop() {
         await base.UpdateLoop();
         for (byte i = 1; i <= 4; i++) {
             PlayerConnection?.SendAsync("UpdateItem", i, Reader.GetItem((byte)(i - 1)));

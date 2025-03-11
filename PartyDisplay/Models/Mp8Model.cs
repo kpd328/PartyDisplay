@@ -13,7 +13,7 @@ public class Mp8Model : DolphinModel<Mp8Reader, Mp8Candy> {
         Reader = Mp8Reader.Connection;
     }
     
-    public new async Task UpdateLoop() {
+    public override async Task UpdateLoop() {
         await base.UpdateLoop();
         for (byte i = 1; i <= 4; i++) {
             for (byte j = 0; j < 3; j++) {
