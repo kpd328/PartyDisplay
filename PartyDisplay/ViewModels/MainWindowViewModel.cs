@@ -6,22 +6,45 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PartyDisplay.Lib.Data;
 using PartyDisplay.Lib.Data.Store;
+using PartyDisplay.Models;
 using ReactiveUI;
 
 namespace PartyDisplay.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase {
+#region Private Fields
+    
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
+    
+#endregion
+
+#region Properties
+
+    private IDolphinModel _model;
+    public IDolphinModel Model {
+        get => _model;
+        set {
+            this.RaiseAndSetIfChanged(ref _model, value);
+            _model.UpdateLoop();
+        }
+    }
 
     private Game? _game;
     public Game? Game {
         get => _game;
         private set {
             this.RaiseAndSetIfChanged(ref _game, value);
-            if (_game is not null) {
-                //TODO: Start Linking Based on game
-            }
+            _boardHubConnection?.SendAsync("SetGame", _game);
+            Model = _game?.Code switch {
+                "mp2" => new Mp2Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                "mp4" => new Mp4Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                "mp5" => new Mp5Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                "mp6" => new Mp6Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                "mp7" => new Mp7Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                "mp8" => new Mp8Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
+                _ => Model
+            };
         }
     }
     
@@ -61,16 +84,30 @@ public class MainWindowViewModel : ViewModelBase {
         }
     }
 
-    public ReactiveCommand<Unit, Task> RefreshDolphin { get; }
-    public ReactiveCommand<Unit, Task> RefreshSignalR { get; }
+    private bool _signalRConnected;
 
+    public bool SignalRConnected {
+        get => _signalRConnected;
+        set => this.RaiseAndSetIfChanged(ref _signalRConnected, value);
+    }
+    
+#endregion
+    
+#region Constructors
+    
     public MainWindowViewModel() {
         RefreshDolphin = ReactiveCommand.Create(RunRefreshDolphin);
         RefreshSignalR = ReactiveCommand.Create(RunRefreshSignalR);
+        RefreshGameData = ReactiveCommand.Create(RunRefreshGameData);
+        
         Task.Run(RunRefreshDolphin);
         Task.Run(RunRefreshSignalR);
     }
     
+#endregion
+
+#region Reactive Commands
+    public ReactiveCommand<Unit, Task> RefreshDolphin { get; }
     private async Task RunRefreshDolphin() {
         try {
             var id = await Dolphin.Memory.Access.LoadedGameAsync();
@@ -81,6 +118,7 @@ public class MainWindowViewModel : ViewModelBase {
         }
     }
 
+    public ReactiveCommand<Unit, Task> RefreshSignalR { get; }
     private async Task RunRefreshSignalR() {
         _boardHubConnection = new HubConnectionBuilder()
             .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/board")
@@ -92,6 +130,7 @@ public class MainWindowViewModel : ViewModelBase {
         });
         
         await _boardHubConnection.StartAsync();
+        Model.BoardConnection = _boardHubConnection;
         
         _playerHubConnection = new HubConnectionBuilder()
             .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/player")
@@ -116,5 +155,15 @@ public class MainWindowViewModel : ViewModelBase {
         });
 
         await _playerHubConnection.StartAsync();
+        Model.BoardConnection = _playerHubConnection;
+        SignalRConnected = _boardHubConnection?.State == HubConnectionState.Connected &&
+                           _playerHubConnection?.State == HubConnectionState.Connected;
     }
+    
+    public ReactiveCommand<Unit, Task> RefreshGameData { get; }
+    private async Task RunRefreshGameData() {
+        await Model.UpdateLoop();
+    }
+    
+#endregion
 }

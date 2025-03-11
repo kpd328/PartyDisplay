@@ -120,12 +120,12 @@ public class Mp7Reader : IReader<Mp7Orb> {
         return Memory.Access.SearchByte(_playerOffset[player] + BSpaceHappeningOffset);
     }
     
-    public long GetSpacesMoved(byte player) {
+    public short GetSpacesMoved(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HSpacesMovedOffset);
     }
     
-    public long GetOrbsBought(byte player) {
+    public short GetOrbsBought(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HCoinSpentOffset);
     }

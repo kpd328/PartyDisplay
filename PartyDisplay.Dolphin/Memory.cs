@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 using Reloaded.Memory;
+using Reloaded.Memory.Utilities;
 
 namespace PartyDisplay.Dolphin;
 
@@ -40,7 +41,8 @@ public class Memory {
 
     public byte SearchByte(long address) {
         if (_dolphin.TryGetAddress(address, out UIntPtr real)) {
-            return _memory.Read<byte>(real);
+            
+            return Endian.Reverse(_memory.Read<byte>(real));
         }
 
         throw new ArgumentOutOfRangeException(nameof(address));
@@ -48,7 +50,7 @@ public class Memory {
     
     public sbyte SearchSByte(long address) {
         if (_dolphin.TryGetAddress(address, out UIntPtr real)) {
-            return _memory.Read<sbyte>(real);
+            return Endian.Reverse(_memory.Read<sbyte>(real));
         }
 
         throw new ArgumentOutOfRangeException(nameof(address));
@@ -56,7 +58,8 @@ public class Memory {
 
     public short SearchHword(long address) {
         if (_dolphin.TryGetAddress(address, out UIntPtr real)) {
-            return _memory.Read<short>(real);
+            
+            return Endian.Reverse(_memory.Read<short>(real));
         }
         
         throw new ArgumentOutOfRangeException(nameof(address));

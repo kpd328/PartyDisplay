@@ -117,12 +117,12 @@ public class Mp8Reader : IReader<Mp8Candy> {
         return Memory.Access.SearchByte(_playerOffset[player] + BSpaceHappeningOffset);
     }
     
-    public long GetSpacesMoved(byte player) {
+    public short GetSpacesMoved(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HSpacesMovedOffset);
     }
     
-    public long GetCandyBought(byte player) {
+    public short GetCandyBought(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HCoinSpentOffset);
     }

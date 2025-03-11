@@ -8,7 +8,8 @@
         x:Class="PartyDisplay.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="PartyDisplay">
+        Title="PartyDisplay"
+        Padding="10">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -25,6 +26,11 @@
         <TextBox Watermark="Player 4" Text="{Binding P4Name}"/>
         <Button Command="{Binding RefreshDolphin}">Refresh Dolphin Connection</Button>
         <Button Command="{Binding RefreshSignalR}">Refresh Display Connection</Button>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Display Connected: </TextBlock>
+            <TextBlock Text="{Binding SignalRConnected}"/>
+        </StackPanel>
+        <Button Command="{Binding RefreshGameData}">Manually Refresh Data</Button>
     </StackPanel>
     
 </Window>
