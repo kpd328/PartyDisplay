@@ -12,3 +12,5 @@ A game state data display for Mario Party games playable on the Dolphin Emulator
 ## Build
 
 Built using .NET 8, ASP.NET Core, Blazor, and SignalR.
+
+Built using [Dolphin.Memory.Access](https://github.com/Sewer56/Dolphin.Memory.Access) (modifications made under LGPL can be found [here](https://github.com/kpd328/Dolphin.Memory.Access)) and [Reloaded.Memory](https://github.com/Reloaded-Project/Reloaded.Memory)
