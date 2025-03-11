@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GeneratedAssemblyInfoFile>AssemblyInfo.cs</GeneratedAssemblyInfoFile>
     </PropertyGroup>
 

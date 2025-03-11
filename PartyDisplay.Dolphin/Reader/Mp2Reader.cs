@@ -86,10 +86,7 @@ public class Mp2Reader : IReader<Item> {
         };
     }
 
-    public Status? GetStatus(byte player) {
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
-        throw new NotImplementedException();
-    }
+    public Status? GetStatus(byte player) => null;
 
     public short GetMinigameCoins(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
