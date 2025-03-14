@@ -14,7 +14,7 @@ public class Mp5Model : DolphinModel<Mp5Reader, Mp5Capsule> {
     }
     
     public override async Task UpdateLoop() {
-        //await base.UpdateLoop();
+        await base.UpdateLoop();
         for (byte i = 1; i <= 4; i++) {
             for (byte j = 0; j < 3; j++) {
                 PlayerConnection?.SendAsync("UpdateItem", i, Reader.GetItem((byte)(i - 1), j));
