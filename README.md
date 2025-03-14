@@ -4,10 +4,21 @@ A game state data display for Mario Party games playable on the Dolphin Emulator
 
 ## Features
 
-* **Individual Transperent Player Windows** - perfect for custom streaming layouts.
+* **Customizable Views for OBS** - designed with CSS overrides in mind, perfect for custom streaming layouts.
 * **Custom Player Names** - for identifying which player is which character.
 * **Item Display** - displays item icons for keeping track of exactly what item(s) each player has.
 * **Bonus Stars Tracker** - keeps track of each game's bonus star criteria to easy see who is in the lead for each star.
+
+## ToDo
+
+- [ ] MP2: Find addresses for Ranking
+- [ ] MP2: Find addresses for Current and Max Turn counts
+- [ ] MP4: Find addresses for Current and Max Turn counts
+- [ ] MP7: Find addresses for Player Item Status (MiniMega Hammer)
+- [ ] MP6: Find addresses for Current and Max Turn counts
+- [ ] MP7: Find addresses for Current and Max Turn counts
+- [ ] MP7: Find addresses for Player Item Status
+- [ ] MP8: Find addresses for Current and Max Turn counts
 
 ## Build
 
