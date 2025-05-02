@@ -1,8 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reactive;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using Microsoft.AspNetCore.SignalR.Client;
 using PartyDisplay.Lib.Data;
 using PartyDisplay.Lib.Data.Store;
@@ -16,6 +19,8 @@ public class MainWindowViewModel : ViewModelBase {
     
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
+    private ITargetBlock<DateTimeOffset>? _streamingDataLoop;
+    private CancellationTokenSource? _sdToken;
     
 #endregion
 
@@ -98,7 +103,8 @@ public class MainWindowViewModel : ViewModelBase {
     public MainWindowViewModel() {
         RefreshDolphin = ReactiveCommand.Create(RunRefreshDolphin);
         RefreshSignalR = ReactiveCommand.Create(RunRefreshSignalR);
-        RefreshGameData = ReactiveCommand.Create(RunRefreshGameData);
+        BeginGameDataLoop = ReactiveCommand.Create(RunBeginGameDataLoop);
+        EndGameDataLoop = ReactiveCommand.Create(RunEndGameDataLoop);
         
         Task.Run(RunRefreshDolphin);
         Task.Run(RunRefreshSignalR);
@@ -160,10 +166,40 @@ public class MainWindowViewModel : ViewModelBase {
                            _playerHubConnection?.State == HubConnectionState.Connected;
     }
     
-    public ReactiveCommand<Unit, Task> RefreshGameData { get; }
-    private async Task RunRefreshGameData() {
-        await Model.UpdateLoop();
+    public ReactiveCommand<Unit, Task> BeginGameDataLoop { get; }
+    private async Task RunBeginGameDataLoop() {
+        _sdToken = new();
+        _streamingDataLoop = CreateNeverEndingTask(now => Model.UpdateLoop(), _sdToken.Token);
+        _streamingDataLoop.Post(DateTimeOffset.Now);
     }
     
+    public ReactiveCommand<Unit, Task> EndGameDataLoop { get; }
+    private async Task RunEndGameDataLoop() {
+        using (_sdToken) {
+            await _sdToken?.CancelAsync();
+        }
+
+        _sdToken = null;
+        _streamingDataLoop = null;
+    }
+    
+#endregion
+
+#region Methods
+
+ITargetBlock<DateTimeOffset> CreateNeverEndingTask(Action<DateTimeOffset> action, CancellationToken cancellationToken) {
+    ArgumentNullException.ThrowIfNull(action);
+
+    ActionBlock<DateTimeOffset>? block = null;
+    block = new(async now => {
+        action(now);
+        await Task.Delay(TimeSpan.FromSeconds(0.5), cancellationToken).ConfigureAwait(false);
+        block.Post(DateTimeOffset.Now);
+    }, new ExecutionDataflowBlockOptions {
+        CancellationToken = cancellationToken
+    });
+    return block;
+}
+
 #endregion
 }

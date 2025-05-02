@@ -25,6 +25,7 @@
         </PackageReference>
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.1"/>
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.13" />
+        <PackageReference Include="System.Threading.Tasks.Dataflow" Version="9.0.4" />
     </ItemGroup>
 
     <ItemGroup>

@@ -30,7 +30,8 @@
             <TextBlock>Display Connected: </TextBlock>
             <TextBlock Text="{Binding SignalRConnected}"/>
         </StackPanel>
-        <Button Command="{Binding RefreshGameData}">Manually Refresh Data</Button>
+        <Button Command="{Binding BeginGameDataLoop}">Start Streaming Data</Button>
+        <Button Command="{Binding EndGameDataLoop}">Stop Streaming Data</Button>
     </StackPanel>
     
 </Window>
