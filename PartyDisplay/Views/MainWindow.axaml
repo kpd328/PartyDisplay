@@ -18,20 +18,23 @@
     </Design.DataContext>
     
     <StackPanel>
+        <Button Command="{Binding RefreshDolphin}">Refresh Dolphin Connection</Button>
         <TextBlock>Currently Connected to Game:</TextBlock>
         <TextBlock Text="{Binding Game.Name}"/>
-        <TextBox Watermark="Player 1" Text="{Binding P1Name}"/>
-        <TextBox Watermark="Player 2" Text="{Binding P2Name}"/>
-        <TextBox Watermark="Player 3" Text="{Binding P3Name}"/>
-        <TextBox Watermark="Player 4" Text="{Binding P4Name}"/>
-        <Button Command="{Binding RefreshDolphin}">Refresh Dolphin Connection</Button>
+        <TextBox Watermark="Display Host" Text="{Binding Url}"/>
         <Button Command="{Binding RefreshSignalR}">Refresh Display Connection</Button>
         <StackPanel Orientation="Horizontal">
             <TextBlock>Display Connected: </TextBlock>
             <TextBlock Text="{Binding SignalRConnected}"/>
         </StackPanel>
-        <Button Command="{Binding BeginGameDataLoop}">Start Streaming Data</Button>
-        <Button Command="{Binding EndGameDataLoop}">Stop Streaming Data</Button>
+        <TextBox Watermark="Player 1" Text="{Binding P1Name}"/>
+        <TextBox Watermark="Player 2" Text="{Binding P2Name}"/>
+        <TextBox Watermark="Player 3" Text="{Binding P3Name}"/>
+        <TextBox Watermark="Player 4" Text="{Binding P4Name}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="25">
+            <Button Command="{Binding BeginGameDataLoop}">Start Streaming Data</Button>
+            <Button Command="{Binding EndGameDataLoop}">Stop Streaming Data</Button>
+        </StackPanel>
     </StackPanel>
     
 </Window>

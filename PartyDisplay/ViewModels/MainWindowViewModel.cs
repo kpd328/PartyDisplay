@@ -26,6 +26,12 @@ public class MainWindowViewModel : ViewModelBase {
 
 #region Properties
 
+    private string _url = "https://localhost:7206";
+    public string Url {
+        get => _url;
+        set => this.RaiseAndSetIfChanged(ref _url, value);
+    }
+
     private IDolphinModel _model;
     public IDolphinModel Model {
         get => _model;
@@ -127,7 +133,7 @@ public class MainWindowViewModel : ViewModelBase {
     public ReactiveCommand<Unit, Task> RefreshSignalR { get; }
     private async Task RunRefreshSignalR() {
         _boardHubConnection = new HubConnectionBuilder()
-            .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/board")
+            .WithUrl($"{Url}/hub/board")
             .WithAutomaticReconnect()
             .Build();
         
@@ -139,7 +145,7 @@ public class MainWindowViewModel : ViewModelBase {
         Model.BoardConnection = _boardHubConnection;
         
         _playerHubConnection = new HubConnectionBuilder()
-            .WithUrl(/*TODO: Get Base URL from somewhere*/"https://localhost:7206/hub/player")
+            .WithUrl($"{Url}/hub/player")
             .WithAutomaticReconnect()
             .Build();
         
