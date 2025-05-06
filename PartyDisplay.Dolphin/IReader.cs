@@ -8,6 +8,7 @@ public interface IReader<TItem>
     byte GetPortForPlayer(byte player);
     byte GetCurrentTurn();
     byte GetTurnLimit();
+    Board GetBoard();
     Character GetCharacter(byte player);
     short GetCoins(byte player);
     TItem? GetItem(byte player, byte slot);

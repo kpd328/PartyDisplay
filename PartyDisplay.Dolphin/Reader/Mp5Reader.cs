@@ -17,6 +17,7 @@ public class Mp5Reader : IReader<Mp5Capsule> {
 
     private const long BTurnCurrentIndex = 0x8023_769E;
     private const long BTurnLimitIndex = 0x8023_769F;
+    private const long BoardIndex = 0x0000_0000; //TODO: Need this index.
     private const long BCharacterOffset = 0;
     private const long BPortOffset = 4;
     private const long BStatusOffset = 1;
@@ -58,6 +59,12 @@ public class Mp5Reader : IReader<Mp5Capsule> {
     public byte GetCurrentTurn() => Memory.Access.SearchByte(BTurnCurrentIndex);
 
     public byte GetTurnLimit() => Memory.Access.SearchByte(BTurnLimitIndex);
+
+    public Board GetBoard() {
+        return Mp5.Boards[0]; //TODO: Need real index, and probably a shift/mask
+        byte index = Memory.Access.SearchByte(BoardIndex);
+        return Mp5.Boards[index];
+    }
 
     public Character GetCharacter(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);

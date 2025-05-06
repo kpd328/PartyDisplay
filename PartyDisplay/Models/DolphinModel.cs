@@ -25,6 +25,7 @@ public abstract class DolphinModel<TReader, TItem> : IDolphinModel
         if (BoardConnection is not null) {
             await BoardConnection.SendAsync("SetTurnCurrent", Reader.GetCurrentTurn());
             await BoardConnection.SendAsync("SetTurnLimit", Reader.GetTurnLimit());
+            await BoardConnection.SendAsync("SetBoard", Reader.GetBoard());
         }
 
         if (PlayerConnection is not null) {

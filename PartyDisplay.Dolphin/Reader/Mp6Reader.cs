@@ -15,6 +15,7 @@ public class Mp6Reader : IReader<Mp6Orb> {
 
     private static readonly long[] _playerOffset = [P1, P2, P3, P4];
     
+    private const long BoardIndex = 0x0000_0000; //TODO: Need this index.
     private const long BCharacterOffset = 0;
     private const long BPortOffset = 4;
     private const long BRankingOffset = 9;
@@ -61,6 +62,13 @@ public class Mp6Reader : IReader<Mp6Orb> {
     public byte GetTurnLimit() {
         throw new NotImplementedException();
     }
+    
+    public Board GetBoard() {
+        return Mp6.Boards[0]; //TODO: Need real index, and probably a shift/mask
+        byte index = Memory.Access.SearchByte(BoardIndex);
+        return Mp6.Boards[index];
+    }
+    
     public Character GetCharacter(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         byte index = Memory.Access.SearchByte(_playerOffset[player] + BCharacterOffset);
