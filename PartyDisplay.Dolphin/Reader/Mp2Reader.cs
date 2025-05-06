@@ -14,6 +14,8 @@ public class Mp2Reader : IReader<Item> {
 
     private static readonly long[] _playerOffset = [P1, P2, P3, P4];
 
+    private const long BTurnCurrentIndex = 0x0000_0000; //TODO: Don't actually have the address for this.
+    private const long BTurnLimitIndex = 0x0000_0000; //TODO: Don't actually have the address for this.
     private const long BoardIndex = 0x0000_0000; //TODO: Need this index.
     private const long BPortOffset = 0;
     private const long BCharacterOffset = 4;
@@ -42,11 +44,13 @@ public class Mp2Reader : IReader<Item> {
     }
 
     public byte GetCurrentTurn() {
-        throw new NotImplementedException(); //TODO: Don't actually have the address and schema for this.
+        return 0; //TODO: Don't actually have the address and schema for this.
+        return Memory.Access.SearchByte(BTurnCurrentIndex);
     }
 
     public byte GetTurnLimit() {
-        throw new NotImplementedException(); //TODO: Don't actually have the address and schema for this.
+        return 0; //TODO: Don't actually have the address and schema for this.
+        return Memory.Access.SearchByte(BTurnLimitIndex);
     }
     
     public Board GetBoard() {

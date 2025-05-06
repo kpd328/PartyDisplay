@@ -15,6 +15,8 @@ public class Mp6Reader : IReader<Mp6Orb> {
 
     private static readonly long[] _playerOffset = [P1, P2, P3, P4];
     
+    private const long BTurnCurrentIndex = 0x0000_0000; //TODO: Don't actually have the address for this.
+    private const long BTurnLimitIndex = 0x0000_0000; //TODO: Don't actually have the address for this.
     private const long BoardIndex = 0x0000_0000; //TODO: Need this index.
     private const long BCharacterOffset = 0;
     private const long BPortOffset = 4;
@@ -56,11 +58,15 @@ public class Mp6Reader : IReader<Mp6Orb> {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchByte(_playerOffset[player] + BPortOffset);
     }
+    
     public byte GetCurrentTurn() {
-        throw new NotImplementedException();
+        return 0; //TODO: Don't actually have the address and schema for this.
+        return Memory.Access.SearchByte(BTurnCurrentIndex);
     }
+
     public byte GetTurnLimit() {
-        throw new NotImplementedException();
+        return 0; //TODO: Don't actually have the address and schema for this.
+        return Memory.Access.SearchByte(BTurnLimitIndex);
     }
     
     public Board GetBoard() {
@@ -74,16 +80,19 @@ public class Mp6Reader : IReader<Mp6Orb> {
         byte index = Memory.Access.SearchByte(_playerOffset[player] + BCharacterOffset);
         return Mp6.Characters[(index & CharacterMask) >> CharacterBShift];
     }
+    
     public short GetCoins(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HCoinCountOffset);
     }
+    
     public Mp6Orb? GetItem(byte player, byte slot) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(slot, 2);
         sbyte index = Memory.Access.SearchSByte(_playerOffset[player] + _bItemOffset[slot]);
         return index != -1 ? Mp6.Items[index] : null;
     }
+    
     public Ranking GetRanking(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return ((Memory.Access.SearchByte(_playerOffset[player] + BRankingOffset) & RankingMask) >> RankingBShift) switch {
@@ -94,10 +103,12 @@ public class Mp6Reader : IReader<Mp6Orb> {
             _ => throw new IndexOutOfRangeException("Bad Memory")
         };
     }
+    
     public short GetStars(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HStarCountOffset);
     }
+    
     public SpaceColor? GetLandedColor(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return ((Memory.Access.SearchByte(_playerOffset[player] + BLandedSpaceOffset) & SpaceMask) >> SpaceBShift) switch {

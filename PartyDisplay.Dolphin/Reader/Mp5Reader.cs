@@ -114,6 +114,7 @@ public class Mp5Reader : IReader<Mp5Capsule> {
             _ => null
         };
     }
+    
     public Status? GetStatus(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         byte index = Memory.Access.SearchByte(_playerOffset[player] + BStatusOffset);
