@@ -47,15 +47,43 @@ public class MainWindowViewModel : ViewModelBase {
         private set {
             this.RaiseAndSetIfChanged(ref _game, value);
             _boardHubConnection?.SendAsync("SetGame", _game);
-            Model = _game?.Code switch {
-                "mp2" => new Mp2Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                "mp4" => new Mp4Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                "mp5" => new Mp5Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                "mp6" => new Mp6Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                "mp7" => new Mp7Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                "mp8" => new Mp8Model{BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection},
-                _ => Model
-            };
+            switch (_game?.Code) {
+                case "mp4":
+                    Model = new Mp4Model {
+                        BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection
+                    };
+                    _playerHubConnection?.SendAsync("InitItems", 1);
+                    _playerHubConnection?.SendAsync("InitBonusStars", Mp2.BonusStars);
+                    break;
+                case "mp5":
+                    Model = new Mp5Model {
+                        BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection
+                    };
+                    _playerHubConnection?.SendAsync("InitItems", 3);
+                    _playerHubConnection?.SendAsync("InitBonusStars", Mp4.BonusStars);
+                    break;
+                case "mp6":
+                    Model = new Mp6Model {
+                        BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection
+                    };
+                    _playerHubConnection?.SendAsync("InitItems", 3);
+                    _playerHubConnection?.SendAsync("InitBonusStars", Mp5.BonusStars);
+                    break;
+                case "mp7":
+                    Model = new Mp7Model {
+                        BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection
+                    };
+                    _playerHubConnection?.SendAsync("InitItems", 3);
+                    _playerHubConnection?.SendAsync("InitBonusStars", Mp6.BonusStars);
+                    break;
+                case "mp8":
+                    Model = new Mp8Model {
+                        BoardConnection = _boardHubConnection, PlayerConnection = _playerHubConnection
+                    };
+                    _playerHubConnection?.SendAsync("InitItems", 3);
+                    _playerHubConnection?.SendAsync("InitBonusStars", Mp7.BonusStars);
+                    break;
+            }
         }
     }
     
