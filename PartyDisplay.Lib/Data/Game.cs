@@ -21,10 +21,10 @@ public class Game {
 
     public string Name { get; init; }
     public string Id { get; init; }
-    public string Code { get; }
-    public string Icon { get; }
+    public string Code { get; init; }
+    public string Icon { get; init; }
     public Region Region { get; set; } = Region.NTSC;
-    public Region[] AvailableRegions { get; }
+    public Region[] AvailableRegions { get; init; }
 }
 
 public enum Region {
