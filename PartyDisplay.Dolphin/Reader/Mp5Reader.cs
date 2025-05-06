@@ -5,7 +5,7 @@ using PartyDisplay.Lib.Data.Store;
 namespace PartyDisplay.Dolphin.Reader;
 
 public class Mp5Reader : IReader<Mp5Capsule> {
-    private static readonly Lazy<Mp5Reader> _lazy = new(() => new Mp5Reader());
+    private static readonly Lazy<Mp5Reader> _lazy = new(() => new());
     public static Mp5Reader Connection => _lazy.Value;
 
     private const long P1 = 0x8022_A070;
@@ -64,16 +64,19 @@ public class Mp5Reader : IReader<Mp5Capsule> {
         byte index = Memory.Access.SearchByte(_playerOffset[player] + BCharacterOffset);
         return Mp5.Characters[(index & CharacterMask) >> CharacterBShift];
     }
+    
     public short GetCoins(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HCoinCountOffset);
     }
+    
     public Mp5Capsule? GetItem(byte player, byte slot) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(slot, 2);
         sbyte index = Memory.Access.SearchSByte(_playerOffset[player] + _bItemOffset[slot]);
         return index != -1 ? Mp5.Items[index] : null;
     }
+    
     public Ranking GetRanking(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return ((Memory.Access.SearchByte(_playerOffset[player] + BRankingOffset) & RankingMask) >> RankingBShift) switch {
@@ -84,10 +87,17 @@ public class Mp5Reader : IReader<Mp5Capsule> {
             _ => throw new IndexOutOfRangeException("Bad Memory")
         };
     }
+    
     public short GetStars(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HStarCountOffset);
     }
+
+    public short GetStarMax(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchHword(_playerOffset[player] + HStarMaxOffset);
+    }
+    
     public SpaceColor? GetLandedColor(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return ((Memory.Access.SearchByte(_playerOffset[player] + BLandedSpaceOffset) & SpaceMask) >> SpaceBShift) switch {
@@ -112,9 +122,39 @@ public class Mp5Reader : IReader<Mp5Capsule> {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchHword(_playerOffset[player] + HCoinMaxOffset);
     }
+
+    public byte GetBlue(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BSpaceBlueOffset);
+    }
+
+    public byte GetRed(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BSpaceRedOffset);
+    }
+
+    public byte GetCapsuleSpace(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BSpaceCapsuleOffset);
+    }
     
     public byte GetHappening(byte player) {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
         return Memory.Access.SearchByte(_playerOffset[player] + BSpaceHappeningOffset);
+    }
+
+    public byte GetBowser(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BSpaceBowserOffset);
+    }
+
+    public byte GetDk(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BSpaceDkOffset);
+    }
+
+    public byte GetDiceRoll(byte player) {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(player, 3);
+        return Memory.Access.SearchByte(_playerOffset[player] + BDiceRollOffset);
     }
 }
