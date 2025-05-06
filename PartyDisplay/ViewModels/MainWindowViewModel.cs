@@ -19,7 +19,7 @@ public class MainWindowViewModel : ViewModelBase {
     
     private HubConnection? _boardHubConnection;
     private HubConnection? _playerHubConnection;
-    private ITargetBlock<DateTimeOffset>? _streamingDataLoop;
+    private ITargetBlock<Task>? _streamingDataLoop;
     private CancellationTokenSource? _sdToken;
     
 #endregion
@@ -175,8 +175,8 @@ public class MainWindowViewModel : ViewModelBase {
     public ReactiveCommand<Unit, Task> BeginGameDataLoop { get; }
     private async Task RunBeginGameDataLoop() {
         _sdToken = new();
-        _streamingDataLoop = CreateNeverEndingTask(now => Model.UpdateLoop(), _sdToken.Token);
-        _streamingDataLoop.Post(DateTimeOffset.Now);
+        _streamingDataLoop = CreateNeverEndingTask(_ => Model.UpdateLoop(), _sdToken.Token);
+        _streamingDataLoop.Post(Model.UpdateLoop());
     }
     
     public ReactiveCommand<Unit, Task> EndGameDataLoop { get; }
@@ -193,15 +193,15 @@ public class MainWindowViewModel : ViewModelBase {
 
 #region Methods
 
-ITargetBlock<DateTimeOffset> CreateNeverEndingTask(Action<DateTimeOffset> action, CancellationToken cancellationToken) {
+ITargetBlock<Task> CreateNeverEndingTask(Action<Task> action, CancellationToken cancellationToken) {
     ArgumentNullException.ThrowIfNull(action);
 
-    ActionBlock<DateTimeOffset>? block = null;
-    block = new(async now => {
-        action(now);
+    ActionBlock<Task>? block = null;
+    block = new(async task => {
+        action(task);
         await Task.Delay(TimeSpan.FromSeconds(0.5), cancellationToken).ConfigureAwait(false);
-        block.Post(DateTimeOffset.Now);
-    }, new ExecutionDataflowBlockOptions {
+        block.Post(task);
+    }, new() {
         CancellationToken = cancellationToken
     });
     return block;
