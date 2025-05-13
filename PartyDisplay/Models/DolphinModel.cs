@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
 using PartyDisplay.Dolphin;
 using PartyDisplay.Lib.Data;
@@ -17,6 +18,7 @@ public abstract class DolphinModel<TReader, TItem> : IDolphinModel
     where TReader : IReader<TItem> {
     
     protected TReader Reader;
+    protected BonusStar[][] bonusStars;
 
     public HubConnection? BoardConnection { protected get; set; }
     public HubConnection? PlayerConnection { protected get; set; }
@@ -58,6 +60,15 @@ public abstract class DolphinModel<TReader, TItem> : IDolphinModel
             await PlayerConnection.SendAsync("UpdateStatus", 2, Reader.GetStatus(1));
             await PlayerConnection.SendAsync("UpdateStatus", 3, Reader.GetStatus(2));
             await PlayerConnection.SendAsync("UpdateStatus", 4, Reader.GetStatus(3));
+        }
+    }
+
+    protected void ComputeBonusStarLeader(ref BonusStar[] bonusStars) {
+        foreach (var bonusStar in bonusStars) {
+            bonusStar.InLead = false;
+        }
+        foreach (var bonusStar in bonusStars.GroupBy(a => a.Count).MaxBy(b => b.Key)) {
+            bonusStar.InLead = true;
         }
     }
 }

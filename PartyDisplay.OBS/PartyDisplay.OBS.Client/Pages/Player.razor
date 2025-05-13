@@ -24,11 +24,19 @@
             }
         }
     </ul></div>
-    <div class="bonus-stars-container"><ul class="bonus-stars">
-        @foreach (var bs in _bonusStars) {
-            <li><img class="bonus-star-img" src="@bs.Icon" alt="@bs.Name"/> @bs.Count</li>
-        }
-    </ul></div>
+    <div class="bonus-stars-container">
+        <ul class="bonus-stars">
+            @foreach (var bs in _bonusStars) {
+                <li><img class="bonus-star-img" src="@bs.Icon" alt="@bs.Name"/>
+                @if (bs.InLead) {
+                    <span class="bonus-star-in-lead"> @bs.Count</span>
+                } else {
+                    <span> @bs.Count</span>
+                }
+                </li>
+            }
+        </ul>
+    </div>
 </div>
 
 @code {

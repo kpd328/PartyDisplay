@@ -15,8 +15,8 @@ public class Mp5Reader : IReader<Mp5Capsule> {
 
     private static readonly long[] _playerOffset = [P1, P2, P3, P4];
 
-    private const long BTurnCurrentIndex = 0x8023_769E;
-    private const long BTurnLimitIndex = 0x8023_769F;
+    private const long BTurnCurrentIndex = 0x8022_a494;
+    private const long BTurnLimitIndex = 0x8022_a495;
     private const long BoardIndex = 0x0000_0000; //TODO: Need this index.
     private const long BCharacterOffset = 0;
     private const long BPortOffset = 4;

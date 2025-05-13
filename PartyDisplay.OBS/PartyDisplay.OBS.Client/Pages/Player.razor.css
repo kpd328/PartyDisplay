@@ -122,3 +122,8 @@
     height: 100%;
     width: 100%;
 }
+
+.bonus-star-in-lead {
+    font-weight: bold;
+    font-size: 15pt;
+}
