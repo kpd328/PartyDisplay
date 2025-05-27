@@ -19,6 +19,7 @@ A game state data display for Mario Party games playable on the Dolphin Emulator
 - [ ] MP7: Find addresses for Current and Max Turn counts
 - [ ] MP7: Find addresses for Player Item Status
 - [ ] MP8: Find addresses for Current and Max Turn counts
+- [ ] ALL: Find addresses for Current Board
 
 ## Build
 
